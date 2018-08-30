@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2986310 by capysara, drunken monkey: Added link to reindexing when saving
+  fields.
 - #2986013 by tim-diels, drunken monkey, borisson_: Fixed casting of
   nun-numeric strings in the database backend.
 - #2983630 by chipway, borisson_, drunken monkey: Fixed format of System

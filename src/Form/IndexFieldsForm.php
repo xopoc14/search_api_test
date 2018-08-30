@@ -488,7 +488,8 @@ class IndexFieldsForm extends EntityForm {
 
     $this->messenger->addStatus($this->t('The changes were successfully saved.'));
     if ($this->entity->isReindexing()) {
-      $this->messenger->addStatus($this->t('All content was scheduled for reindexing so the new settings can take effect.'));
+      $url = $this->entity->toUrl();
+      $this->messenger->addStatus($this->t('All content was scheduled for <a href=":url">reindexing</a> so the new settings can take effect.', [':url' => $url->toString()]));
     }
 
     return SAVED_UPDATED;
