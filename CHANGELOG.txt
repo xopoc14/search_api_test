@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2983843 by drunken monkey, borisson_: Fixed suggestion of installing default
+  module when dependencies aren't met.
 - #2979316 by drunken monkey, Sutharsan: Fixed highlighting problems with
   multi-byte characters.
 - #2986310 by capysara, drunken monkey: Added link to reindexing when saving
