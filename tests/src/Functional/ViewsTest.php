@@ -252,9 +252,6 @@ class ViewsTest extends SearchApiBrowserTestBase {
     // have any effect.
     $this->checkResults([], [2, 4, 5], 'Search with arguments', 'all/item+article/strawberry+apple');
 
-    // Check "OR" contextual filters (using commas).
-    $this->checkResults([], [4], 'Search with OR arguments', 'all/item,article/strawberry,apple');
-
     $this->checkResults([], [], 'Search with unknown datasource argument', 'entity:foobar/all/all');
 
     $query = [
