@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2996907 by zerolab, drunken monkey: Fixed entity tracking using access
+  checks.
 - #2993434 by jasonawant, drunken monkey: Fixed handling of comma-separated
   values in Views contextual filters.
 - #2983843 by drunken monkey, borisson_: Fixed suggestion of installing default

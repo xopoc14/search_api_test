@@ -677,6 +677,9 @@ class ContentEntity extends DatasourcePluginBase implements EntityDatasourceInte
       ->getStorage($this->getEntityTypeId())
       ->getQuery();
 
+    // When tracking items, we never want access checks.
+    $select->accessCheck(FALSE);
+
     // We want to determine all entities of either one of the given bundles OR
     // one of the given languages. That means we can't just filter for $bundles
     // if $languages is given. Instead, we have to filter for all bundles we
