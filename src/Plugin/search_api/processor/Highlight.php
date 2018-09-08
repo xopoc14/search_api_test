@@ -539,10 +539,8 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
 
     // Collapse overlapping text ranges into one. The sorting makes it O(n).
     $new_ranges = [];
-    $max_end = 0;
     $working_from = $working_to = NULL;
     foreach ($ranges as $this_from => $this_to) {
-      $max_end = max($max_end, $this_to);
       if ($working_from === NULL) {
         // This is the first time through this loop: initialize.
         $working_from = $this_from;
