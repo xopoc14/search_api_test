@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2996907 by zerolab, drunken monkey: Fixed entity tracking using access
+  checks.
 - #2983843 by drunken monkey, borisson_: Fixed suggestion of installing default
   module when dependencies aren't met.
 - #2979316 by drunken monkey, Sutharsan: Fixed highlighting problems with
