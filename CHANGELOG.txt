@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2987237 by quicksketch, drunken monkey, borisson_: Fixed requirements hook
+  for the Taxonomy Term Handlers module preventing updates from running.
 - #2992662 by capysara, drunken monkey, borisson_: Fixed the reindexing link
   when saving index processors or fields.
 - #2989689 by drunken monkey, valthebald, borisson_: Fixed bug in Views cache
