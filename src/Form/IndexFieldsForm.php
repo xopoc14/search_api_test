@@ -488,7 +488,7 @@ class IndexFieldsForm extends EntityForm {
 
     $this->messenger->addStatus($this->t('The changes were successfully saved.'));
     if ($this->entity->isReindexing()) {
-      $url = $this->entity->toUrl();
+      $url = $this->entity->toUrl('canonical');
       $this->messenger->addStatus($this->t('All content was scheduled for <a href=":url">reindexing</a> so the new settings can take effect.', [':url' => $url->toString()]));
     }
 

@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2992662 by capysara, drunken monkey, borisson_: Fixed the reindexing link
+  when saving index processors or fields.
 - #2989689 by drunken monkey, valthebald, borisson_: Fixed bug in Views cache
   plugin alter hook.
 - #2919676 by drunken monkey, borisson_: Fixed server entity link definitions.
