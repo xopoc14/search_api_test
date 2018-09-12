@@ -11,6 +11,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TypedData\EntityDataDefinitionInterface;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
@@ -931,6 +932,13 @@ class ContentEntity extends DatasourcePluginBase implements EntityDatasourceInte
         $name = $storage->getConfigDependencyName();
         $dependencies[$storage->getConfigDependencyKey()][$name] = $name;
       }
+    }
+
+    // The field might be provided by a module which is not the provider of the
+    // entity type, therefore we need to add a dependency on that module.
+    if ($property instanceof FieldStorageDefinitionInterface) {
+      $provider = $property->getProvider();
+      $dependencies['module'][$provider] = $provider;
     }
 
     $property = $this->getFieldsHelper()->getInnerProperty($property);
