@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2996936 by drunken monkey, borisson_: Added suggested packages to
+  composer.json.
 - #2987156 by hchonov, drunken monkey, borisson_: Fixed missing dependency on
   modules providing fields.
 - #2994638 by drunken monkey, Grayle, borisson_: Fixed warning in aggregated
