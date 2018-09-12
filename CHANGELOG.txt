@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2994638 by drunken monkey, Grayle, borisson_: Fixed warning in aggregated
+  fields without values.
 - #2987237 by quicksketch, drunken monkey, borisson_: Fixed requirements hook
   for the Taxonomy Term Handlers module preventing updates from running.
 - #2992662 by capysara, drunken monkey, borisson_: Fixed the reindexing link
