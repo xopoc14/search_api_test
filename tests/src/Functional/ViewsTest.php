@@ -666,6 +666,19 @@ class ViewsTest extends SearchApiBrowserTestBase {
     $this->submitForm($edit, 'Expose filter');
     $this->submitPluginForm([]);
 
+    // Add a "Search: Fulltext search" filter.
+    $this->clickLink('Add filter criteria');
+    $edit = [
+      'name[search_api_index_database_search_index.search_api_fulltext]' => 'search_api_index_database_search_index.search_api_fulltext',
+    ];
+    $this->submitForm($edit, 'Add and configure filter criteria');
+    $this->assertSession()->pageTextNotContains('No UI parse mode');
+    $edit = [
+      'options[expose_button][checkbox][checkbox]' => 1,
+    ];
+    $this->submitForm($edit, 'Expose filter');
+    $this->submitPluginForm([]);
+
     // Save the view.
     $this->submitForm([], 'Save');
     $this->assertSession()->statusCodeEquals(200);

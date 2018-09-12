@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2936631 by drunken monkey, borisson_: Added support for the "no_ui"
+  definition key for plugins.
 - #2996936 by drunken monkey, borisson_: Added suggested packages to
   composer.json.
 - #2987156 by hchonov, drunken monkey, borisson_: Fixed missing dependency on
