@@ -1,5 +1,5 @@
-Search API 1.x, dev (xxxx-xx-xx):
----------------------------------
+Search API 1.10 (2018-09-17):
+-----------------------------
 - #2993787 by drunken monkey, borisson_, mkalkbrenner: Added the possibility to
   boost fields in MLT queries.
 - #2936631 by drunken monkey, borisson_: Added support for the "no_ui"
