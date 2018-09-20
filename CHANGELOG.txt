@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2995342 by AndrewsizZ, drunken monkey, borisson_: Added stripping of
+  script/style HTML tags in excerpts to Highlight processor.
 
 Search API 1.10 (2018-09-17):
 -----------------------------

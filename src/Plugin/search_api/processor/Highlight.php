@@ -438,6 +438,9 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
    *   created.
    */
   protected function createExcerpt($text, array $keys) {
+    // Remove HTML tags <script> and <style> with all of their contents.
+    $text = preg_replace('#<(style|script).*?>.*?</\1>#is', ' ', $text);
+
     // Prepare text by stripping HTML tags and decoding HTML entities.
     $text = strip_tags(str_replace(['<', '>'], [' <', '> '], $text));
     $text = Html::decodeEntities($text);
