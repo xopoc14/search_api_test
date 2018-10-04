@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2971619 by idebr, drunken monkey: Refactored the access check for the
+  "Execute pending tasks" local action.
 - #2995342 by AndrewsizZ, drunken monkey, borisson_: Added stripping of
   script/style HTML tags in excerpts to Highlight processor.
 
