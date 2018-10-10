@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3001030 by mkalkbrenner, drunken monkey, mvantuch: Fixed excerpt not taking
+  Solr filters into account.
 - #3004017 by idebr, drunken monkey: Fixed server/index config schemas to use
   UUID field from Core definition.
 - #2971619 by idebr, drunken monkey: Refactored the access check for the
