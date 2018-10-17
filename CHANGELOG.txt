@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3001259 by klausi, drunken monkey, borisson_: Fixed HTML escaping throughout
+  the module.
 - #3001030 by mkalkbrenner, drunken monkey, mvantuch: Fixed excerpt not taking
   Solr filters into account.
 - #3004017 by idebr, drunken monkey: Fixed server/index config schemas to use

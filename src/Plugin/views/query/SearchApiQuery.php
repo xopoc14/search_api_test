@@ -3,7 +3,6 @@
 namespace Drupal\search_api\Plugin\views\query;
 
 use Drupal\Component\Render\FormattableMarkup;
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Database\Query\ConditionInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -459,7 +458,7 @@ class SearchApiQuery extends QueryPluginBase {
     if ($this->shouldAbort()) {
       if (error_displayable()) {
         foreach ($this->errors as $msg) {
-          $this->getMessenger()->addError(Html::escape($msg));
+          $this->getMessenger()->addError($msg);
         }
       }
       $view->result = [];

@@ -3,7 +3,6 @@
 namespace Drupal\search_api_db\Plugin\search_api\backend;
 
 use Drupal\Component\Utility\Crypt;
-use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Database\Database as CoreDatabase;
@@ -1166,7 +1165,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
       }
       catch (\Exception $e) {
         // We just log the error, hoping we can index the other items.
-        $this->getLogger()->warning(Html::escape($e->getMessage()));
+        $this->getLogger()->warning($e->getMessage());
       }
     }
     return $indexed;
