@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2994022 by drunken monkey, Watergate, borisson_: Fixed facets when there are
+  no search results in Database backend.
 - #2898917 by Lennard Westerveld, RoSk0, drunken monkey: Fixed Views filters
   with checkboxes and "is all of" operator.
 - #3001259 by klausi, drunken monkey, borisson_: Fixed HTML escaping throughout
