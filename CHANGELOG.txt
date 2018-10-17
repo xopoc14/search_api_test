@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2898917 by Lennard Westerveld, RoSk0, drunken monkey: Fixed Views filters
+  with checkboxes and "is all of" operator.
 - #3001259 by klausi, drunken monkey, borisson_: Fixed HTML escaping throughout
   the module.
 - #3001030 by mkalkbrenner, drunken monkey, mvantuch: Fixed excerpt not taking
