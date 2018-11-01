@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3006267 by idebr, drunken monkey: Removed conditional code for Drupal 8.5.
 - #3007311 by drunken monkey: Fixed catch clause in
   PostRequestIndexing::destruct().
 - #2994022 by drunken monkey, Watergate, borisson_: Fixed facets when there are
