@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2986623 by drunken monkey, valic: Added the "Reverse entity references"
+  processor.
 - #3009136 by drunken monkey, mkalkbrenner, borisson_: Added the
   "search_api_retrieved_field_values" query option.
 - #3006267 by idebr, drunken monkey: Removed conditional code for Drupal 8.5.
