@@ -773,7 +773,7 @@ class BackendTest extends BackendTestBase {
     $expected = [
       'search_api_db_database_search_index' => 'search_api_db_database_search_index',
     ];
-    $this->assertEquals($expected, $tables, 'All the tables of the the Database Search module have been removed.');
+    $this->assertEquals($expected, $tables, 'All the tables of the Database Search module have been removed.');
   }
 
   /**

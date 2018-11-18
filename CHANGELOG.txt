@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3012778 by Shashwat Purav, pamatt, drunken monkey: Fixed several doc comment
+  typos.
 - #3011340 by pfrenssen, idimopoulos, drunken monkey: Fixed problem when
   updating multiple indexes' datasource settings via "drush cim".
 - #2986623 by drunken monkey, valic: Added the "Reverse entity references"
