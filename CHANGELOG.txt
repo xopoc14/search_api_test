@@ -1,3 +1,6 @@
+Search API 1.x, dev (xxxx-xx-xx):
+---------------------------------
+
 Search API 1.11 (2018-11-18):
 -----------------------------
 - #3012778 by Shashwat Purav, pamatt, drunken monkey: Fixed several doc comment
