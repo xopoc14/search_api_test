@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3021717 by mkalkbrenner, drunken monkey: Added
+  ExampleContentTrait::removeTestEntity().
 
 Search API 1.11 (2018-11-18):
 -----------------------------
