@@ -346,6 +346,23 @@ class ViewsTest extends SearchApiBrowserTestBase {
   }
 
   /**
+   * Tests a view with operations column.
+   */
+  public function testViewWithOperations() {
+    $this->drupalGet('search-api-test-operations/', ['query' => []]);
+
+    // Checking first and last item in result.
+    $this->assertSession()->linkByHrefExists('/entity_test_mulrev_changed/manage/1/edit');
+    $this->assertSession()->linkByHrefExists('/entity_test/delete/entity_test_mulrev_changed/1');
+    $this->assertSession()->linkByHrefExists('/entity_test_mulrev_changed/manage/5/edit');
+    $this->assertSession()->linkByHrefExists('/entity_test/delete/entity_test_mulrev_changed/5');
+
+    // Checking item without operations.
+    $this->assertSession()->linkByHrefNotExists('/entity_test_mulrev_changed/manage/2/edit');
+    $this->assertSession()->linkByHrefNotExists('/entity_test/delete/entity_test_mulrev_changed/2');
+  }
+
+  /**
    * Contains regression tests for previous, fixed bugs.
    */
   protected function regressionTests() {

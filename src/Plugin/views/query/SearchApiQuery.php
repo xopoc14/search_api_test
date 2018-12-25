@@ -449,7 +449,7 @@ class SearchApiQuery extends QueryPluginBase {
 
     // If the View and the Panel conspire to provide an overridden path then
     // pass that through as the base path.
-    if (($path = $this->view->getPath()) && strpos(Url::fromRoute('<current>')->toString(), $this->view->override_path) !== 0) {
+    if (($path = $this->view->getPath()) && strpos(Url::fromRoute('<current>')->toString(), $path) !== 0) {
       $this->query->setOption('search_api_base_path', $path);
     }
 

@@ -11,6 +11,7 @@ use Drupal\Core\TypedData\DataDefinitionInterface;
 use Drupal\Core\TypedData\DataReferenceDefinitionInterface;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Entity\Index;
+use Drupal\search_api\IndexInterface;
 use Drupal\search_api\Item\FieldInterface;
 use Drupal\search_api\SearchApiException;
 use Drupal\search_api\Utility\Utility;
@@ -85,7 +86,7 @@ function search_api_views_data() {
       }
 
       // Add special fields.
-      _search_api_views_data_special_fields($table);
+      _search_api_views_data_special_fields($table, $index);
 
       // Add relationships for field data of all datasources.
       $datasource_tables_prefix = 'search_api_datasource_' . $index->id() . '_';
@@ -401,8 +402,10 @@ function _search_api_views_handler_adjustments($type, FieldInterface $field, arr
  *
  * @param array $table
  *   The existing Views data table definition.
+ * @param \Drupal\search_api\IndexInterface $index
+ *   The index for which the Views data table is created.
  */
-function _search_api_views_data_special_fields(array &$table) {
+function _search_api_views_data_special_fields(array &$table, IndexInterface $index) {
   $id_field = _search_api_views_find_field_alias('search_api_id', $table);
   $table[$id_field]['title'] = t('Item ID');
   $table[$id_field]['help'] = t("The item's internal (Search API-specific) ID");
@@ -474,6 +477,25 @@ function _search_api_views_data_special_fields(array &$table) {
   $table[$mlt_field]['argument']['id'] = 'search_api_more_like_this';
   if ($mlt_field != 'search_api_more_like_this') {
     $table[$mlt_field]['real field'] = 'search_api_more_like_this';
+  }
+
+  // If at least one datasource is based on an entity type that offers
+  // operations, we provide them as a field.
+  foreach ($index->getDatasources() as $datasource) {
+    if ($entity_type_id = $datasource->getEntityTypeId()) {
+      $entity_type = \Drupal::entityTypeManager()
+        ->getDefinition($entity_type_id);
+      if ($entity_type->hasListBuilderClass()) {
+        $operations_field = _search_api_views_find_field_alias('search_api_operations', $table);
+        $table[$operations_field]['title'] = t('Operations links');
+        $table[$operations_field]['help'] = t('Provides links to perform entity operations.');
+        $table[$operations_field]['field']['id'] = 'search_api_entity_operations';
+        if ($operations_field !== 'search_api_operations') {
+          $table[$operations_field]['real field'] = 'search_api_operations';
+        }
+        break;
+      }
+    }
   }
 
   // @todo Add an "All taxonomy terms" contextual filter (if applicable).
