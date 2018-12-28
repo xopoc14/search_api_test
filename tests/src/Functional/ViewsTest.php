@@ -331,7 +331,7 @@ class ViewsTest extends SearchApiBrowserTestBase {
     $this->drupalLogin($admin_user);
 
     // Delete the page display for the view.
-    $this->drupalGet('admin/structure/views/view/search_api_test_view');
+    $this->drupalGet('admin/structure/views/view/search_api_test_view/edit/page_1');
     $this->submitForm([], 'Delete Page');
     $this->submitForm([], 'Save');
 
@@ -571,7 +571,7 @@ class ViewsTest extends SearchApiBrowserTestBase {
     $admin_user = $this->drupalCreateUser($permissions);
     $this->drupalLogin($admin_user);
 
-    $this->drupalGet('admin/structure/views/view/search_api_test_view');
+    $this->drupalGet('admin/structure/views/view/search_api_test_view/edit/page_1');
     $this->assertSession()->statusCodeEquals(200);
 
     // Set the user IDs associated with our test entities.

@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3022452 by drunken monkey: Fixed failing tests on PHP 5.
 - #2861832 by mkalkbrenner, mtodor, drunken monkey: Added support for showing
   entity operations in Views.
 - #3021717 by mkalkbrenner, drunken monkey: Added
