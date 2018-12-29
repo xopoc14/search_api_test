@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3007933 by drunken monkey: Fixed bug in config form of "Ignore characters"
+  processor.
 - #2948707 by trwill, drunken monkey: Fixed "Content access" processor not
   taking all grant records into account.
 - #3022452 by drunken monkey: Fixed failing tests on PHP 5.
