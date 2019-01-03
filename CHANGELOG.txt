@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3022693 by drunken monkey, kashandarash, legolasbo: Fixed fatal error when
+  Node module is not installed.
 - #2378945 by chr.fritsch, drunken monkey, bdlangton, DamienMcKenna, JPHuxley,
   lpeabody, legolasbo: Added option to keep facets when submitting Views
   exposed form.
