@@ -1,5 +1,8 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2378945 by chr.fritsch, drunken monkey, bdlangton, DamienMcKenna, JPHuxley,
+  lpeabody, legolasbo: Added option to keep facets when submitting Views
+  exposed form.
 - #3023168 by drunken monkey, legolasbo, borisson_: Fixed missing notices for
   deprecated methods.
 - #3023255 by drunken monkey, legolasbo: Removed installation of schema

@@ -340,6 +340,9 @@ class SearchApiQuery extends QueryPluginBase {
       'skip_access' => [
         'default' => FALSE,
       ],
+      'preserve_facet_query_args' => [
+        'default' => FALSE,
+      ],
     ];
   }
 
@@ -364,6 +367,21 @@ class SearchApiQuery extends QueryPluginBase {
       '#default_value' => $this->options['bypass_access'],
     ];
     $form['bypass_access']['#states']['visible'][':input[name="query[options][skip_access]"]']['checked'] = TRUE;
+
+    if ($this->getModuleHandler()->moduleExists('facets')) {
+      $form['preserve_facet_query_args'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('Preserve facets while using filters'),
+        '#description' => $this->t("By default, changing an exposed filter would reset all selected facets. This option allows you to prevent this behavior."),
+        '#default_value' => $this->options['preserve_facet_query_args'],
+      ];
+    }
+    else {
+      $form['preserve_facet_query_args'] = [
+        '#type' => 'value',
+        '#value' => FALSE,
+      ];
+    }
   }
 
   /**
