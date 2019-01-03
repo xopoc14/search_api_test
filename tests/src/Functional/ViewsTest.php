@@ -539,7 +539,12 @@ class ViewsTest extends SearchApiBrowserTestBase {
         'property_path' => 'rendered_item',
         'configuration' => [
           'roles' => [AccountInterface::ANONYMOUS_ROLE],
-          'view_mode' => [],
+          'view_mode' => [
+            $datasource_id => [
+              'article' => 'full',
+              'item' => 'full',
+            ],
+          ],
         ],
       ]);
     $index->addField($field);
@@ -633,6 +638,7 @@ class ViewsTest extends SearchApiBrowserTestBase {
       'search_api_index_database_search_index.author',
       'search_api_entity_user.roles',
       'search_api_index_database_search_index.rendered_item',
+      'search_api_index_database_search_index.search_api_rendered_item',
     ];
     $edit = [];
     foreach ($fields as $field) {
@@ -704,17 +710,20 @@ class ViewsTest extends SearchApiBrowserTestBase {
     $this->drupalGet('search-api-test');
     $this->assertSession()->statusCodeEquals(200);
 
+    $fields = [
+      'search_api_datasource',
+      'id',
+      'body',
+      'category',
+      'keywords',
+      'user_id',
+      'user_id:name',
+      'user_id:roles',
+      'rendered_item',
+      'search_api_rendered_item',
+    ];
+    $rendered_item_fields = ['rendered_item', 'search_api_rendered_item'];
     foreach ($this->entities as $id => $entity) {
-      $fields = [
-        'search_api_datasource',
-        'id',
-        'body',
-        'category',
-        'keywords',
-        'user_id',
-        'user_id:name',
-        'user_id:roles',
-      ];
       foreach ($fields as $field) {
         $field_entity = $entity;
         while (strpos($field, ':')) {
@@ -731,16 +740,20 @@ class ViewsTest extends SearchApiBrowserTestBase {
           $entities[] = $field_entity->getTranslation('nl');
         }
         foreach ($entities as $i => $field_entity) {
-          if ($field != 'search_api_datasource') {
+          if ($field === 'search_api_datasource') {
+            $data = [$datasource_id];
+          }
+          elseif (in_array($field, $rendered_item_fields)) {
+            $view_mode = $field === 'rendered_item' ? 'full' : 'teaser';
+            $data = [$view_mode];
+          }
+          else {
             $data = \Drupal::getContainer()
               ->get('search_api.fields_helper')
               ->extractFieldValues($field_entity->get($field));
             if (!$data) {
               $data = ['[EMPTY]'];
             }
-          }
-          else {
-            $data = [$datasource_id];
           }
           $row_num = 2 * $id + $i - 1;
           $prefix = "#$row_num [$field] ";
@@ -843,7 +856,16 @@ class ViewsTest extends SearchApiBrowserTestBase {
       return NULL;
     }
 
-    $edit['options[fallback_options][multi_separator]'] = '|';
+    $non_entity_fields = [
+      'search_api_datasource',
+      'rendered_item',
+      'search_api_rendered_item',
+    ];
+    // The "Fallback options" are only available for fields based on the Field
+    // API.
+    if (!in_array($field, $non_entity_fields, TRUE)) {
+      $edit['options[fallback_options][multi_separator]'] = '|';
+    }
     $edit['options[alter][alter_text]'] = TRUE;
     $edit['options[alter][text]'] = "#{{counter}} [$field] {{ $field }}";
     $edit['options[empty]'] = "#{{counter}} [$field] [EMPTY]";
@@ -860,7 +882,6 @@ class ViewsTest extends SearchApiBrowserTestBase {
         break;
 
       case 'search_api_datasource':
-        unset($edit['options[fallback_options][multi_separator]']);
         break;
 
       case 'body':
@@ -887,9 +908,11 @@ class ViewsTest extends SearchApiBrowserTestBase {
         break;
 
       case 'rendered_item':
-        // "Rendered item" isn't based on a Field API field, so there is no
-        // "Fallback options" form (added otherwise by SearchApiEntityField).
-        unset($edit['options[fallback_options][multi_separator]']);
+        break;
+
+      case 'search_api_rendered_item':
+        $edit['options[view_modes][entity:entity_test_mulrev_changed][article]'] = 'teaser';
+        $edit['options[view_modes][entity:entity_test_mulrev_changed][item]'] = 'teaser';
         break;
     }
 

@@ -479,6 +479,15 @@ function _search_api_views_data_special_fields(array &$table, IndexInterface $in
     $table[$mlt_field]['real field'] = 'search_api_more_like_this';
   }
 
+  $rendered_field = _search_api_views_find_field_alias('search_api_rendered_item', $table);
+  $table[$rendered_field]['group'] = t('Search');
+  $table[$rendered_field]['title'] = t('Rendered item');
+  $table[$rendered_field]['help'] = t('Renders item in a view mode.');
+  $table[$rendered_field]['field']['id'] = 'search_api_rendered_item';
+  if ($rendered_field != 'search_api_rendered_item') {
+    $table[$rendered_field]['real field'] = 'search_api_rendered_item';
+  }
+
   // If at least one datasource is based on an entity type that offers
   // operations, we provide them as a field.
   foreach ($index->getDatasources() as $datasource) {

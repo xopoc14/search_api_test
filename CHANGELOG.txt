@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2820410 by recrit, drunken monkey, miiimooo, abramm, borisson_, ndf: Added a
+  Views field for rendering an entity.
 - #3023247 by drunken monkey, legolasbo: Updated references to
   NodeCreationTrait.
 - #3007933 by drunken monkey: Fixed bug in config form of "Ignore characters"
