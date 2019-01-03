@@ -381,6 +381,7 @@ class SearchApiQuery extends QueryPluginBase {
    *   \Drupal\search_api\IndexInterface::getEntityTypes() instead.
    */
   public function getEntityTypes($return_bool = FALSE) {
+    @trigger_error('\Drupal\search_api\Plugin\views\query\SearchApiQuery::getEntityTypes() is deprecated in Search API 8.x-1.5. Use \Drupal\search_api\IndexInterface::getEntityTypes() instead. See https://www.drupal.org/project/search_api/issues/2899678', E_USER_DEPRECATED);
     $types = $this->index->getEntityTypes();
     return $return_bool ? (bool) $types : $types;
   }
