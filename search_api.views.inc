@@ -492,9 +492,9 @@ function _search_api_views_data_special_fields(array &$table, IndexInterface $in
   // operations, we provide them as a field.
   foreach ($index->getDatasources() as $datasource) {
     if ($entity_type_id = $datasource->getEntityTypeId()) {
-      $entity_type = \Drupal::entityTypeManager()
+      $entity_type_id = \Drupal::entityTypeManager()
         ->getDefinition($entity_type_id);
-      if ($entity_type->hasListBuilderClass()) {
+      if ($entity_type_id->hasListBuilderClass()) {
         $operations_field = _search_api_views_find_field_alias('search_api_operations', $table);
         $table[$operations_field]['title'] = t('Operations links');
         $table[$operations_field]['help'] = t('Provides links to perform entity operations.');
@@ -507,7 +507,76 @@ function _search_api_views_data_special_fields(array &$table, IndexInterface $in
     }
   }
 
-  // @todo Add an "All taxonomy terms" contextual filter (if applicable).
+  // If there are taxonomy term references indexed in the index, include the
+  // "All taxonomy term fields" contextual filter. We also save for all fields
+  // whether they contain only terms of a certain vocabulary, keying that
+  // information by vocabulary for later ease of use.
+  $vocabulary_fields = [];
+  /** @var \Drupal\search_api\Item\Field $field */
+  foreach ($index->getFields() as $field_id => $field) {
+    // Search for taxonomy term reference fields, and catch problems early on.
+    try {
+      $property = $field->getDataDefinition();
+      $datasource = $field->getDatasource();
+    }
+    catch (SearchApiException $e) {
+      // Will probably cause other problems elsewhere, but here we can just
+      // ignore it.
+      continue;
+    }
+    if (!$datasource) {
+      continue;
+    }
+    if ($property->getDataType() !== 'field_item:entity_reference') {
+      continue;
+    }
+    $settings = $property->getSettings();
+    if (!isset($settings['target_type'])
+        || $settings['target_type'] !== 'taxonomy_term') {
+      continue;
+    }
+    $entity_type_id = $datasource->getEntityTypeId();
+    // Field instances per bundle can reference different vocabularies, make
+    // sure we add them all.
+    $bundles = \Drupal::getContainer()->get('entity_type.bundle.info')
+      ->getBundleInfo($entity_type_id);
+    foreach ($bundles as $bundle_id => $bundle) {
+      $bundle_fields = \Drupal::getContainer()->get('entity_field.manager')
+        ->getFieldDefinitions($entity_type_id, $bundle_id);
+      // Check if this bundle has the taxonomy entity reference field.
+      if (array_key_exists($field->getFieldIdentifier(), $bundle_fields)) {
+        /** @var \Drupal\Core\Field\FieldDefinitionInterface $field_definition */
+        $field_definition = $bundle_fields[$field->getFieldIdentifier()];
+        $bundle_settings = $field_definition->getSettings();
+        if (!empty($bundle_settings['handler_settings']['target_bundles'])) {
+          foreach ($bundle_settings['handler_settings']['target_bundles'] as $vocabulary_id) {
+            $vocabulary_fields[$vocabulary_id][] = $field_id;
+          }
+        }
+        else {
+          // If we can't determine the referenced vocabularies, we use the
+          // special "" key to mean "any vocabulary".
+          $vocabulary_fields[''][] = $field_id;
+        }
+      }
+    }
+  }
+
+  if ($vocabulary_fields) {
+    // Make sure $vocabulary_fields doesn't contain duplicates for fields that
+    // are shared between bundles.
+    $vocabulary_fields = array_map('array_unique', $vocabulary_fields);
+
+    $all_terms_field = _search_api_views_find_field_alias('search_api_all_terms', $table);
+    $table[$all_terms_field]['group'] = t('Search');
+    $table[$all_terms_field]['title'] = t('All taxonomy term fields');
+    $table[$all_terms_field]['help'] = t('Search all indexed taxonomy term fields');
+    $table[$all_terms_field]['argument']['id'] = 'search_api_all_terms';
+    $table[$all_terms_field]['argument']['vocabulary_fields'] = $vocabulary_fields;
+    if ($all_terms_field != 'search_api_all_terms') {
+      $table[$all_terms_field]['real field'] = 'search_api_all_terms';
+    }
+  }
 }
 
 /**

@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #1696434 by orakili, drunken monkey, ldweeks, ericchew, legolasbo, borisson_:
+  Added a Views contextual filter for all taxonomy term fields.
 - #3022693 by drunken monkey, kashandarash, legolasbo: Fixed fatal error when
   Node module is not installed.
 - #2378945 by chr.fritsch, drunken monkey, bdlangton, DamienMcKenna, JPHuxley,

@@ -18,6 +18,7 @@ use Drupal\search_api\Plugin\search_api\datasource\ContentEntity;
 use Drupal\search_api\Plugin\search_api\datasource\ContentEntityTaskManager;
 use Drupal\search_api\Plugin\search_api\datasource\EntityDatasourceInterface;
 use Drupal\search_api\Plugin\views\argument\SearchApiTerm as TermArgument;
+use Drupal\search_api\Plugin\views\argument\SearchApiAllTerms;
 use Drupal\search_api\Plugin\views\filter\SearchApiTerm as TermFilter;
 use Drupal\search_api\Plugin\views\query\SearchApiQuery;
 use Drupal\search_api\SearchApiException;
@@ -533,6 +534,12 @@ function search_api_views_plugins_argument_alter(array &$plugins) {
       'plugin_type' => 'argument',
       'id' => 'search_api_term',
       'class' => TermArgument::class,
+      'provider' => 'search_api',
+    ];
+    $plugins['search_api_all_terms'] = [
+      'plugin_type' => 'argument',
+      'id' => 'search_api_all_terms',
+      'class' => SearchApiAllTerms::class,
       'provider' => 'search_api',
     ];
   }
