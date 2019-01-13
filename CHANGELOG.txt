@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3022724 by drunken monkey, legolasbo, borisson_: Fixed infinite loop when
+  creating excerpts.
 - #1696434 by orakili, drunken monkey, ldweeks, ericchew, legolasbo, borisson_:
   Added a Views contextual filter for all taxonomy term fields.
 - #3022693 by drunken monkey, kashandarash, legolasbo: Fixed fatal error when
