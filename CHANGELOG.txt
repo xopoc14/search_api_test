@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3024753 by drunken monkey, ressa: Added overridden query() method to the
+  Views query plugin.
 - #3014641 by drunken monkey, legolasbo: Fixed memory problems when indexing
   large amounts of items at once.
 - #3022724 by drunken monkey, legolasbo, borisson_: Fixed infinite loop when

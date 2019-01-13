@@ -407,6 +407,28 @@ class SearchApiQuery extends QueryPluginBase {
   /**
    * {@inheritdoc}
    */
+  public function query($get_count = FALSE) {
+    // Try to determine whether build() has been called yet.
+    if (empty($this->view->build_info['query'])) {
+      // If not, call it in case we at least have a view set. If we don't, we
+      // can't really do anything.
+      if (!$this->view) {
+        return NULL;
+      }
+      $this->build($this->view);
+    }
+
+    $query = clone $this->query;
+    // A count query doesn't need to return any results.
+    if ($get_count) {
+      $query->range(0, 0);
+    }
+    return $query;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function build(ViewExecutable $view) {
     $this->view = $view;
 
