@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3011859 by drunken monkey: Fixed Tokenizer not removing short words at
+  search time.
 - #3024753 by drunken monkey, ressa: Added overridden query() method to the
   Views query plugin.
 - #3014641 by drunken monkey, legolasbo: Fixed memory problems when indexing
