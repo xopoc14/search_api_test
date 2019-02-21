@@ -173,7 +173,12 @@ class SearchApiQuery extends QueryPluginBase {
    */
   public static function getEntityFromRow(ResultRow $row, $relationship_id, ViewExecutable $view) {
     if ($relationship_id === 'none') {
-      $object = $row->_object ?: $row->_item->getOriginalObject();
+      try {
+        $object = $row->_object ?: $row->_item->getOriginalObject();
+      }
+      catch (SearchApiException $e) {
+        return NULL;
+      }
       $entity = $object->getValue();
       if ($entity instanceof EntityInterface) {
         return $entity;
@@ -884,9 +889,6 @@ class SearchApiQuery extends QueryPluginBase {
    *
    * @return $this
    *
-   * @throws \Drupal\search_api\SearchApiException
-   *   Thrown if one of the fields isn't of type "text".
-   *
    * @see \Drupal\search_api\Query\QueryInterface::setFulltextFields()
    */
   public function setFulltextFields(array $fields = NULL) {
@@ -1163,9 +1165,6 @@ class SearchApiQuery extends QueryPluginBase {
    *
    * @return $this
    *
-   * @throws \Drupal\search_api\SearchApiException
-   *   Thrown if the field is multi-valued or of a fulltext type.
-   *
    * @see \Drupal\search_api\Query\QueryInterface::sort()
    */
   public function sort($field, $order = 'ASC') {
@@ -1202,6 +1201,9 @@ class SearchApiQuery extends QueryPluginBase {
    * @param array $params
    *   (optional) Any parameters that should be passed through to the addField()
    *   call.
+   *
+   * @throws \Drupal\search_api\SearchApiException
+   *   Thrown if the searched index's server couldn't be loaded.
    *
    * @see \Drupal\views\Plugin\views\query\Sql::addOrderBy()
    */

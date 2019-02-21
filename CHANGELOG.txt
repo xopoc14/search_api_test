@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3031990 by drunken monkey, borisson_: Fixed exception handling in
+  SearchApiQuery.
 - #2867479 by legolasbo, drunken monkey, borisson_: Added an update hook
   uninstalling the "Search API Taxonomy Term Handlers" module.
 - #2998853 by drunken monkey, borisson_, legolasbo: Updated links throughout
