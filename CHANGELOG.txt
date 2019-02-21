@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2867479 by legolasbo, drunken monkey, borisson_: Added an update hook
+  uninstalling the "Search API Taxonomy Term Handlers" module.
 - #2998853 by drunken monkey, borisson_, legolasbo: Updated links throughout
   the module.
 - #3023142 by legolasbo, drunken monkey: Added Kernel tests for the taxonomy
