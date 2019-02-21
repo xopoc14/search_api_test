@@ -672,7 +672,7 @@ function _search_api_search_module_warning() {
   if (\Drupal::moduleHandler()->moduleExists('search')) {
     $args = [
       ':url' => Url::fromRoute('system.modules_uninstall')->toString(),
-      ':documentation' => 'https://www.drupal.org/node/2010146#core-search',
+      ':documentation' => 'https://www.drupal.org/docs/8/modules/search-api/getting-started/common-pitfalls#core-search',
     ];
     return t('The default Drupal core Search module is still enabled. If you are using Search API, you probably want to <a href=":url">uninstall</a> the Search module for performance reasons. For more information see <a href=":documentation">the Search API handbook</a>.', $args);
   }

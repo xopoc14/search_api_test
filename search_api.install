@@ -285,7 +285,7 @@ function search_api_update_8104() {
  */
 function search_api_update_8105() {
   // This update function updates search indexes for the change from
-  // https://www.drupal.org/project/search_api/issues/3007933.
+  // https://www.drupal.org/node/3007933.
   $config_factory = \Drupal::configFactory();
 
   $changes = FALSE;

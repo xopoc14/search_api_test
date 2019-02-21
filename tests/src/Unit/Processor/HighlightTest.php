@@ -1073,7 +1073,7 @@ END;
    * @param string $expected
    *   The expected result containing the highlighted strings.
    *
-   * @see https://www.drupal.org/project/search_api/issues/3022724
+   * @see https://www.drupal.org/node/3022724
    *
    * @dataProvider regressionBug3022724DataProvider
    */

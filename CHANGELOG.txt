@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2998853 by drunken monkey, borisson_, legolasbo: Updated links throughout
+  the module.
 - #3023142 by legolasbo, drunken monkey: Added Kernel tests for the taxonomy
   term Views argument plugin.
 - #3011859 by drunken monkey: Fixed Tokenizer not removing short words at

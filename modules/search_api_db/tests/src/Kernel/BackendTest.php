@@ -642,7 +642,7 @@ class BackendTest extends BackendTestBase {
   /**
    * Tests changing of field types.
    *
-   * @see https://www.drupal.org/project/search_api/issues/2994022
+   * @see https://www.drupal.org/node/2994022
    */
   protected function regressionTest2994022() {
     $query = $this->buildSearch('nonexistent_search_term');
