@@ -696,7 +696,7 @@ function search_api_form_views_exposed_form_alter(&$form, FormStateInterface $fo
   if (!($view instanceof ViewExecutable)) {
     return;
   }
-  $query_plugin = $view->query;
+  $query_plugin = $view->getQuery();
 
   // Make sure the view is based on Search API and has the "Preserve facets"
   // option enabled, and that the Facets module is installed.
