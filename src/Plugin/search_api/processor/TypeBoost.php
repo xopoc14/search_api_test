@@ -146,7 +146,7 @@ class TypeBoost extends ProcessorPluginBase implements PluginFormInterface {
         $item_boost = (double) $boosts[$datasource_id]['bundle_boosts'][$bundle];
       }
 
-      $item->setBoost($item_boost);
+      $item->setBoost($item->getBoost() * $item_boost);
     }
   }
 

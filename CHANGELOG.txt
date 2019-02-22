@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2985131 by drunken monkey, brettboylen, borisson_, Kleve: Fixed
+  "Type-specific boosting" processor to not overwrite pre-existing boosts.
 - #3031990 by drunken monkey, borisson_: Fixed exception handling in
   SearchApiQuery.
 - #2867479 by legolasbo, drunken monkey, borisson_: Added an update hook
