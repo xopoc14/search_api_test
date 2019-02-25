@@ -40,6 +40,9 @@ class SearchApiEntityOperations extends EntityOperations {
         $build = [
           '#type' => 'operations',
           '#links' => $operations,
+          '#cache' => [
+            'contexts' => ['url'],
+          ],
         ];
       }
     }

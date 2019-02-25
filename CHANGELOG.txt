@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3032916 by chr.fritsch, borisson_, drunken monkey: Fixed caching of entity
+  operations in Views field.
 - #2985131 by drunken monkey, brettboylen, borisson_, Kleve: Fixed
   "Type-specific boosting" processor to not overwrite pre-existing boosts.
 - #3031990 by drunken monkey, borisson_: Fixed exception handling in
