@@ -101,6 +101,46 @@ display:
           min_length: 3
           fields: {  }
           plugin_id: search_api_fulltext
+        search_api_fulltext_2:
+          id: search_api_fulltext_2
+          table: search_api_index_database_search_index
+          field: search_api_fulltext
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: and
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: search_api_fulltext_2_op
+            label: 'Fulltext search 2'
+            description: ''
+            use_operator: true
+            operator: search_api_fulltext_2_op
+            identifier: search_api_fulltext_2
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          min_length: 3
+          fields: {  }
+          plugin_id: search_api_fulltext
         id:
           plugin_id: search_api_numeric
           id: id

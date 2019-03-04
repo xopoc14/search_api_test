@@ -61,7 +61,7 @@ class ViewsTest extends SearchApiBrowserTestBase {
   /**
    * Tests a view with exposed filters.
    */
-  public function testView() {
+  public function testSearchView() {
     $this->checkResults([], array_keys($this->entities), 'Unfiltered search');
 
     $this->checkResults(
@@ -367,6 +367,7 @@ class ViewsTest extends SearchApiBrowserTestBase {
    */
   protected function regressionTests() {
     $this->regressionTest2869121();
+    $this->regressionTest3031991();
   }
 
   /**
@@ -435,6 +436,21 @@ class ViewsTest extends SearchApiBrowserTestBase {
       $this->assertSession()
         ->responseHeaderEquals('X-Drupal-Dynamic-Cache', 'MISS');
     }
+  }
+
+  /**
+   * Tests the interaction of multiple fulltext filters.
+   *
+   * @see https://www.drupal.org/node/3031991
+   */
+  protected function regressionTest3031991() {
+    $query = [
+      'search_api_fulltext' => 'foo blabla',
+      'search_api_fulltext_op' => 'or',
+      'search_api_fulltext_2' => 'bar',
+      'search_api_fulltext_2_op' => 'not',
+    ];
+    $this->checkResults($query, [4], 'Search with multiple fulltext filters');
   }
 
   /**
