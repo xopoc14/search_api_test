@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2949962 by drunken monkey, legolasbo, Keule, borisson_: Fixed negated
+  fulltext keywords with partial matching.
 - #3032916 by chr.fritsch, borisson_, drunken monkey: Fixed caching of entity
   operations in Views field.
 - #2985131 by drunken monkey, brettboylen, borisson_, Kleve: Fixed
