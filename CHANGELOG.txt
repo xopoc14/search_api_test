@@ -1,5 +1,5 @@
-Search API 1.x, dev (xxxx-xx-xx):
----------------------------------
+Search API 1.12 (2019-03-11):
+-----------------------------
 - #3037972 by ifrik, borisson_, drunken monkey: Added facets support for Views
   Feed displays.
 - #3026526 by chr.fritsch, drunken monkey, legolasbo: Fixed performance of
