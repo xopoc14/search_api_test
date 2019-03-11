@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\search_api\Kernel\Processor;
 
+use Drupal\Core\Form\FormState;
 use Drupal\node\NodeInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
@@ -14,6 +15,13 @@ use Drupal\node\Entity\NodeType;
  * @coversDefaultClass \Drupal\search_api\Plugin\search_api\processor\TypeBoost
  */
 class TypeBoostTest extends ProcessorTestBase {
+
+  /**
+   * The processor used for this test.
+   *
+   * @var \Drupal\search_api\Plugin\search_api\processor\TypeBoost
+   */
+  protected $processor;
 
   /**
    * {@inheritdoc}
@@ -121,6 +129,33 @@ class TypeBoostTest extends ProcessorTestBase {
     $boost_expected = 10;
     $boost_actual = $items['entity:node/3']->getBoost();
     $this->assertEquals($boost_expected, $boost_actual);
+  }
+
+  /**
+   * Tests that default values for individual bundles are correct in the form.
+   */
+  public function testConfigFormBundleBoostDefaults() {
+    $form = $this->processor->buildConfigurationForm([], new FormState());
+
+    $this->assertEquals('', $form['boosts']['entity:node']['bundle_boosts']['article']['#default_value']);
+    $this->assertEquals('', $form['boosts']['entity:node']['bundle_boosts']['page']['#default_value']);
+
+    $configuration = [
+      'boosts' => [
+        'entity:node' => [
+          'datasource_boost' => '3.0',
+          'bundle_boosts' => [
+            'article' => '0.0',
+          ],
+        ],
+      ],
+    ];
+    $this->processor->setConfiguration($configuration);
+
+    $form = $this->processor->buildConfigurationForm([], new FormState());
+
+    $this->assertEquals('0.0', $form['boosts']['entity:node']['bundle_boosts']['article']['#default_value']);
+    $this->assertEquals('', $form['boosts']['entity:node']['bundle_boosts']['page']['#default_value']);
   }
 
 }
