@@ -14,14 +14,15 @@ use Drupal\search_api\Entity\Index;
 use Drupal\search_api\LoggerTrait;
 use Drupal\search_api\ParseMode\ParseModeInterface;
 use Drupal\search_api\Plugin\views\field\SearchApiStandard;
+use Drupal\search_api\Plugin\views\ResultRow;
 use Drupal\search_api\Processor\ConfigurablePropertyInterface;
 use Drupal\search_api\Query\ConditionGroupInterface;
 use Drupal\search_api\Query\QueryInterface;
+use Drupal\search_api\Query\ResultSetInterface;
 use Drupal\search_api\SearchApiException;
 use Drupal\user\Entity\User;
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
-use Drupal\views\ResultRow;
 use Drupal\views\ViewExecutable;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -567,7 +568,7 @@ class SearchApiQuery extends QueryPluginBase {
       }
       $view->result = [];
       if ($results->getResultItems()) {
-        $this->addResults($results->getResultItems(), $view);
+        $this->addResults($results, $view);
       }
       $view->execute_time = microtime(TRUE) - $start;
 
@@ -616,12 +617,14 @@ class SearchApiQuery extends QueryPluginBase {
   /**
    * Adds Search API result items to a view's result set.
    *
-   * @param \Drupal\search_api\Item\ItemInterface[] $results
+   * @param \Drupal\search_api\Query\ResultSetInterface $result_set
    *   The search results.
    * @param \Drupal\views\ViewExecutable $view
    *   The executed view.
    */
-  protected function addResults(array $results, ViewExecutable $view) {
+  protected function addResults(ResultSetInterface $result_set, ViewExecutable $view) {
+    $results = $result_set->getResultItems();
+
     // Views \Drupal\views\Plugin\views\style\StylePluginBase::renderFields()
     // uses a numeric results index to key the rendered results.
     // The ResultRow::index property is the key then used to retrieve these.
@@ -630,6 +633,9 @@ class SearchApiQuery extends QueryPluginBase {
     // First, unless disabled, check access for all entities in the results.
     if (!$this->options['skip_access']) {
       $account = $this->getAccessAccount();
+      // If search items are not loaded already, pre-load them now in bulk to
+      // avoid them being individually loaded inside checkAccess().
+      $result_set->preLoadResultItems();
       foreach ($results as $item_id => $result) {
         if (!$result->checkAccess($account)) {
           unset($results[$item_id]);
@@ -640,16 +646,17 @@ class SearchApiQuery extends QueryPluginBase {
     foreach ($results as $item_id => $result) {
       $values = [];
       $values['_item'] = $result;
-      $object = $result->getOriginalObject(FALSE);
-      if ($object) {
-        $values['_object'] = $object;
-        $values['_relationship_objects'][NULL] = [$object];
+      try {
+        $object = $result->getOriginalObject(FALSE);
+        if ($object) {
+          $values['_object'] = $object;
+          $values['_relationship_objects'][NULL] = [$object];
+        }
       }
-      $values['search_api_id'] = $item_id;
-      $values['search_api_datasource'] = $result->getDatasourceId();
-      $values['search_api_language'] = $result->getLanguage();
-      $values['search_api_relevance'] = $result->getScore();
-      $values['search_api_excerpt'] = $result->getExcerpt() ?: '';
+      catch (SearchApiException $e) {
+        // Can't actually be thrown here, but catch for the static analyzer's
+        // sake.
+      }
 
       // Gather any properties from the search results.
       foreach ($result->getFields(FALSE) as $field_id => $field) {
