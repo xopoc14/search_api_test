@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3026526 by chr.fritsch, drunken monkey, legolasbo: Fixed performance of
+  SearchApiTagCache::getRowId().
 - #2898327 by drunken monkey, Renrhaf, justanothermark, legolasbo: Improved
   performance in SearchApiQuery::addResults().
 - #3039181 by drunken monkey: Fixed failing tests.
