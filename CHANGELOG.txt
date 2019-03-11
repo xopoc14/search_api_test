@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2693071 by drunken monkey, herved: Fixed nested properties getting removed
+  from aggregated fields.
 - #3036173 by hanoii, drunken monkey, vinlaurens: Fixed bundle boost option
   defaults for "Type-specific boosts" processor.
 - #3033040 by herved, drunken monkey, vinlaurens: Fixed error when enabling the
