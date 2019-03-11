@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3033040 by herved, drunken monkey, vinlaurens: Fixed error when enabling the
+  Database Search Defaults module.
 - #3031991 by drunken monkey, borisson_: Fixed edge case errors when combining
   multiple fulltext search filters in Views.
 - #2949962 by drunken monkey, legolasbo, Keule, borisson_: Fixed negated
