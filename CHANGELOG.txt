@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2867479 by drunken monkey, odavydyuk, VitaliyB98, idebr, borisson_: Removed
+  the "Search API Taxonomy Term Handlers" module.
 
 Search API 1.12 (2019-03-11):
 -----------------------------
