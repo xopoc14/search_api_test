@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3045396 by drunken monkey: Adapted to PHPCS changes in Core.
 - #3044867 by drunken monkey, borisson_: Fixed namespace of
   TaxonomyTermArgumentTest.
 - #3041144 by jonnyeom, drunken monkey, LaravZ: Fixed the form submission logic
