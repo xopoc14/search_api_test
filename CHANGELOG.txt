@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3044867 by drunken monkey, borisson_: Fixed namespace of
+  TaxonomyTermArgumentTest.
 - #3041144 by jonnyeom, drunken monkey, LaravZ: Fixed the form submission logic
   of the "Ignore Characters" processor.
 - #2867479 by drunken monkey, odavydyuk, VitaliyB98, idebr, borisson_: Removed
