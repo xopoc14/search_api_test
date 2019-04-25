@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3049801 by drunken monkey, borisson_: Cleaned up some minor code style
+  issues.
 - #3049777 by drunken monkey: Fixed test fails for Drupal 8.7 HEAD.
 - #3039142 by drunken monkey, ali-3a, LaravZ: Fixed all results returned when
   query has keywords but no fulltext fields.
