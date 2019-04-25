@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3043930 by kfritsche, drunken monkey, borisson_: Fixed issue with nested
+  Drush batch operations.
 - #3049801 by drunken monkey, borisson_: Cleaned up some minor code style
   issues.
 - #3049777 by drunken monkey: Fixed test fails for Drupal 8.7 HEAD.
