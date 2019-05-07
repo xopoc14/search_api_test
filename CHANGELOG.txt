@@ -1,3 +1,6 @@
+Search API 1.x, dev (xxxx-xx-xx):
+---------------------------------
+
 Search API 1.13 (2019-05-07):
 -----------------------------
 - #3043930 by kfritsche, drunken monkey, borisson_: Fixed issue with nested
