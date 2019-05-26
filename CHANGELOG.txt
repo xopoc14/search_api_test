@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2881689 by pwolanin, drunken monkey, borisson_: Added performance
+  improvement for initial tracking of existing entities.
 
 Search API 1.13 (2019-05-07):
 -----------------------------
