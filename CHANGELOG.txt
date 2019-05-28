@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3057510 by drunken monkey, borisson_: Fixed inconsistent package names for
+  test modules.
 - #3031621 by drunken monkey, DeFr, borisson_: Fixed fields returned by backend
   sometimes ignored by Views.
 - #3053603 by drunken monkey, borisson_: Fixed reported cardinality of

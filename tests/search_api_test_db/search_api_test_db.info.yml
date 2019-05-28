@@ -1,7 +1,7 @@
 type: module
 name: 'Database search test'
 description: 'Provides a setup for testing Database Search.'
-package: 'Search API'
+package: Testing
 dependencies:
   - search_api:search_api_db
   - search_api:search_api_test_example_content

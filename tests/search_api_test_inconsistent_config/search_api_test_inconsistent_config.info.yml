@@ -1,7 +1,7 @@
 name: 'Search API Inconsistent Configs Test'
 type: module
 description: 'Support module for Search API tests'
-package: Search
+package: Testing
 dependencies:
   - search_api:search_api
   - search_api:search_api_test
