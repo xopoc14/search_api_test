@@ -417,7 +417,7 @@ function _search_api_views_data_special_fields(array &$table, IndexInterface $in
 
   $datasource_field = _search_api_views_find_field_alias('search_api_datasource', $table);
   $table[$datasource_field]['title'] = t('Datasource');
-  $table[$datasource_field]['help'] = t("The data source ID");
+  $table[$datasource_field]['help'] = t('The datasource ID');
   $table[$datasource_field]['argument']['id'] = 'search_api';
   $table[$datasource_field]['argument']['disable_break_phrase'] = TRUE;
   $table[$datasource_field]['field']['id'] = 'standard';

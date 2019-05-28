@@ -367,7 +367,7 @@ class RenderedItemTest extends ProcessorTestBase {
 
     // Verify that there are no properties if a datasource is given.
     $properties = $this->processor->getPropertyDefinitions($this->index->getDatasource('entity:node'));
-    $this->assertEquals([], $properties, '"render_item" property not added when data source is given.');
+    $this->assertEquals([], $properties, '"render_item" property not added when datasource is given.');
   }
 
   /**
