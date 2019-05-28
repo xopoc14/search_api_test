@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3031621 by drunken monkey, DeFr, borisson_: Fixed fields returned by backend
+  sometimes ignored by Views.
 - #3053603 by drunken monkey, borisson_: Fixed reported cardinality of
   entity-valued processor properties.
 - #2881689 by pwolanin, drunken monkey, borisson_: Added performance
