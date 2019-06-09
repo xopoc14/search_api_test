@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3054875 by mpp, drunken monkey, borisson_: Fixed help text for
+  "Type-specific boosting" processor.
 - #3052877 by legolasbo, drunken monkey, borisson_: Fixed "no backend plugins"
   case in "Add server" form.
 - #2986222 by idebr, drunken monkey: Switched Javascript tests to
