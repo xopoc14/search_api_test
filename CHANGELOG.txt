@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3052877 by drunken monkey, legolasbo, borisson_: Fixed "no backend plugins"
+  case in "Add server" form.
 - #2986222 by idebr, drunken monkey: Switched Javascript tests to
   WebDriverTestBase.
 - #2840272 by drunken monkey: Fixed fatal error in certain Views error
