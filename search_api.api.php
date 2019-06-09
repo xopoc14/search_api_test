@@ -271,7 +271,7 @@ function hook_search_api_items_indexed(\Drupal\search_api\IndexInterface $index,
  * @param \Drupal\search_api\Query\QueryInterface $query
  *   The query that will be executed.
  */
-function hook_search_api_query_alter(\Drupal\search_api\Query\QueryInterface &$query) {
+function hook_search_api_query_alter(\Drupal\search_api\Query\QueryInterface $query) {
   // Do not run for queries with a certain tag.
   if ($query->hasTag('example_tag')) {
     return;
@@ -295,7 +295,7 @@ function hook_search_api_query_alter(\Drupal\search_api\Query\QueryInterface &$q
  * @param \Drupal\search_api\Query\QueryInterface $query
  *   The query that will be executed.
  */
-function hook_search_api_query_TAG_alter(\Drupal\search_api\Query\QueryInterface &$query) {
+function hook_search_api_query_TAG_alter(\Drupal\search_api\Query\QueryInterface $query) {
   // Exclude the node with ID 10 from the search results.
   $fields = $query->getIndex()->getFields();
   foreach ($query->getIndex()->getDatasources() as $datasource_id => $datasource) {
