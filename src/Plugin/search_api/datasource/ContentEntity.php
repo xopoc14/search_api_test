@@ -155,11 +155,7 @@ class ContentEntity extends DatasourcePluginBase implements EntityDatasourceInte
     $datasource->setLanguageManager($container->get('language_manager'));
     $datasource->setFieldsHelper($container->get('search_api.fields_helper'));
     $datasource->setState($container->get('state'));
-    // This service was added in 8.6.x.
-    // @todo Remove the "if" once we depend on Drupal 8.6+.
-    if ($container->has('entity.memory_cache')) {
-      $datasource->setEntityMemoryCache($container->get('entity.memory_cache'));
-    }
+    $datasource->setEntityMemoryCache($container->get('entity.memory_cache'));
 
     return $datasource;
   }
@@ -874,15 +870,7 @@ class ContentEntity extends DatasourcePluginBase implements EntityDatasourceInte
       // When running in the CLI, this might be executed for all entities from
       // within a single process. To avoid running out of memory, reset the
       // static cache after each batch.
-      $memory_cache = $this->getEntityMemoryCache();
-      if ($memory_cache) {
-        $memory_cache->deleteAll();
-      }
-      else {
-        // Fallback for Drupal 8.5.x.
-        // @todo Remove this once we depend on Drupal 8.6+.
-        $this->getEntityStorage()->resetCache($entity_ids);
-      }
+      $this->getEntityMemoryCache()->deleteAll();
     }
 
     return $item_ids;

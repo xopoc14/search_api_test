@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3053200 by drunken monkey, mkalkbrenner, borisson_: Increased Core version
+  requirement to 8.6.
 - #3055151 by drunken monkey, borisson_: Content Access Index Processor
   statusFixed data type plugins to properly convert values.
 - #3058300 by pfrenssen, drunken monkey, borisson_: Changed access methods to
