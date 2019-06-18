@@ -638,7 +638,7 @@ class SearchApiQuery extends QueryPluginBase {
       // avoid them being individually loaded inside checkAccess().
       $result_set->preLoadResultItems();
       foreach ($results as $item_id => $result) {
-        if (!$result->checkAccess($account)) {
+        if (!$result->getAccessResult($account)->isAllowed()) {
           unset($results[$item_id]);
         }
       }

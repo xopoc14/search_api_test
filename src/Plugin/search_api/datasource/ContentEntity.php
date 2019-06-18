@@ -3,6 +3,7 @@
 namespace Drupal\search_api\Plugin\search_api\datasource;
 
 use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -684,13 +685,14 @@ class ContentEntity extends DatasourcePluginBase implements EntityDatasourceInte
   /**
    * {@inheritdoc}
    */
-  public function checkItemAccess(ComplexDataInterface $item, AccountInterface $account = NULL) {
-    if ($entity = $this->getEntity($item)) {
+  public function getItemAccessResult(ComplexDataInterface $item, AccountInterface $account = NULL) {
+    $entity = $this->getEntity($item);
+    if ($entity) {
       return $this->getEntityTypeManager()
         ->getAccessControlHandler($this->getEntityTypeId())
-        ->access($entity, 'view', $account);
+        ->access($entity, 'view', $account, TRUE);
     }
-    return FALSE;
+    return AccessResult::neutral('Item is not an entity, so cannot check access');
   }
 
   /**
