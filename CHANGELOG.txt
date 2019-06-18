@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3055151 by drunken monkey, borisson_: Content Access Index Processor
+  statusFixed data type plugins to properly convert values.
 - #3058300 by pfrenssen, drunken monkey, borisson_: Changed access methods to
   work with AccessResult objects instead of booleans.
 - #3059070 by fconnolly, borisson_, drunken monkey: Fixed Item::__toString() to
