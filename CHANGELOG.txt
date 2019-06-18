@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3059070 by fconnolly, borisson_, drunken monkey: Fixed Item::__toString() to
+  not extract fields.
 - #3055775 by legolasbo, drunken monkey: Fixed documentation of
   hook_search_api_query_alter().
 - #3054875 by mpp, drunken monkey, borisson_: Fixed help text for

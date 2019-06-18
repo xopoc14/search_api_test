@@ -456,9 +456,9 @@ class Item implements \IteratorAggregate, ItemInterface {
       $excerpt = str_replace("\n", "\n  ", $this->getExcerpt());
       $out .= "\nExcerpt: $excerpt";
     }
-    if ($this->getFields()) {
+    if ($this->getFields(FALSE)) {
       $out .= "\nFields:";
-      foreach ($this->getFields() as $field) {
+      foreach ($this->getFields(FALSE) as $field) {
         $field = str_replace("\n", "\n  ", "$field");
         $out .= "\n- " . $field;
       }
