@@ -795,7 +795,13 @@ function _search_api_views_get_field_handler_for_property(DataDefinitionInterfac
   // types, and here manually update entity field properties to have the correct
   // definition, with "search_api_field" handler, correct fallback handler and
   // "field_name" and "entity_type" correctly set.
-  if (isset($definition) && $property instanceof FieldItemDataDefinition) {
+  // Since the Views EntityField handler class doesn't support computed fields,
+  // neither can we (easily), so keep the fallback handler as the only
+  // definition for those.
+  if (isset($definition)
+      && $property instanceof FieldItemDataDefinition
+      && !$property->isComputed()
+      && !$property->getFieldDefinition()->isComputed()) {
     list(, $field_name) = Utility::splitPropertyPath($property_path, TRUE);
     if (!isset($definition['fallback_handler'])) {
       $definition['fallback_handler'] = $definition['id'];

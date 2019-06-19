@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2674750 by drunken monkey, Niklan, borisson_: Fixed display of computed
+  fields in Views.
 - #3015114 by legolasbo, drunken monkey, borisson_, weseze: Improved the
   performance of the Highlight processor.
 - #3053200 by drunken monkey, mkalkbrenner, borisson_: Increased Core version
