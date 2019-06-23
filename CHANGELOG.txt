@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3059312 by drunken monkey, borisson_: Fixed warning when trying to add
+  hierarchical data to fulltext fields.
 - #2674750 by drunken monkey, Niklan, borisson_: Fixed display of computed
   fields in Views.
 - #3015114 by legolasbo, drunken monkey, borisson_, weseze: Improved the

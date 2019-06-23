@@ -250,6 +250,19 @@ class AddHierarchyTest extends ProcessorTestBase {
     $result = $query->execute();
     $expected = ['node' => [0, 1, 3]];
     $this->assertResults($result, $expected);
+
+    // Regression test: This should also work if the indexed field is of type
+    // "Fulltext" (even though it makes not a lot of sense to do that).
+    // @see https://www.drupal.org/node/3059312
+    $this->index->getField('term_field')->setType('text');
+    $this->index->save();
+    $this->indexItems();
+    // Query should still return the same results.
+    $query = new Query($this->index);
+    $query->addCondition('term_field', $this->terms['fruit']->id());
+    $result = $query->execute();
+    $expected = ['node' => [2, 3]];
+    $this->assertResults($result, $expected);
   }
 
   /**
