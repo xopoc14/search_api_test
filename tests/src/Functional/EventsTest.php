@@ -6,11 +6,11 @@ use Drupal\search_api\Entity\Index;
 use Drupal\search_api_test\PluginTestTrait;
 
 /**
- * Tests integration of hooks.
+ * Tests integration of events.
  *
  * @group search_api
  */
-class HooksTest extends SearchApiBrowserTestBase {
+class EventsTest extends SearchApiBrowserTestBase {
 
   use PluginTestTrait;
 
@@ -23,7 +23,7 @@ class HooksTest extends SearchApiBrowserTestBase {
     'search_api',
     'search_api_test',
     'search_api_test_views',
-    'search_api_test_hooks',
+    'search_api_test_events',
   ];
 
   /**
@@ -74,24 +74,24 @@ class HooksTest extends SearchApiBrowserTestBase {
   }
 
   /**
-   * Tests various operations via the Search API's admin UI.
+   * Tests whether events are correctly dispatched when using the admin UI.
    */
-  public function testHooks() {
-    // hook_search_api_backend_info_alter() was invoked.
+  public function testEvents() {
+    // The BackendInfo event was invoked.
     $this->drupalGet('admin/config/search/search-api/add-server');
     $this->assertSession()->pageTextContains('Slims return');
 
-    // hook_search_api_datasource_info_alter() was invoked.
+    // The DatasourceInfo event was invoked.
     $this->drupalGet('admin/config/search/search-api/add-index');
     $this->assertSession()->pageTextContains('Distant land');
-    // hook_search_api_tracker_info_alter() was invoked.
+    // The TrackerInfo event was invoked.
     $this->assertSession()->pageTextContains('Good luck');
 
-    // hook_search_api_processor_info_alter() was invoked.
+    // The ProcessorInfo event was invoked.
     $this->drupalGet($this->getIndexPath('processors'));
     $this->assertSession()->pageTextContains('Mystic bounce');
 
-    // hook_search_api_parse_mode_info_alter was invoked.
+    // The ParseModeInfo event was invoked.
     $definition = \Drupal::getContainer()
       ->get('plugin.manager.search_api.parse_mode')
       ->getDefinition('direct');
@@ -114,19 +114,19 @@ class HooksTest extends SearchApiBrowserTestBase {
     $expected = ['alterIndexedItems', 'preprocessIndexItems'];
     $this->assertEquals($expected, $processor_methods);
 
-    // hook_search_api_index_items_alter() was invoked, this removed node:1.
+    // The indexing items event was invoked, this removed node:1.
     $this->assertSession()->pageTextContains('There are 2 items indexed on the server for this index.');
     $this->assertSession()->pageTextContains('Stormy');
 
-    // hook_search_api_items_indexed() was invoked.
+    // The ItemsIndexed event was invoked.
     $this->assertSession()->pageTextContains('Please set me at ease');
 
-    // hook_search_api_index_reindex() was invoked.
+    // The Reindex event was invoked.
     $this->drupalGet($this->getIndexPath('reindex'));
     $this->submitForm([], 'Confirm');
     $this->assertSession()->pageTextContains('Montara');
 
-    // hook_search_api_data_type_info_alter() was invoked.
+    // The DataTypePluginInfo event was invoked.
     $this->drupalGet($this->getIndexPath('fields'));
     $this->assertSession()->pageTextContains('Peace/Dolphin dance');
     // The implementation of hook_search_api_field_type_mapping_alter() has
@@ -136,15 +136,15 @@ class HooksTest extends SearchApiBrowserTestBase {
     $this->assertSession()->pageTextContains('Add fields to index');
     $this->assertSession()->pageTextNotContains('timestamp');
 
+    // The QueryAlter event was invoked.
     $this->drupalGet('search-api-test');
     $this->assertSession()->pageTextContains('Search id: views_page:search_api_test_view__page_1');
-    // hook_search_api_query_alter() was invoked.
     $this->assertSession()->pageTextContains('Funky blue note');
-    // hook_search_api_query_TAG_alter() was invoked.
+    // The Query(TAG)Alter event was invoked, this removed node:2.
     $this->assertSession()->pageTextContains('Freeland');
-    // hook_search_api_results_alter() was invoked.
+    // The ResultsAlter event was invoked.
     $this->assertSession()->pageTextContains('Stepping into tomorrow');
-    // hook_search_api_results_TAG_alter() was invoked.
+    // THe Results(TAG)Alter event was invoked.
     $this->assertSession()->pageTextContains('Llama');
 
     // The query alter methods of the processor were called.
@@ -152,12 +152,12 @@ class HooksTest extends SearchApiBrowserTestBase {
     $expected = ['preprocessSearchQuery', 'postprocessSearchResults'];
     $this->assertEquals($expected, $processor_methods);
 
-    // hook_search_api_server_features_alter() is triggered.
+    // The ServerFeaturesAlter hook was invoked.
     $this->assertTrue($this->server->supportsFeature('welcome_to_the_jungle'));
 
     $displays = \Drupal::getContainer()->get('plugin.manager.search_api.display')
       ->getInstances();
-    // hook_search_api_displays_alter was invoked.
+    // The DisplaysAlter event was invoked.
     $display_label = $displays['views_page:search_api_test_view__page_1']->label();
     $this->assertEquals('Some funny label for testing', $display_label);
   }

@@ -11,6 +11,9 @@ use Drupal\Core\TypedData\DataDefinitionInterface;
 use Drupal\Core\TypedData\DataReferenceDefinitionInterface;
 use Drupal\search_api\Datasource\DatasourceInterface;
 use Drupal\search_api\Entity\Index;
+use Drupal\search_api\Event\MappingViewsFieldHandlersEvent;
+use Drupal\search_api\Event\MappingViewsHandlersEvent;
+use Drupal\search_api\Event\SearchApiEvents;
 use Drupal\search_api\IndexInterface;
 use Drupal\search_api\Item\FieldInterface;
 use Drupal\search_api\SearchApiException;
@@ -339,7 +342,13 @@ function _search_api_views_handler_mapping() {
     ];
 
     $alter_id = 'search_api_views_handler_mapping';
-    \Drupal::moduleHandler()->alter($alter_id, $mapping);
+    $description = 'This hook is deprecated in search_api 8.x-1.14 and will be removed in 9.x-1.0. Please use the "search_api.mapping_views_handlers" event instead. See https://www.drupal.org/node/3059866';
+    \Drupal::moduleHandler()
+      ->alterDeprecated($description, $alter_id, $mapping);
+
+    $event = new MappingViewsHandlersEvent($mapping);
+    \Drupal::getContainer()->get('event_dispatcher')
+      ->dispatch(SearchApiEvents::MAPPING_VIEWS_HANDLERS, $event);
   }
 
   return $mapping;
@@ -894,7 +903,13 @@ function _search_api_views_get_field_handler_mapping() {
 
     // Let other modules change or expand this mapping.
     $alter_id = 'search_api_views_field_handler_mapping';
-    \Drupal::moduleHandler()->alter($alter_id, $plain_mapping);
+    $description = 'This hook is deprecated in search_api 8.x-1.14 and will be removed in 9.x-1.0. Please use the "search_api.mapping_views_field_handlers" event instead. See https://www.drupal.org/node/3059866';
+    \Drupal::moduleHandler()
+      ->alterDeprecated($description, $alter_id, $plain_mapping);
+
+    $event = new MappingViewsFieldHandlersEvent($plain_mapping);
+    \Drupal::getContainer()->get('event_dispatcher')
+      ->dispatch(SearchApiEvents::MAPPING_VIEWS_FIELD_HANDLERS, $event);
 
     // Then create a new, more practical structure, with the mappings grouped by
     // mapping type.
