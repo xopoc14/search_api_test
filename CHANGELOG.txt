@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3065359 by mkalkbrenner, drunken monkey, borisson_: Fixed fatal error in all
+  Drush commands.
 - #2718045 by drunken monkey, joelpittet: Fixed "Rendered entity" Views row
   style being available for all base tables in some cases.
 - #3023704 by legolasbo, drunken monkey, borisson_: Converted all hooks to
