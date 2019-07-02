@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2718045 by drunken monkey, joelpittet: Fixed "Rendered entity" Views row
+  style being available for all base tables in some cases.
 - #3023704 by legolasbo, drunken monkey, borisson_: Converted all hooks to
   events.
 - #3059312 by drunken monkey, borisson_: Fixed warning when trying to add

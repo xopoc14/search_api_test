@@ -123,8 +123,14 @@ function search_api_views_plugins_cache_alter(array &$plugins) {
   foreach (Index::loadMultiple() as $index) {
     $bases[] = 'search_api_index_' . $index->id();
   }
-  $plugins['search_api_tag']['base'] = $bases;
-  $plugins['search_api_time']['base'] = $bases;
+  if ($bases) {
+    $plugins['search_api_tag']['base'] = $bases;
+    $plugins['search_api_time']['base'] = $bases;
+  }
+  else {
+    unset($plugins['search_api_tag']);
+    unset($plugins['search_api_time']);
+  }
 }
 
 /**
@@ -137,7 +143,12 @@ function search_api_views_plugins_row_alter(array &$plugins) {
   foreach (Index::loadMultiple() as $index) {
     $bases[] = 'search_api_index_' . $index->id();
   }
-  $plugins['search_api']['base'] = $bases;
+  if ($bases) {
+    $plugins['search_api']['base'] = $bases;
+  }
+  else {
+    unset($plugins['search_api']);
+  }
 }
 
 /**
