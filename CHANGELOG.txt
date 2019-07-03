@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2983606 by StryKaizer, borisson_, drunken monkey, sgurlt: Added an excerpt
+  field to use in view modes.
 - #3065359 by mkalkbrenner, drunken monkey, borisson_: Fixed fatal error in all
   Drush commands.
 - #2718045 by drunken monkey, joelpittet: Fixed "Rendered entity" Views row
