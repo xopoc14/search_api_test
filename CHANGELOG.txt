@@ -1,5 +1,5 @@
-Search API 1.x, dev (xxxx-xx-xx):
----------------------------------
+Search API 1.14 (2019-07-08):
+-----------------------------
 - #3065550 by mkalkbrenner, drunken monkey: Declared a conflict for most older
   Search API Solr versions.
 - #2983606 by StryKaizer, borisson_, drunken monkey, sgurlt: Added an excerpt
