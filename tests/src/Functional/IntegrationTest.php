@@ -1503,7 +1503,7 @@ class IntegrationTest extends SearchApiBrowserTestBase {
     $this->assertEquals($manipulated_items_count + 1, $this->countItemsOnServer());
 
     $this->drupalPostForm($this->getIndexPath('reindex'), [], 'Confirm');
-    $assert_session->pageTextContains("The search index $label was successfully reindexed.");
+    $assert_session->pageTextContains("The search index $label was successfully queued for reindexing.");
     $this->assertEquals(0, $tracker->getIndexedItemsCount());
     $this->assertEquals($manipulated_items_count, $tracker->getTotalItemsCount());
     $this->assertEquals($manipulated_items_count + 1, $this->countItemsOnServer());

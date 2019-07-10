@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3062400 by drunken monkey, jonathan_hunt, borisson_: Fixed the reindexing
+  message in the UI.
 
 Search API 1.14 (2019-07-08):
 -----------------------------
