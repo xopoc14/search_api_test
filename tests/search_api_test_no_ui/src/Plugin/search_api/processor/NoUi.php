@@ -10,6 +10,7 @@ use Drupal\search_api\Processor\ProcessorPluginBase;
  * @SearchApiProcessor(
  *   id = "search_api_test_no_ui",
  *   label = @Translation("No UI processor"),
+ *   description = @Translation("No UI processor"),
  *   no_ui = true,
  * )
  */

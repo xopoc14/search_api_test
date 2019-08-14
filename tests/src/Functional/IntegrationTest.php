@@ -299,6 +299,9 @@ class IntegrationTest extends SearchApiBrowserTestBase {
         ->get('search_api.plugin_helper')
         ->$method($dummy_index);
       foreach ($plugins as $plugin) {
+        if ($plugin->isHidden()) {
+          continue;
+        }
         $description = Utility::escapeHtml($plugin->getDescription());
         $this->assertSession()->responseContains($description);
       }

@@ -10,6 +10,7 @@ use Drupal\search_api\ParseMode\ParseModePluginBase;
  * @SearchApiParseMode(
  *   id = "search_api_test_no_ui",
  *   label = @Translation("No UI parse mode"),
+ *   description = @Translation("No UI parse mode"),
  *   no_ui = true,
  * )
  */

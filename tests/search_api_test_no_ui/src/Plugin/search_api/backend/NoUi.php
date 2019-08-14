@@ -12,6 +12,7 @@ use Drupal\search_api\Query\QueryInterface;
  * @SearchApiBackend(
  *   id = "search_api_test_no_ui",
  *   label = @Translation("No UI backend"),
+ *   description = @Translation("No UI backend"),
  *   no_ui = true,
  * )
  */
