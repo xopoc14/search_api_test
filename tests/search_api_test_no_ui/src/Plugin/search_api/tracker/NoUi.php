@@ -11,7 +11,6 @@ use Drupal\search_api\Plugin\search_api\tracker\Basic;
  *  @SearchApiTracker(
  *   id = "search_api_test_no_ui",
  *   label = @Translation("No UI tracker"),
- *   description = @Translation("No UI tracker"),
  *   no_ui = true,
  * )
  */

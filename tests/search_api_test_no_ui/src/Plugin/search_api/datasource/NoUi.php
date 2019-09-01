@@ -11,7 +11,6 @@ use Drupal\search_api\Datasource\DatasourcePluginBase;
  * @SearchApiDatasource(
  *   id = "search_api_test_no_ui",
  *   label = @Translation("No UI datasource"),
- *   description = @Translation("No UI datasource"),
  *   no_ui = true,
  * )
  */

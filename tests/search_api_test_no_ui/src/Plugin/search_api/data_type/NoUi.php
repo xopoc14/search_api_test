@@ -10,7 +10,6 @@ use Drupal\search_api\DataType\DataTypePluginBase;
  * @SearchApiDataType(
  *   id = "search_api_test_no_ui",
  *   label = @Translation("No UI data type"),
- *   description = @Translation("No UI data type"),
  *   no_ui = true,
  * )
  */
