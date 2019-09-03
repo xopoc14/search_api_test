@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3067143 by drunken monkey, mpp, borisson_: Fixed potential fatal error when
+  accessing parse mode of broken Views.
 - #3073283 by mkalkbrenner, idebr, drunken monkey: Fixed failing tests on Drupal
   Core 8.8.x.
 - #3062400 by drunken monkey, jonathan_hunt, borisson_: Fixed the reindexing

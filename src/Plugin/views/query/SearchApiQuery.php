@@ -13,6 +13,7 @@ use Drupal\Core\Url;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api\LoggerTrait;
 use Drupal\search_api\ParseMode\ParseModeInterface;
+use Drupal\search_api\Plugin\search_api\parse_mode\Terms;
 use Drupal\search_api\Plugin\views\field\SearchApiStandard;
 use Drupal\search_api\Plugin\views\ResultRow;
 use Drupal\search_api\Processor\ConfigurablePropertyInterface;
@@ -782,8 +783,8 @@ class SearchApiQuery extends QueryPluginBase {
   /**
    * Retrieves the parse mode.
    *
-   * @return \Drupal\search_api\ParseMode\ParseModeInterface|null
-   *   The parse mode, or NULL if the query was aborted.
+   * @return \Drupal\search_api\ParseMode\ParseModeInterface
+   *   The parse mode.
    *
    * @see \Drupal\search_api\Query\QueryInterface::getParseMode()
    */
@@ -791,7 +792,7 @@ class SearchApiQuery extends QueryPluginBase {
     if (!$this->shouldAbort()) {
       return $this->query->getParseMode();
     }
-    return NULL;
+    return new Terms([], 'terms', []);
   }
 
   /**
