@@ -192,6 +192,12 @@ function _search_api_views_get_handlers(FieldInterface $field) {
       $types[] = 'entity';
     }
 
+    // Special treatment for languages (as we have no specific Search API data
+    // type for those).
+    if ($definition->getSetting('views_type') === 'language') {
+      $types[] = 'language';
+    }
+
     if ($definition->getSetting('allowed_values')) {
       $types[] = 'options';
     }
@@ -304,6 +310,18 @@ function _search_api_views_handler_mapping() {
           'id' => 'search_api',
         ],
       ],
+      'language' => [
+        'argument' => [
+          'id' => 'search_api',
+          ],
+        'filter' => [
+          'id' => 'search_api_language',
+          'allow empty' => FALSE,
+          ],
+        'sort' => [
+          'id' => 'search_api',
+          ],
+        ],
       'options' => [
         'argument' => [
           'id' => 'search_api',
@@ -801,9 +819,9 @@ function _search_api_views_get_field_handler_for_property(DataDefinitionInterfac
     // Then check all the patterns defined by regular expressions, defaulting to
     // the "default" definition.
     $definition = $mappings['default'];
-    foreach (array_keys($mappings['regex']) as $regex) {
+    foreach ($mappings['regex'] as $regex => $mapping_definition) {
       if (preg_match($regex, $data_type)) {
-        $definition = $mappings['regex'][$regex];
+        $definition = $mapping_definition;
       }
     }
   }
@@ -900,6 +918,11 @@ function _search_api_views_get_field_handler_mapping() {
     ];
     $plain_mapping['boolean'] = $bool_mapping;
     $plain_mapping['field_item:boolean'] = $bool_mapping;
+
+    $language_mapping = [
+      'id' => 'language',
+    ];
+    $plain_mapping['language'] = $language_mapping;
 
     $ref_mapping = [
       'id' => 'search_api_entity',

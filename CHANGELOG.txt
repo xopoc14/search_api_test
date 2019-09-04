@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #1960684 by drunken monkey, geek.merlin aka axel.rutz, mkalkbrenner,
+  borisson_, andypost, DanielVeza: Added support for language fallbacks.
 - #3067143 by drunken monkey, mpp, borisson_: Fixed potential fatal error when
   accessing parse mode of broken Views.
 - #3073283 by mkalkbrenner, idebr, drunken monkey: Fixed failing tests on Drupal
