@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3075417 by Adrian Liegmann, drunken monkey: Fixed handling of 'is_list' =>
+  FALSE in property definitions.
 - #3074852 by littlepixiez, drunken monkey: Fixed message class for failed
   status change.
 - #3068196 by Adrian Liegmann, lpeabody, drunken monkey: Fixed problem with
