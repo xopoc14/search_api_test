@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3074852 by littlepixiez, drunken monkey: Fixed message class for failed
+  status change.
 - #3068196 by Adrian Liegmann, lpeabody, drunken monkey: Fixed problem with
   multiple Drush batch operations in Drush 9.6+.
 - #1960684 by drunken monkey, geek.merlin aka axel.rutz, mkalkbrenner,
