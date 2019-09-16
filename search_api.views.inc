@@ -123,14 +123,16 @@ function search_api_views_plugins_cache_alter(array &$plugins) {
   foreach (Index::loadMultiple() as $index) {
     $bases[] = 'search_api_index_' . $index->id();
   }
-  if ($bases) {
-    $plugins['search_api_tag']['base'] = $bases;
-    $plugins['search_api_time']['base'] = $bases;
+
+  // If no search indexes are defined yet, declare a dummy index as the base
+  // table. This will make sure our plugins do not become available for Views
+  // that are not based on search indexes.
+  if (!$bases) {
+    $bases = ['search_api_index_dummy'];
   }
-  else {
-    unset($plugins['search_api_tag']);
-    unset($plugins['search_api_time']);
-  }
+
+  $plugins['search_api_tag']['base'] = $bases;
+  $plugins['search_api_time']['base'] = $bases;
 }
 
 /**
@@ -143,12 +145,15 @@ function search_api_views_plugins_row_alter(array &$plugins) {
   foreach (Index::loadMultiple() as $index) {
     $bases[] = 'search_api_index_' . $index->id();
   }
-  if ($bases) {
-    $plugins['search_api']['base'] = $bases;
+
+  // If no search indexes are defined yet, declare a dummy index as the base
+  // table. This will make sure our plugins do not become available for Views
+  // that are not based on search indexes.
+  if (!$bases) {
+    $bases = ['search_api_index_dummy'];
   }
-  else {
-    unset($plugins['search_api']);
-  }
+
+  $plugins['search_api']['base'] = $bases;
 }
 
 /**
