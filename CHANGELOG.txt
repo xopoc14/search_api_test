@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3067640 by DamienMcKenna, drunken monkey: Fixed "missing module" error for
+  search_api_views_taxonomy.
 - #3071591 by pfrenssen, drunken monkey: Fixed plugin not found error during
   site/config install.
 - #3075417 by Adrian Liegmann, drunken monkey: Fixed handling of 'is_list' =>
