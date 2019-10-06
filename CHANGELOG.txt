@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3083923 by aalin, drunken monkey: Fixed ResultRow name conflict in PHP 5.
 - #3083269 by leontin, drunken monkey: Fixed error when combining multiple
   fulltext keywords.
 - #3086004 by drunken monkey: Fixed failing tests.
