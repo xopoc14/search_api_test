@@ -3,7 +3,6 @@
 namespace Drupal\search_api\Plugin\views\filter;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Render\Element;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api\ParseMode\ParseModePluginManager;
 use Drupal\views\Plugin\views\filter\FilterPluginBase;
