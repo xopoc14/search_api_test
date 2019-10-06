@@ -373,8 +373,11 @@ class SearchApiFulltext extends FilterPluginBase {
           // Otherwise, just add all individual words from the old keys to the
           // new ones.
           else {
-            foreach (Element::children($old) as $i) {
-              $keys[] = $old[$i];
+            foreach ($old as $key => $value) {
+              if (substr($key, 0, 1) === '#') {
+                continue;
+              }
+              $keys[] = $value;
             }
           }
         }

@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3083269 by leontin, drunken monkey: Fixed error when combining multiple
+  fulltext keywords.
 - #3086004 by drunken monkey: Fixed failing tests.
 - #3079147 by drunken monkey: Fixed Views click-sorting for ID and datasource.
 - #3067640 by DamienMcKenna, drunken monkey: Fixed "missing module" error for
