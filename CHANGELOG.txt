@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2916534 by drunken monkey, Johnny vd Laar, ricovandevin, Marty2081: Fixed duplicate results for partial matching with
+  database backend.
 - #3084839 by ckaotik, drunken monkey: Fixed missing config schema for Views
   date filter.
 - #3083923 by aalin, drunken monkey: Fixed ResultRow name conflict in PHP 5.

@@ -1946,7 +1946,11 @@ class Database extends BackendPluginBase implements PluginFormInterface {
       elseif ($neg) {
         $db_query->fields('t', ['item_id']);
       }
-      elseif ($not_nested) {
+      elseif ($not_nested && $match_parts) {
+        $db_query->fields('t', ['item_id']);
+        $db_query->addExpression('SUM(t.score)', 'score');
+      }
+      elseif ($not_nested || $match_parts) {
         $db_query->fields('t', ['item_id', 'score']);
       }
       else {
@@ -1958,12 +1962,9 @@ class Database extends BackendPluginBase implements PluginFormInterface {
       }
       else {
         $db_or = new Condition('OR');
-        // GROUP BY all existing non-grouped, non-aggregated columns – except
-        // "word", which we remove since it will be useless to us in this case.
-        $columns = &$db_query->getFields();
-        unset($columns['word']);
-        foreach (array_keys($columns) as $column) {
-          $db_query->groupBy($column);
+        // GROUP BY all existing non-aggregated columns.
+        foreach ($db_query->getFields() as $column) {
+          $db_query->groupBy("{$column['table']}.{$column['field']}");
         }
 
         foreach ($words as $i => $word) {
