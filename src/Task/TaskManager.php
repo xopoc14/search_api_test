@@ -326,6 +326,8 @@ class TaskManager implements TaskManagerInterface {
     // Initialize context information.
     if (!isset($context['sandbox']['task_ids'])) {
       $context['sandbox']['task_ids'] = $task_ids;
+    }
+    if (!isset($context['results']['total'])) {
       $context['results']['total'] = $this->getTasksCount($conditions);
     }
 
