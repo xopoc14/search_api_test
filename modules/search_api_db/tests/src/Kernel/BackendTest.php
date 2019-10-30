@@ -68,6 +68,30 @@ class BackendTest extends BackendTestBase {
     ]);
 
     $this->installConfig(['search_api_test_db']);
+
+    // Add additional fields to the search index that have the same ID as
+    // column names used by this backend, to see whether this leads to any
+    // conflicts.
+    $index = $this->getIndex();
+    $fields_helper = \Drupal::getContainer()->get('search_api.fields_helper');
+    $column_names = [
+      'item_id',
+      'field_name',
+      'word',
+      'score',
+      'value',
+    ];
+    $field_info = [
+      'datasource_id' => 'entity:entity_test_mulrev_changed',
+      'property_path' => 'type',
+      'type' => 'string',
+    ];
+    foreach ($column_names as $column_name) {
+      $field_info['label'] = "Test field $column_name";
+      $field = $fields_helper->createField($index, $column_name, $field_info);
+      $index->addField($field);
+    }
+    $index->save();
   }
 
   /**
@@ -112,13 +136,18 @@ class BackendTest extends BackendTestBase {
       'body',
       'category',
       'created',
+      'field_name',
       'id',
+      'item_id',
       'keywords',
       'name',
+      'score',
       'search_api_datasource',
       'search_api_language',
       'type',
+      'value',
       'width',
+      'word',
     ];
     $actual_fields = array_keys($field_infos);
     sort($actual_fields);

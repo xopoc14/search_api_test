@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3068180 by drunken monkey: Fixed ambiguous column names in SQL queries
+  constructed by the database backend.
 - #3068645 by drunken monkey: Fixed problem with entity references in Views.
 - #3081885 by mkalkbrenner, drunken monkey, borisson_: Changed discouraged
   processors to be visible but disabled in UI.
