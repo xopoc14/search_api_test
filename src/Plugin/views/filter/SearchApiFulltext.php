@@ -298,7 +298,7 @@ class SearchApiFulltext extends FilterPluginBase {
       return;
     }
     $fields = $this->options['fields'];
-    $fields = $fields ? $fields : array_keys($this->getFulltextFields());
+    $fields = $fields ?: array_keys($this->getFulltextFields());
     $query = $this->getQuery();
 
     // Save any keywords that were already set.
