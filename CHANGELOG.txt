@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3068645 by drunken monkey: Fixed problem with entity references in Views.
 - #3081885 by mkalkbrenner, drunken monkey, borisson_: Changed discouraged
   processors to be visible but disabled in UI.
 - #3089960 by drunken monkey, borisson_: Changed to use PHP ternary operator
