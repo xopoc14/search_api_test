@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3081885 by mkalkbrenner, drunken monkey, borisson_: Changed discouraged
+  processors to be visible but disabled in UI.
 - #3089960 by drunken monkey, borisson_: Changed to use PHP ternary operator
   where possible.
 - #3064479 by ducktape, drunken monkey, mpp, borisson_: Fixed taxonomy term

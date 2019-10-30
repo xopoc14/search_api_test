@@ -311,13 +311,14 @@ class ProcessorIntegrationTest extends SearchApiBrowserTestBase {
     $this->drupalGet($settings_path);
     $this->submitForm(['server' => 'webtest_server'], 'Save');
 
-    // Load the processors again and check that they are not shown anymore.
+    // Load the processors again and check that they are disabled now.
     $this->loadProcessorsTab();
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->pageTextNotContains('Highlight');
-    $this->assertSession()->pageTextNotContains('Ignore character');
-    $this->assertSession()->pageTextNotContains('Tokenizer');
-    $this->assertSession()->pageTextNotContains('Stopwords');
+    $this->assertSession()->pageTextContains('It is recommended not to use this processor with the selected server.');
+    $this->assertSession()->elementExists('css', 'input[name="status[highlight]"][disabled="disabled"]');
+    $this->assertSession()->elementExists('css', 'input[name="status[ignore_character]"][disabled="disabled"]');
+    $this->assertSession()->elementExists('css', 'input[name="status[tokenizer]"][disabled="disabled"]');
+    $this->assertSession()->elementExists('css', 'input[name="status[stopwords]"][disabled="disabled"]');
   }
 
   /**
