@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- Issue #3064479 by ducktape, drunken monkey, mpp, borisson_: Fixed taxonomy
+  term Views argument title not translated.
 - #2931562 by drunken monkey, RajabNatshah, nedjo, borisson_: Fixed problem
   running batch process during module install.
 - #2916534 by drunken monkey, Johnny vd Laar, ricovandevin, Marty2081: Fixed
