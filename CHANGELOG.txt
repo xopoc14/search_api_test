@@ -1,5 +1,5 @@
-Search API 1.x, dev (xxxx-xx-xx):
----------------------------------
+Search API 1.15 (2019-11-07):
+-----------------------------
 - #3022881 by MahtabAlam, drunken monkey, borisson_: Fixed unintentional
   scrolling in the "Add fields" dialog.
 - #3068180 by drunken monkey: Fixed ambiguous column names in SQL queries
