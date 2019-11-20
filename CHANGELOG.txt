@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2381823 by cedric_a, drunken monkey, borisson_: Added a link to the
+  documentation to the Processors tab.
 
 Search API 1.15 (2019-11-07):
 -----------------------------
