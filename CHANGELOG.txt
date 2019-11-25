@@ -1,5 +1,8 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3065112 by gdejonghe, mbovan, wengerk, drunken monkey: Adapted the
+  SearchApiTerm Views argument plugin to use dependency injection for loading
+  terms.
 - #2381823 by cedric_a, drunken monkey, borisson_: Added a link to the
   documentation to the Processors tab.
 
