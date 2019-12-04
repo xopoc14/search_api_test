@@ -4,6 +4,7 @@ namespace Drupal\search_api\Plugin\search_api\datasource;
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -1157,6 +1158,15 @@ class ContentEntity extends DatasourcePluginBase implements EntityDatasourceInte
       }
     }
     return $valid_ids;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getListCacheContexts() {
+    $contexts = parent::getListCacheContexts();
+    $entity_list_contexts = $this->getEntityType()->getListCacheContexts();
+    return Cache::mergeContexts($entity_list_contexts, $contexts);
   }
 
 }

@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2824640 by pfrenssen, drunken monkey, sardara, idimopoulos, geek.merlin aka
+  axel.rutz, borisson_, claudiu.cristea: Fixed caching of Views results.
 - #3001743 by drunken monkey: Adapted to use the new
   ConditionInterface::alwaysFalse() method.
 - #3098722 by drunken monkey, milindk: Increased the Core version requirement to

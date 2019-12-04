@@ -48,6 +48,9 @@ class ContentAccessTest extends ProcessorTestBase {
   public function setUp($processor = NULL) {
     parent::setUp('content_access');
 
+    // Activate our custom grant.
+    \Drupal::state()->set('search_api_test_add_node_access_grant', TRUE);
+
     // Create a node type for testing.
     $type = NodeType::create(['type' => 'page', 'name' => 'page']);
     $type->save();

@@ -3,6 +3,9 @@
 namespace Drupal\search_api\Query;
 
 use Drupal\Component\EventDispatcher\ContainerAwareEventDispatcher;
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Cache\RefinableCacheableDependencyTrait;
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -19,9 +22,10 @@ use Drupal\search_api\Utility\QueryHelperInterface;
 /**
  * Provides a standard implementation for a Search API query.
  */
-class Query implements QueryInterface {
+class Query implements QueryInterface, RefinableCacheableDependencyInterface {
 
   use StringTranslationTrait;
+  use RefinableCacheableDependencyTrait;
   use DependencySerializationTrait {
     __sleep as traitSleep;
     __wakeup as traitWakeup;
@@ -746,6 +750,52 @@ class Query implements QueryInterface {
    */
   public function getOriginalQuery() {
     return $this->originalQuery ?: clone $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheContexts() {
+    // Call the pre-execute method to ensure that processors and modules have
+    // had the chance to alter the query and modify the cacheability metadata.
+    $this->preExecute();
+
+    $contexts = $this->cacheContexts;
+
+    foreach ($this->getIndex()->getDatasources() as $datasource) {
+      $contexts = Cache::mergeContexts($datasource->getListCacheContexts(), $contexts);
+    }
+
+    return $contexts;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheTags() {
+    // Call the pre-execute method to ensure that processors and modules have
+    // had the chance to alter the query and modify the cacheability metadata.
+    $this->preExecute();
+
+    $tags = $this->cacheTags;
+
+    // If the configuration of the search index changes we should invalidate the
+    // views that show results from this index.
+    $index_tags = $this->getIndex()->getCacheTagsToInvalidate();
+    $tags = Cache::mergeTags($index_tags, $tags);
+
+    return $tags;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    // Call the pre-execute method to ensure that processors and modules have
+    // had the chance to alter the query and modify the cacheability metadata.
+    $this->preExecute();
+
+    return $this->cacheMaxAge;
   }
 
   /**
