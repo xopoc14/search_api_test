@@ -30,6 +30,13 @@ class SearchApiEntity extends SearchApiStandard {
   protected $entityDisplayRepository;
 
   /**
+   * The entity type bundle info.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeBundleInfo|null
+   */
+  protected $entityTypeBundleInfo;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
@@ -64,13 +71,6 @@ class SearchApiEntity extends SearchApiStandard {
     $this->entityDisplayRepository = $entity_display_repository;
     return $this;
   }
-
-  /**
-   * The entity type bundle info.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeBundleInfo|null
-   */
-  protected $entityTypeBundleInfo;
 
   /**
    * Retrieves the entity type bundle info.
