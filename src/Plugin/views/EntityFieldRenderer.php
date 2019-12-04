@@ -108,7 +108,7 @@ class EntityFieldRenderer extends ViewsEntityFieldRenderer {
    */
   protected function getEntityTranslationRenderer() {
     if (!isset($this->entityTranslationRenderer)) {
-      $entity_type = $this->getEntityManager()
+      $entity_type = $this->getEntityTypeManager()
         ->getDefinition($this->getEntityTypeId());
       $this->entityTranslationRenderer = new EntityTranslationRenderer($this->view, $this->getLanguageManager(), $entity_type);
     }

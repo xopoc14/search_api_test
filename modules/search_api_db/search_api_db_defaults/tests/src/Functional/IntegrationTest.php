@@ -5,7 +5,7 @@ namespace Drupal\Tests\search_api_db_defaults\Functional;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\comment\Tests\CommentTestTrait;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\field\Tests\EntityReference\EntityReferenceTestTrait;
+use Drupal\Tests\field\Traits\EntityReferenceTestTrait;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api\Entity\Server;
 use Drupal\Tests\BrowserTestBase;

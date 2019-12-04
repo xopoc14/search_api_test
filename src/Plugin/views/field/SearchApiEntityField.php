@@ -278,8 +278,8 @@ class SearchApiEntityField extends EntityField {
         }
       }
       if (!isset($this->entityFieldRenderer)) {
-        $entity_type = $this->entityManager->getDefinition($this->getEntityType());
-        $this->entityFieldRenderer = new EntityFieldRenderer($this->view, $this->relationship, $this->languageManager, $entity_type, $this->entityManager);
+        $entity_type = $this->entityTypeManager->getDefinition($this->getEntityType());
+        $this->entityFieldRenderer = new EntityFieldRenderer($this->view, $this->relationship, $this->languageManager, $entity_type, $this->entityTypeManager, $this->entityRepository);
         $this->entityFieldRenderer
           ->setDatasourceId($this->getDatasourceId())
           ->setParentPath($this->getParentPath());

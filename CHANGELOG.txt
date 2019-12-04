@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3098722 by drunken monkey, milindk: Increased Core version requirement to 8.7
 - #3065112 by gdejonghe, mbovan, wengerk, drunken monkey: Adapted the
   SearchApiTerm Views argument plugin to use dependency injection for loading
   terms.

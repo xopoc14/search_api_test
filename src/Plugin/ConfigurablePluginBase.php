@@ -16,6 +16,7 @@ abstract class ConfigurablePluginBase extends HideablePluginBase implements Conf
   // useful. Since PHP 5 complains when adding this trait along with its
   // "parent" trait to the same class, we just add it here in case a child class
   // does need it.
+  // @todo Change this once we depend on PHP 7.0+.
   use PluginDependencyTrait;
 
   /**

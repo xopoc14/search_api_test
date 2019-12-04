@@ -93,7 +93,8 @@ class IndexBreakLockForm extends EntityConfirmFormBase {
    */
   public function getDescription() {
     $locked = $this->tempStore->getMetadata($this->entity->id());
-    $account = $this->entityTypeManager->getStorage('user')->load($locked->owner);
+    $owner_id = $locked->getOwnerId();
+    $account = $this->entityTypeManager->getStorage('user')->load($owner_id);
     $username = [
       '#theme' => 'username',
       '#account' => $account,
