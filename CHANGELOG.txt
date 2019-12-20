@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3096573 by mudassar774, drunken monkey: Fixed warning in Highlight processor
+  in some edge cases.
 - #2824640 by pfrenssen, drunken monkey, sardara, idimopoulos, geek.merlin aka
   axel.rutz, borisson_, claudiu.cristea: Fixed caching of Views results.
 - #3001743 by drunken monkey: Adapted to use the new
