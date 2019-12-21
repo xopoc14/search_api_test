@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3004270 by stefvanlooveren, drunken monkey: Fixed caching of the "Execute
+  pending tasks" local action.
 - #3092347 by drunken monkey: Fixed batch size when indexing for multiple
   indexes via Drush.
 - #3091785 by cedric_a, drunken monkey, borisson_: Improved styling of disabled
