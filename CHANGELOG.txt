@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3091785 by cedric_a, drunken monkey, borisson_: Improved styling of disabled
+  servers/indexes in overview.
 - #3096573 by mudassar774, drunken monkey: Fixed warning in Highlight processor
   in some edge cases.
 - #2824640 by pfrenssen, drunken monkey, sardara, idimopoulos, geek.merlin aka
