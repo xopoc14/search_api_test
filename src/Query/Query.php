@@ -612,8 +612,8 @@ class Query implements QueryInterface, RefinableCacheableDependencyInterface {
     // Let modules alter the results.
     $event_base_name = SearchApiEvents::PROCESSING_RESULTS;
     $event = new ProcessingResultsEvent($this->results);
-    $this->results = $event->getResults();
     $this->getEventDispatcher()->dispatch($event_base_name, $event);
+    $this->results = $event->getResults();
 
     $hooks = ['search_api_results'];
     foreach ($this->tags as $tag) {

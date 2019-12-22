@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3101998 by lostkangaroo, drunken monkey: Fixed small bug in "results alter"
+  event processing.
 - #3004270 by stefvanlooveren, drunken monkey: Fixed caching of the "Execute
   pending tasks" local action.
 - #3092347 by drunken monkey: Fixed batch size when indexing for multiple
