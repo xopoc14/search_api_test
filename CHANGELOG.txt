@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3102662 by drunken monkey: Declared IndexingItemsEvent class as final.
 - #3099001 by drunken monkey, mkalkbrenner: Marked PluginDependencyTrait
   methods in ConfigurablePluginBase as deprecated.
 - #3099048 by andreyjan, drunken monkey, Berdir: Fixed Drupal 8.8 deprecations
