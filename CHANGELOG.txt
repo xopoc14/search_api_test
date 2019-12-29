@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3096581 by andreyjan, drunken monkey: Converted TaxonomyTermArgumentTest to
+  a unit test.
 - #3101998 by lostkangaroo, drunken monkey: Fixed small bug in "results alter"
   event processing.
 - #3004270 by stefvanlooveren, drunken monkey: Fixed caching of the "Execute
