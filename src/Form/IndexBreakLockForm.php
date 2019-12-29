@@ -30,7 +30,7 @@ class IndexBreakLockForm extends EntityConfirmFormBase {
   protected $tempStore;
 
   /**
-   * The entity manager.
+   * The entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
@@ -49,7 +49,7 @@ class IndexBreakLockForm extends EntityConfirmFormBase {
    * @param \Drupal\Core\TempStore\SharedTempStoreFactory $temp_store_factory
    *   The factory for shared temporary storages.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The Entity manager.
+   *   The entity type manager.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer to use.
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger

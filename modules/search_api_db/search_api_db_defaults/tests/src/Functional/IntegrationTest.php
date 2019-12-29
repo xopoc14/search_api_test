@@ -79,10 +79,10 @@ class IntegrationTest extends BrowserTestBase {
     $this->assertSession()->pageTextContains('The server was successfully saved.');
 
     $server = Server::load('default_server');
-    $this->assertTrue($server, 'Server can be loaded');
+    $this->assertInstanceOf(Server::class, $server, 'Server can be loaded');
 
     $index = Index::load('default_index');
-    $this->assertTrue($index, 'Index can be loaded');
+    $this->assertInstanceOf(Index::class, $index, 'Index can be loaded');
 
     $this->drupalLogin($this->authenticatedUser);
     $this->drupalGet('search/content');

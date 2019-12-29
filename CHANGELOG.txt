@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3099048 by andreyjan, drunken monkey, Berdir: Fixed Drupal 8.8 deprecations
+  that do not require Drupal 8.8.
 - #3096581 by andreyjan, drunken monkey: Converted TaxonomyTermArgumentTest to
   a unit test.
 - #3101998 by lostkangaroo, drunken monkey: Fixed small bug in "results alter"

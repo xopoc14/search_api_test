@@ -745,7 +745,7 @@ TAGS
     $this->submitForm($edit, 'Save');
 
     $processor = $this->loadIndex()->getProcessor($processor_id);
-    $this->assertTrue($processor, "Successfully enabled the '$processor_id' processor.'");
+    $this->assertInstanceOf(ProcessorInterface::class, $processor, "Successfully enabled the '$processor_id' processor.'");
     if ($processor) {
       $actual_configuration = $processor->getConfiguration();
       unset($actual_configuration['weights']);
