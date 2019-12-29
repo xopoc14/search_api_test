@@ -70,11 +70,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class Database extends BackendPluginBase implements PluginFormInterface {
 
-  public function isAvailable() {
-    // @todo Implement.
-    return FALSE;
-  }
-
   use PluginFormTrait;
 
   /**
