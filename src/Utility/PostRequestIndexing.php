@@ -25,6 +25,15 @@ class PostRequestIndexing implements PostRequestIndexingInterface, DestructableI
   protected $operations = [];
 
   /**
+   * Keeps track of how often destruct() was called recursively.
+   *
+   * This is used to avoid infinite recursions.
+   *
+   * @var int
+   */
+  protected $recursion = 0;
+
+  /**
    * The entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -92,6 +101,13 @@ class PostRequestIndexing implements PostRequestIndexingInterface, DestructableI
       // We usually shouldn't be called twice in a page request, but no harm in
       // being too careful: Remove the operation once it was executed correctly.
       unset($this->operations[$index_id]);
+    }
+
+    // Make sure that no new items were added while processing the previous
+    // ones. Otherwise, call this method again to index those as well. (But also
+    // guard against infinite recursion.)
+    if ($this->operations && ++$this->recursion <= 5) {
+      $this->destruct();
     }
   }
 
