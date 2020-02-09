@@ -30,6 +30,7 @@ use Drupal\search_api\Datasource\DatasourcePluginBase;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api\Plugin\PluginFormTrait;
 use Drupal\search_api\IndexInterface;
+use Drupal\search_api\Utility\Dependencies;
 use Drupal\search_api\Utility\FieldsHelperInterface;
 use Drupal\search_api\Utility\Utility;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -1034,27 +1035,25 @@ class ContentEntity extends DatasourcePluginBase implements EntityDatasourceInte
    *   mapping dependency types to arrays of dependency names.
    */
   protected function getPropertyPathDependencies($property_path, array $properties) {
-    $dependencies = [];
-
     list($key, $nested_path) = Utility::splitPropertyPath($property_path, FALSE);
     if (!isset($properties[$key])) {
-      return $dependencies;
+      return [];
     }
 
+    $dependencies = new Dependencies();
     $property = $properties[$key];
     if ($property instanceof FieldConfigInterface) {
       $storage = $property->getFieldStorageDefinition();
       if ($storage instanceof FieldStorageConfigInterface) {
         $name = $storage->getConfigDependencyName();
-        $dependencies[$storage->getConfigDependencyKey()][$name] = $name;
+        $dependencies->addDependency($storage->getConfigDependencyKey(), $name);
       }
     }
 
     // The field might be provided by a module which is not the provider of the
     // entity type, therefore we need to add a dependency on that module.
     if ($property instanceof FieldStorageDefinitionInterface) {
-      $provider = $property->getProvider();
-      $dependencies['module'][$provider] = $provider;
+      $dependencies->addDependency('module', $property->getProvider());
     }
 
     $property = $this->getFieldsHelper()->getInnerProperty($property);
@@ -1064,7 +1063,7 @@ class ContentEntity extends DatasourcePluginBase implements EntityDatasourceInte
         ->getDefinition($property->getEntityTypeId());
       if ($entity_type_definition) {
         $module = $entity_type_definition->getProvider();
-        $dependencies['module'][$module] = $module;
+        $dependencies->addDependency('module', $module);
       }
     }
 
@@ -1072,13 +1071,10 @@ class ContentEntity extends DatasourcePluginBase implements EntityDatasourceInte
         && $property instanceof ComplexDataDefinitionInterface) {
       $nested = $this->getFieldsHelper()->getNestedProperties($property);
       $nested_dependencies = $this->getPropertyPathDependencies($nested_path, $nested);
-      foreach ($nested_dependencies as $type => $names) {
-        $dependencies += [$type => []];
-        $dependencies[$type] += $names;
-      }
+      $dependencies->addDependencies($nested_dependencies);
     }
 
-    return array_map('array_values', $dependencies);
+    return $dependencies->toArray();
   }
 
   /**
