@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3101607 by manuel.adan, drunken monkey: Added support for nested data
+  properties.
 - #3109755 by Vladimirrem, drunken monkey: Added $view property to entities
   when viewed via the Views "Rendered entity" row plugin.
 - #3111635 by alexpott, drunken monkey, borisson_: Fixed duplicate dependencies

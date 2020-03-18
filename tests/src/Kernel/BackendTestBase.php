@@ -32,6 +32,7 @@ abstract class BackendTestBase extends KernelTestBase {
     'user',
     'system',
     'entity_test',
+    'filter',
     'text',
     'search_api_test_example_content',
   ];

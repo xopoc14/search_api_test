@@ -185,7 +185,10 @@ class FieldsHelper implements FieldsHelperInterface {
    * {@inheritdoc}
    */
   public function extractFieldValues(TypedDataInterface $data) {
-    if ($data->getDataDefinition()->isList()) {
+    $definition = $data->getDataDefinition();
+
+    // Process list data types.
+    if ($definition->isList()) {
       $values = [];
       foreach ($data as $piece) {
         $values[] = $this->extractFieldValues($piece);
@@ -193,12 +196,18 @@ class FieldsHelper implements FieldsHelperInterface {
       return $values ? call_user_func_array('array_merge', $values) : [];
     }
 
-    $value = $data->getValue();
-    $definition = $data->getDataDefinition();
+    // Process complex data types.
     if ($definition instanceof ComplexDataDefinitionInterface) {
-      $property = $definition->getMainPropertyName();
-      return isset($value[$property]) ? [$value[$property]] : [];
+      $main_property_name = $definition->getMainPropertyName();
+      $data_properties = $data->getProperties();
+      if (isset($data_properties[$main_property_name])) {
+        return $this->extractFieldValues($data_properties[$main_property_name]);
+      }
+      return [];
     }
+
+    // Process simple (scalar) data types.
+    $value = $data->getValue();
     if (is_array($value)) {
       return array_values($value);
     }
