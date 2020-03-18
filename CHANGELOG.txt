@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3109755 by Vladimirrem, drunken monkey: Added $view property to entities
+  when viewed via the Views "Rendered entity" row plugin.
 - #3111635 by alexpott, drunken monkey, borisson_: Fixed duplicate dependencies
   in index config.
 - #3098350 by abrar_arshad, drunken monkey: Fixed immediate indexing of items
