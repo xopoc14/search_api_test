@@ -1008,4 +1008,36 @@ class ViewsTest extends SearchApiBrowserTestBase {
     $this->assertSession()->responseContains('foo <strong>bar</strong> baz');
   }
 
+  /**
+   * Verifies that our row plugin is available without clearing cache.
+   */
+  public function testCreatingIndexClearsRowPluginCache() {
+    $this->drupalLogin($this->drupalCreateUser([
+      'administer search_api',
+      'access administration pages',
+      'administer views',
+    ]));
+
+    $index_id = 'my_custom_index';
+    Index::create([
+      'name' => 'My custom index',
+      'id' => $index_id,
+      'status' => TRUE,
+      'datasource_settings' => [
+        'entity:node' => [],
+        'entity:user' => [],
+      ],
+    ])->save();
+
+    $this->drupalGet('/admin/structure/views/add');
+    $this->submitForm([
+      'label' => 'Test view',
+      'id' => 'test',
+      'show[wizard_key]' => "standard:search_api_index_$index_id",
+    ], 'Save and edit');
+
+    $this->drupalGet('/admin/structure/views/nojs/display/test/default/row');
+    $this->assertSession()->elementExists('css', '#edit-row-type [value="search_api"]');
+  }
+
 }
