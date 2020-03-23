@@ -43,7 +43,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   deriver = "Drupal\search_api\Plugin\search_api\datasource\ContentEntityDeriver"
  * )
  */
-class ContentEntity extends DatasourcePluginBase implements EntityDatasourceInterface, PluginFormInterface {
+class ContentEntity extends DatasourcePluginBase implements PluginFormInterface {
 
   use PluginFormTrait;
 

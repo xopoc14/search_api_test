@@ -17,7 +17,6 @@ use Drupal\search_api\Entity\Index;
 use Drupal\search_api\IndexInterface;
 use Drupal\search_api\Plugin\search_api\datasource\ContentEntity;
 use Drupal\search_api\Plugin\search_api\datasource\ContentEntityTaskManager;
-use Drupal\search_api\Plugin\search_api\datasource\EntityDatasourceInterface;
 use Drupal\search_api\Plugin\views\argument\SearchApiTerm as TermArgument;
 use Drupal\search_api\Plugin\views\argument\SearchApiAllTerms;
 use Drupal\search_api\Plugin\views\filter\SearchApiTerm as TermFilter;
@@ -465,8 +464,7 @@ function search_api_search_api_index_update(IndexInterface $index) {
 
   foreach ($index->getDatasources() as $datasource_id => $datasource) {
     if ($datasource->getBaseId() != 'entity'
-      || !($datasource instanceof EntityDatasourceInterface)
-      || !$original->isValidDatasource($datasource_id)) {
+        || !$original->isValidDatasource($datasource_id)) {
       continue;
     }
     $old_datasource = $original->getDatasource($datasource_id);
