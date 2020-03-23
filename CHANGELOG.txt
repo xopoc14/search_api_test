@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3103594 by drunken monkey: Cleaned up the Database backend plugin code.
 - #3103585 by drunken monkey: Converted hook_search_api_db_query_alter() to an
   event.
 - #3044782 by drunken monkey, stefvanlooveren: Increased PHP version

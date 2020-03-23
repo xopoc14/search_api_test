@@ -128,13 +128,6 @@ class Database extends BackendPluginBase implements PluginFormInterface {
   protected $keyValueStore;
 
   /**
-   * The transliteration service to use.
-   *
-   * @var \Drupal\Component\Transliteration\TransliterationInterface
-   */
-  protected $transliterator;
-
-  /**
    * The date formatter.
    *
    * @var \Drupal\Core\Datetime\DateFormatterInterface|null
@@ -785,8 +778,13 @@ class Database extends BackendPluginBase implements PluginFormInterface {
    *   (optional) The type of table being created. Either "index" (for the
    *   denormalized table for an entire index) or "field" (for field-specific
    *   tables).
+   *
+   * @throws \Drupal\search_api\SearchApiException
+   *   Thrown if creating the table failed.
    */
-  protected function createFieldTable(FieldInterface $field = NULL, array $db, $type = 'field') {
+  // @todo Make $field required but nullable (and $db required again) once we
+  //   depend on PHP 7.1+.
+  protected function createFieldTable(FieldInterface $field = NULL, array $db = [], $type = 'field') {
     $new_table = !$this->database->schema()->tableExists($db['table']);
     if ($new_table) {
       $table = [
@@ -2589,6 +2587,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
     try {
       $result = $this->database->queryTemporary((string) $db_query, $args);
     }
+    // @todo Use a multi-catch once we depend on PHP 7.1+.
     catch (\PDOException $e) {
       $this->logException($e, '%type while trying to create a temporary table: @message in %function (line %line of %file).');
       return FALSE;
