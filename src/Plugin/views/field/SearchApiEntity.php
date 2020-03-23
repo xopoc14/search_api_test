@@ -335,10 +335,7 @@ class SearchApiEntity extends SearchApiStandard {
    *   selected yet.
    */
   protected function getDisplayMethod($bundle) {
-    if (!isset($this->options['display_methods'][$bundle]['display_method'])) {
-      return NULL;
-    }
-    return $this->options['display_methods'][$bundle]['display_method'];
+    return $this->options['display_methods'][$bundle]['display_method'] ?? NULL;
   }
 
 }

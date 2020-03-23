@@ -590,7 +590,7 @@ function search_api_view_insert(ViewEntityInterface $view) {
   if ($displays['default']['display_options']['query']['type'] === 'search_api_query') {
     $change = FALSE;
     foreach ($displays as $id => $display) {
-      if (isset($display['display_options']['cache']['type']) && in_array($display['display_options']['cache']['type'], ['tag', 'time'])) {
+      if (in_array($display['display_options']['cache']['type'] ?? '', ['tag', 'time'])) {
         $displays[$id]['display_options']['cache']['type'] = 'none';
         $change = TRUE;
       }

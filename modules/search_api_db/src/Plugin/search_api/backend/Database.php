@@ -781,7 +781,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
       return;
     }
 
-    $column = isset($db['column']) ? $db['column'] : 'value';
+    $column = $db['column'] ?? 'value';
     $db_field = $this->sqlType($field->getType());
     $db_field += [
       'description' => "The field's value for this item",
@@ -1245,7 +1245,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
 
           // Don't add NULL values to the array of values. Also, adding an empty
           // array is, of course, a waste of time.
-          if (isset($converted_value) && $converted_value !== []) {
+          if (($converted_value ?? []) !== []) {
             $values = array_merge($values, is_array($converted_value) ? $converted_value : [$converted_value]);
           }
         }
@@ -2009,7 +2009,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
           else {
             $i += $word_count;
             for ($j = 0; $j < $subs; ++$j) {
-              $alias = isset($keyword_hits[$j]) ? $keyword_hits[$j] : "w$j";
+              $alias = $keyword_hits[$j] ?? "w$j";
               $keyword_hits[$j] = $query->addExpression($i == $j ? '1' : '0', $alias);
             }
           }
@@ -2387,7 +2387,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
       }
       $field = $fields[$facet['field']];
 
-      if (empty($facet['operator']) || $facet['operator'] != 'or') {
+      if (($facet['operator'] ?? 'and') != 'or') {
         // First, check whether this can even possibly have any results.
         if ($result_count !== NULL && $result_count < $facet['min_count']) {
           continue;
@@ -2467,9 +2467,9 @@ class Database extends BackendPluginBase implements PluginFormInterface {
       foreach ($select->execute() as $row) {
         $terms[] = [
           'count' => $row->num,
-          'filter' => isset($row->value) ? '"' . $row->value . '"' : '!',
+          'filter' => $row->value !== NULL ? '"' . $row->value . '"' : '!',
         ];
-        if (isset($row->value)) {
+        if ($row->value !== NULL) {
           $values[] = $row->value;
         }
         else {

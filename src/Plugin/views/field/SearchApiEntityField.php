@@ -47,7 +47,7 @@ class SearchApiEntityField extends EntityField {
    */
   public function init(ViewExecutable $view, DisplayPluginBase $display, array &$options = NULL) {
     // Prepare our fallback handler.
-    $fallback_handler_id = !empty($this->definition['fallback_handler']) ? $this->definition['fallback_handler'] : 'search_api';
+    $fallback_handler_id = $this->definition['fallback_handler'] ?? 'search_api';
     $this->fallbackHandler = Views::handlerManager('field')
       ->getHandler($options, $fallback_handler_id);
     $options += ['fallback_options' => []];
@@ -266,15 +266,12 @@ class SearchApiEntityField extends EntityField {
     if (!isset($this->entityFieldRenderer)) {
       // This can be invoked during field handler initialization in which case
       // view fields are not set yet.
-      if (!empty($this->view->field)) {
-        foreach ($this->view->field as $field) {
-          // An entity field renderer can handle only a single relationship.
-          if (isset($field->entityFieldRenderer)) {
-            if ($field->entityFieldRenderer instanceof EntityFieldRenderer && $field->entityFieldRenderer->compatibleWithField($this)) {
-              $this->entityFieldRenderer = $field->entityFieldRenderer;
-              break;
-            }
-          }
+      foreach ($this->view->field ?? [] as $field) {
+        // An entity field renderer can handle only a single relationship.
+        if (($field->entityFieldRenderer ?? NULL) instanceof EntityFieldRenderer
+            && $field->entityFieldRenderer->compatibleWithField($this)) {
+          $this->entityFieldRenderer = $field->entityFieldRenderer;
+          break;
         }
       }
       if (!isset($this->entityFieldRenderer)) {

@@ -128,7 +128,7 @@ class ContentEntity extends DatasourcePluginBase implements EntityDatasourceInte
    * {@inheritdoc}
    */
   public function __construct(array $configuration, $plugin_id, array $plugin_definition) {
-    if (!empty($configuration['#index']) && $configuration['#index'] instanceof IndexInterface) {
+    if (($configuration['#index'] ?? NULL) instanceof IndexInterface) {
       $this->setIndex($configuration['#index']);
       unset($configuration['#index']);
     }
@@ -898,7 +898,7 @@ class ContentEntity extends DatasourcePluginBase implements EntityDatasourceInte
     $function = $configuration['bundles']['default'] ? 'array_diff_key' : 'array_intersect_key';
     $entity_bundles = $function($entity_bundles, $selected_bundles);
     foreach ($entity_bundles as $bundle_id => $bundle_info) {
-      $bundles[$bundle_id] = isset($bundle_info['label']) ? $bundle_info['label'] : $bundle_id;
+      $bundles[$bundle_id] = $bundle_info['label'] ?? $bundle_id;
     }
     return $bundles ?: [$this->getEntityTypeId() => $this->label()];
   }

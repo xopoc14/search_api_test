@@ -407,7 +407,7 @@ class Query implements QueryInterface, RefinableCacheableDependencyInterface {
    * {@inheritdoc}
    */
   public function setLanguages(array $languages = NULL) {
-    $this->languages = isset($languages) ? array_values($languages) : NULL;
+    $this->languages = $languages !== NULL ? array_values($languages) : NULL;
     return $this;
   }
 
@@ -496,7 +496,7 @@ class Query implements QueryInterface, RefinableCacheableDependencyInterface {
    * {@inheritdoc}
    */
   public function abort($error_message = NULL) {
-    $this->aborted = isset($error_message) ? $error_message : TRUE;
+    $this->aborted = $error_message ?? TRUE;
   }
 
   /**

@@ -574,8 +574,7 @@ function _search_api_views_data_special_fields(array &$table, IndexInterface $in
       continue;
     }
     $settings = $property->getSettings();
-    if (!isset($settings['target_type'])
-        || $settings['target_type'] !== 'taxonomy_term') {
+    if (($settings['target_type'] ?? '') !== 'taxonomy_term') {
       continue;
     }
     $entity_type_id = $datasource->getEntityTypeId();
@@ -657,7 +656,7 @@ function _search_api_views_datasource_table(DatasourceInterface $datasource, arr
       continue;
     }
 
-    $real_field = isset($definition['real field']) ? $definition['real field'] : $key;
+    $real_field = $definition['real field'] ?? $key;
     $table[$key]['real field'] = Utility::createCombinedId($datasource_id, $real_field);
 
     // Relationships sometimes have different real fields set, since they might

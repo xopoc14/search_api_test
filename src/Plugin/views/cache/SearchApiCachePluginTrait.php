@@ -117,7 +117,7 @@ trait SearchApiCachePluginTrait {
     $view = $this->getView();
     $data = [
       'result' => $view->result,
-      'total_rows' => isset($view->total_rows) ? $view->total_rows : 0,
+      'total_rows' => $view->total_rows ?? 0,
       'current_page' => $view->getCurrentPage(),
       'search_api results' => $this->getQuery()->getSearchApiResults(),
     ];

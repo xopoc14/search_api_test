@@ -204,11 +204,8 @@ class SearchApiRow extends RowPluginBase {
     }
     // Always use the default view mode if it was not set explicitly in the
     // options.
-    $view_mode = 'default';
     $bundle = $this->index->getDatasource($datasource_id)->getItemBundle($row->_object);
-    if (isset($this->options['view_modes'][$datasource_id][$bundle])) {
-      $view_mode = $this->options['view_modes'][$datasource_id][$bundle];
-    }
+    $view_mode = $this->options['view_modes'][$datasource_id][$bundle] ?? 'default';
 
     try {
       $build = $this->index->getDatasource($datasource_id)

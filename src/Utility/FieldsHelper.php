@@ -261,11 +261,8 @@ class FieldsHelper implements FieldsHelperInterface {
           // processor-defined property, we need to use the processor to
           // retrieve the value. Otherwise, we extract it normally from the
           // data object.
-          $property = NULL;
           $property_name = Utility::splitPropertyPath($property_path, FALSE)[0];
-          if (isset($properties[$property_name])) {
-            $property = $properties[$property_name];
-          }
+          $property = $properties[$property_name] ?? NULL;
           if ($property instanceof ProcessorPropertyInterface) {
             $field_info = [
               'datasource_id' => $datasource_id,
@@ -447,9 +444,7 @@ class FieldsHelper implements FieldsHelperInterface {
    * {@inheritdoc}
    */
   public function createFieldFromProperty(IndexInterface $index, DataDefinitionInterface $property, $datasourceId, $propertyPath, $fieldId = NULL, $type = NULL) {
-    if (!isset($fieldId)) {
-      $fieldId = $this->getNewFieldId($index, $propertyPath);
-    }
+    $fieldId = $fieldId ?? $this->getNewFieldId($index, $propertyPath);
 
     if (!isset($type)) {
       $typeMapping = $this->dataTypeHelper->getFieldTypeMapping();

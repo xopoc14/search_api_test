@@ -152,7 +152,7 @@ class IndexAddFieldsForm extends EntityForm {
    *   The parameter value.
    */
   public function getParameter($name, $default = NULL) {
-    return isset($this->parameters[$name]) ? $this->parameters[$name] : $default;
+    return $this->parameters[$name] ?? $default;
   }
 
   /**

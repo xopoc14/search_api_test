@@ -95,8 +95,7 @@ class EntityFieldRenderer extends ViewsEntityFieldRenderer {
         && $field->relationship === $this->relationship
         && $field->getDatasourceId() === $this->datasourceId
         && $field->getParentPath() === $this->parentPath
-        && !empty($field->definition['entity_type'])
-        && $field->definition['entity_type'] === $this->getEntityTypeId()) {
+        && ($field->definition['entity_type'] ?? '') === $this->getEntityTypeId()) {
       return TRUE;
     }
 

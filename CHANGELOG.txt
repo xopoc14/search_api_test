@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3044782 by drunken monkey, stefvanlooveren: Increased PHP version
+  requirement to 7.0.
 - #3100556 by JeroenT, drunken monkey: Fixed "Rendered entity" Views row style
   not immediately available when creating first index.
 - #3101607 by manuel.adan, drunken monkey: Added support for nested data
