@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3111130 by bwaindwain, drunken monkey: Fixed reference to out-dated
+  "Drupal.WhiteSpace.OperatorSpacing" PhpCs sniff.
 - #3106515 by drunken monkey, nbaosullivan: Added support for Views filters on
   any bundle entity type.
 - #3056940 by drunken monkey: Fixed error handling in the "Add hierarchy"
