@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3106515 by drunken monkey, nbaosullivan: Added support for Views filters on
+  any bundle entity type.
 - #3056940 by drunken monkey: Fixed error handling in the "Add hierarchy"
   processor.
 - #3102603 by drunken monkey: Deprecated EntityDatasourceInterface.
