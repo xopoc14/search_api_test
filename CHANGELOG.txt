@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3118224 by JeroenT, drunken monkey: Fixed DisplayPluginManager no longer
+  implementing DisplayPluginManagerInterface.
 - #3111130 by bwaindwain, drunken monkey: Fixed reference to out-dated
   "Drupal.WhiteSpace.OperatorSpacing" PhpCs sniff.
 - #3106515 by drunken monkey, nbaosullivan: Added support for Views filters on
