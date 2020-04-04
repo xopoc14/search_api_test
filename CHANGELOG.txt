@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3115214 by mpp, drunken monkey: Added Search API support for the Behat
+  Drupal extension.
 - #3118224 by JeroenT, drunken monkey: Fixed DisplayPluginManager no longer
   implementing DisplayPluginManagerInterface.
 - #3111130 by bwaindwain, drunken monkey: Fixed reference to out-dated
