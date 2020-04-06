@@ -647,6 +647,15 @@ function _search_api_views_data_special_fields(array &$table, IndexInterface $in
       $table[$all_terms_field]['real field'] = 'search_api_all_terms';
     }
   }
+
+  $bulk_form_field = _search_api_views_find_field_alias('search_api_bulk_form', $table);
+  $table[$bulk_form_field] = [
+    'title' => t('Bulk update'),
+    'help' => t('Allows users to apply an action to one or more items.'),
+    'field' => [
+      'id' => 'search_api_bulk_form',
+    ],
+  ];
 }
 
 /**
