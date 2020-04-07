@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3120997 by thalles, drunken monkey: Updated the "source" composer value.
 - #3117171 by claudiu.cristea, drunken monkey, pfrenssen: Added support for the
   Views Bulk Form field.
 - #3115214 by mpp, drunken monkey: Added Search API support for the Behat
