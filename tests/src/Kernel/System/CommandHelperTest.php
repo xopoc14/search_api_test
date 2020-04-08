@@ -176,7 +176,7 @@ class CommandHelperTest extends KernelTestBase {
     $index = Index::load('second_index');
     $this->assertTrue($index->status());
 
-    $this->setExpectedException(ConsoleException::class);
+    $this->expectException(ConsoleException::class);
     $this->systemUnderTest->enableIndexCommand(['foo']);
   }
 
@@ -192,7 +192,7 @@ class CommandHelperTest extends KernelTestBase {
       $index->delete();
     }
 
-    $this->setExpectedException(ConsoleException::class);
+    $this->expectException(ConsoleException::class);
     $this->systemUnderTest->enableIndexCommand(['second_index']);
   }
 
@@ -222,7 +222,7 @@ class CommandHelperTest extends KernelTestBase {
     $index = Index::load('test_index');
     $this->assertFalse($index->status());
 
-    $this->setExpectedException(ConsoleException::class);
+    $this->expectException(ConsoleException::class);
     $this->systemUnderTest->disableIndexCommand(['foo']);
   }
 
@@ -299,7 +299,7 @@ class CommandHelperTest extends KernelTestBase {
     $this->assertSame('disabled', (string) $result['test_server']['status']);
 
     $server->delete();
-    $this->setExpectedException(ConsoleException::class);
+    $this->expectException(ConsoleException::class);
     $this->systemUnderTest->serverListCommand();
   }
 
@@ -318,7 +318,7 @@ class CommandHelperTest extends KernelTestBase {
     $server = Server::load('test_server');
     $this->assertTrue($server->status());
 
-    $this->setExpectedException(ConsoleException::class);
+    $this->expectException(ConsoleException::class);
     $this->systemUnderTest->enableServerCommand('foo');
   }
 
@@ -333,7 +333,7 @@ class CommandHelperTest extends KernelTestBase {
     $server = Server::load('test_server');
     $this->assertFalse($server->status());
 
-    $this->setExpectedException(ConsoleException::class);
+    $this->expectException(ConsoleException::class);
     $this->systemUnderTest->enableServerCommand('foo');
   }
 
@@ -376,7 +376,7 @@ class CommandHelperTest extends KernelTestBase {
    * @covers ::setIndexServerCommand
    */
   public function testSetIndexServerCommandWithInvalidIndex() {
-    $this->setExpectedException(ConsoleException::class);
+    $this->expectException(ConsoleException::class);
     $this->systemUnderTest->setIndexServerCommand('foo', 'test_server');
   }
 
@@ -386,7 +386,7 @@ class CommandHelperTest extends KernelTestBase {
    * @covers ::setIndexServerCommand
    */
   public function testSetIndexServerCommandWithInvalidServer() {
-    $this->setExpectedException(ConsoleException::class);
+    $this->expectException(ConsoleException::class);
     $this->systemUnderTest->setIndexServerCommand('test_index', 'bar');
   }
 

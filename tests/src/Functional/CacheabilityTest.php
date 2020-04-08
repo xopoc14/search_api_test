@@ -76,8 +76,8 @@ class CacheabilityTest extends SearchApiBrowserTestBase {
       $this->fail($e->getMessage());
     }
     Block::create([
-      'id' => 'classy_local_actions',
-      'theme' => 'classy',
+      'id' => 'stark_local_actions',
+      'theme' => 'stark',
       'weight' => -20,
       'plugin' => 'local_actions_block',
       'region' => 'content',

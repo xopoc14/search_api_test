@@ -903,8 +903,9 @@ class IntegrationTest extends SearchApiBrowserTestBase {
    */
   protected function checkDataTypesTable() {
     $this->drupalGet($this->getIndexPath('fields'));
-    $rows = $this->xpath('//*[@id="search-api-data-types-table"]/*/table/tbody/tr');
-    $this->assertTrue(is_array($rows) && !empty($rows), 'Found a datatype listing.');
+    $rows = $this->xpath('//*[@id="search-api-data-types-table"]//table/tbody/tr');
+    $this->assertInternalType('array', $rows);
+    $this->assertNotEmpty($rows);
 
     /** @var \Behat\Mink\Element\NodeElement $row */
     foreach ($rows as $row) {

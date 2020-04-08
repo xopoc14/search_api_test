@@ -1,5 +1,8 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3023170 by drunken monkey, Berdir, milindk, pfrenssen, phenaproxima,
+  geek-merlin, chr.fritsch: Updated Core requirement to 8.8 and removed all
+  use of deprecated Core code.
 
 Search API 1.16 (2020-04-08):
 -----------------------------

@@ -26,6 +26,13 @@ abstract class SearchApiBrowserTestBase extends BrowserTestBase {
   ];
 
   /**
+   * The theme to install as the default for testing.
+   *
+   * @var string
+   */
+  protected $defaultTheme = 'stark';
+
+  /**
    * Set this to TRUE to include "item" and "article" bundles for test entities.
    *
    * @var bool

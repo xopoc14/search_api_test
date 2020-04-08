@@ -4,5 +4,5 @@ description: 'Test module for testing indexing of nodes in Search API.'
 package: 'Search API'
 dependencies:
   - search_api:search_api_db
-core: 8.x
+core_version_requirement: ^8.8 || ^9
 hidden: true
