@@ -989,7 +989,7 @@ class ViewsTest extends SearchApiBrowserTestBase {
   public function testHighlighting() {
     // Add the Highlight processor to the search index.
     $index = Index::load('database_search_index');
-    $processor = $this->container
+    $processor = \Drupal::getContainer()
       ->get('search_api.plugin_helper')
       ->createProcessorPlugin($index, 'highlight');
     $index->addProcessor($processor);

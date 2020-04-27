@@ -4,7 +4,6 @@ namespace Drupal\Tests\search_api\Functional;
 
 use Drupal\block\Entity\Block;
 use Drupal\Component\Render\FormattableMarkup;
-use Drupal\Core\Extension\MissingDependencyException;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api\Entity\Task;
 
@@ -67,14 +66,10 @@ class CacheabilityTest extends SearchApiBrowserTestBase {
   public function testExecuteTasksAction() {
     // Enable the "Local actions" block so we can verify which local actions are
     // displayed.
-    try {
-      $success = $this->container->get('module_installer')->install(['block'], TRUE);
-      $this->assertTrue($success, new FormattableMarkup('Enabled modules: %modules', ['%modules' => 'block']));
-    }
-    catch (MissingDependencyException $e) {
-      // The exception message has all the details.
-      $this->fail($e->getMessage());
-    }
+    $success = \Drupal::getContainer()
+      ->get('module_installer')
+      ->install(['block'], TRUE);
+    $this->assertTrue($success, new FormattableMarkup('Enabled modules: %modules', ['%modules' => 'block']));
     Block::create([
       'id' => 'stark_local_actions',
       'theme' => 'stark',

@@ -110,7 +110,7 @@ abstract class SearchApiBrowserTestBase extends BrowserTestBase {
     $this->anonymousUser = $this->drupalCreateUser();
 
     // Get the URL generator.
-    $this->urlGenerator = $this->container->get('url_generator');
+    $this->urlGenerator = \Drupal::getContainer()->get('url_generator');
 
     // Create an article node type, if not already present.
     if (!NodeType::load('article')) {
