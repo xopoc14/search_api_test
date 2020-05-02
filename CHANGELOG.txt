@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3125383 by marassa, drunken monkey: Added negation support to the "Multiple
+  words" parser.
 - #3125444 by Rajesh Kairamkonda, drunken monkey: Removed $this->container from
   Functional tests.
 - #3120909 by drunken monkey: Cleaned up @throws tags in Drush code.
