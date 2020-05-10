@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3133011 by drunken monkey: Cleaned up
+  AutocompleteTest::assertSuggestionsEqual().
 - #3119335 by chr.fritsch, drunken monkey, Ivan616: Added a "rebuild-tracker"
   Drush command.
 - #3115343 by drunken monkey: Fixed warning in Highlight processor when
