@@ -279,6 +279,29 @@ class SearchApiCommands extends DrushCommands {
   }
 
   /**
+   * Rebuilds the trackers for one or all indexes.
+   *
+   * @param string $indexId
+   *   The machine name of an index. Optional. If missed, will rebuild the
+   *   trackers of all indexes.
+   *
+   * @command search-api:rebuild-tracker
+   *
+   * @usage drush search-api:rebuild-tracker
+   *   Rebuild the trackers of all search indexes.
+   *
+   * @usage drush sapi-rt
+   *   Alias for rebuilding the trackers of all search indexes.
+   * @usage drush sapi-rt node_index
+   *   Rebuild the tracker of the search index with the ID node_index.
+   *
+   * @aliases sapi-rt,search-api-rebuild-tracker
+   */
+  public function rebuildTracker($indexId = NULL) {
+    $this->commandHelper->rebuildTrackerCommand([$indexId]);
+  }
+
+  /**
    * Clears one or all search indexes and marks them for reindexing.
    *
    * @param string $indexId

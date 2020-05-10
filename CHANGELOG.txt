@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3119335 by chr.fritsch, drunken monkey, Ivan616: Added a "rebuild-tracker"
+  Drush command.
 - #3115343 by drunken monkey: Fixed warning in Highlight processor when
   preg_split() doesn't work.
 - #3116489 by drunken monkey: Improved the warning message for missing
