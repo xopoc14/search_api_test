@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3123173 by drunken monkey: Fixed uncaught exception when trying to change
+  locked field type.
 - #3126120 by drunken monkey: Fixed coding standards.
 - #3125383 by marassa, drunken monkey: Added negation support to the "Multiple
   words" parser.
