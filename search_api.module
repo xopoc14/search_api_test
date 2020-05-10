@@ -436,7 +436,7 @@ function search_api_theme() {
  * Clears the Views row plugin cache, so our row plugin will become available
  * for new indexes right away.
  *
- * @see search_api_views_plugins_row_alter().
+ * @see search_api_views_plugins_row_alter()
  */
 function search_api_search_api_index_insert(Index $index) {
   if (\Drupal::hasService('plugin.manager.views.row')) {

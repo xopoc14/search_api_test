@@ -308,6 +308,7 @@ class FieldValuesExtractionTest extends KernelTestBase {
   public function testNestedComplexFieldValuesExtraction() {
     // Complex data definition structure.
 
+    // phpcs:disable Drupal.Commenting.InlineComment.NotCapital
     // data => ListDataDefinition (list) [
     //   itemDefinition => ComplexDataDefinition (map) [
     //     propertyDefinitions => [
@@ -323,6 +324,7 @@ class FieldValuesExtractionTest extends KernelTestBase {
     //     ]
     //   ]
     // ]
+    // phpcs:enable
 
     $properties_def = MapDataDefinition::create();
     $properties_def->setPropertyDefinition('property1', DataDefinition::create('string'));

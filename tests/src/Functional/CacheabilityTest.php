@@ -92,9 +92,7 @@ class CacheabilityTest extends SearchApiBrowserTestBase {
     $assert_session->pageTextNotContains('Execute pending tasks');
 
     // Create one task.
-    $task = Task::create([
-
-    ]);
+    $task = Task::create([]);
     $task->save();
 
     // Now the action should be shown.
