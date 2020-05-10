@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3115343 by drunken monkey: Fixed warning in Highlight processor when
+  preg_split() doesn't work.
 - #3116489 by drunken monkey: Improved the warning message for missing
   "Rendered item" configuration during indexing.
 - #3123173 by drunken monkey: Fixed uncaught exception when trying to change
