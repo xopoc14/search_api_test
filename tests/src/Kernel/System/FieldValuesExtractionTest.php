@@ -246,7 +246,7 @@ class FieldValuesExtractionTest extends KernelTestBase {
     ksort($values['foobar']);
     $this->assertArrayHasKey('a', $values['foobar']);
     $this->assertNotEmpty($values['foobar']['a']);
-    $this->assertContains('Article 1', $values['foobar']['a'][0]);
+    $this->assertStringContainsString('Article 1', $values['foobar']['a'][0]);
     unset($values['foobar']['a']);
     $this->assertEquals($expected, $values);
 

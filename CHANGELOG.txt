@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3126751 by douggreen, drunken monkey, Berdir: Fixed calls to deprecated
+  PHPUnit methods.
 - #3121637 by mbovan, drunken monkey, Berdir: Replaced theme functions with
   templates.
 - #3133011 by drunken monkey: Cleaned up

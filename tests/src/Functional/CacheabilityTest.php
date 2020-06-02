@@ -53,7 +53,7 @@ class CacheabilityTest extends SearchApiBrowserTestBase {
     $this->drupalGet('search-api-test');
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->responseHeaderEquals('x-drupal-dynamic-cache', 'UNCACHEABLE');
-    $this->assertContains('no-cache', $this->drupalGetHeader('cache-control'));
+    $this->assertStringContainsString('no-cache', $this->drupalGetHeader('cache-control'));
 
     // Verify that the search results are displayed.
     $this->assertSession()->pageTextContains('foo test');

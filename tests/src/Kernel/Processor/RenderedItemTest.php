@@ -244,7 +244,7 @@ class RenderedItemTest extends ProcessorTestBase {
       // object, which contains a string (not, for example, some markup object).
       $this->assertInstanceOf('Drupal\search_api\Plugin\search_api\data_type\value\TextValueInterface', $values[0], "$type item $entity_id rendered value is properly wrapped in a text value object.");
       $field_value = $values[0]->getText();
-      $this->assertInternalType('string', $field_value, "$type item $entity_id rendered value is a string.");
+      $this->assertIsString($field_value, "$type item $entity_id rendered value is a string.");
       $this->assertEquals(1, count($values), "$type item $entity_id rendered value is a single value.");
 
       switch ($datasource_id) {
@@ -283,17 +283,17 @@ class RenderedItemTest extends ProcessorTestBase {
     $nid = $node->id();
     $full_view = $node->bundle() === 'page';
     $view_mode = $full_view ? 'full' : 'teaser';
-    $this->assertContains("view-mode-$view_mode", $field_value, 'Node item ' . $nid . " rendered in view-mode \"$view_mode\".");
-    $this->assertContains('field--name-title', $field_value, 'Node item ' . $nid . ' has a rendered title field.');
-    $this->assertContains('>' . $node->label() . '<', $field_value, 'Node item ' . $nid . ' has a rendered title inside HTML-Tags.');
-    $this->assertContains('>Member for<', $field_value, 'Node item ' . $nid . ' has rendered member information HTML-Tags.');
+    $this->assertStringContainsString("view-mode-$view_mode", $field_value, 'Node item ' . $nid . " rendered in view-mode \"$view_mode\".");
+    $this->assertStringContainsString('field--name-title', $field_value, 'Node item ' . $nid . ' has a rendered title field.');
+    $this->assertStringContainsString('>' . $node->label() . '<', $field_value, 'Node item ' . $nid . ' has a rendered title inside HTML-Tags.');
+    $this->assertStringContainsString('>Member for<', $field_value, 'Node item ' . $nid . ' has rendered member information HTML-Tags.');
     if ($full_view) {
       $body_value = $node->get('body')->getValue()[0]['value'] . '<';
     }
     else {
       $body_value = $node->get('body')->getValue()[0]['summary'] . '<';
     }
-    $this->assertContains('>' . $body_value, $field_value, 'Node item ' . $nid . ' has rendered content inside HTML-Tags.');
+    $this->assertStringContainsString('>' . $body_value, $field_value, 'Node item ' . $nid . ' has rendered content inside HTML-Tags.');
   }
 
   /**
@@ -305,7 +305,7 @@ class RenderedItemTest extends ProcessorTestBase {
    *   The rendered field value.
    */
   protected function checkRenderedUser(UserInterface $user, $field_value) {
-    $this->assertContains('>Member for<', $field_value);
+    $this->assertStringContainsString('>Member for<', $field_value);
   }
 
   /**
@@ -317,7 +317,7 @@ class RenderedItemTest extends ProcessorTestBase {
    *   The rendered field value.
    */
   protected function checkRenderedComment(CommentInterface $comment, $field_value) {
-    $this->assertContains('>' . $comment->label() . '<', $field_value);
+    $this->assertStringContainsString('>' . $comment->label() . '<', $field_value);
   }
 
   /**
@@ -391,7 +391,7 @@ class RenderedItemTest extends ProcessorTestBase {
     $values = $rendered_item->getValues();
     $this->assertCount(1, $values);
     $this->assertInstanceOf(TextValueInterface::class, $values[0]);
-    $this->assertContains($test_value, (string) $values[0]);
+    $this->assertStringContainsString($test_value, (string) $values[0]);
   }
 
   /**
