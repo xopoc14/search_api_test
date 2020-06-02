@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3121637 by mbovan, drunken monkey, Berdir: Replaced theme functions with
+  templates.
 - #3133011 by drunken monkey: Cleaned up
   AutocompleteTest::assertSuggestionsEqual().
 - #3119335 by chr.fritsch, drunken monkey, Ivan616: Added a "rebuild-tracker"
