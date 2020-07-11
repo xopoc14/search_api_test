@@ -799,7 +799,7 @@ class Query implements QueryInterface, RefinableCacheableDependencyInterface {
   }
 
   /**
-   * {@inheritdoc}
+   * Implements the magic __clone() method to properly clone nested objects.
    */
   public function __clone() {
     $this->results = $this->getResults()->getCloneForQuery($this);
