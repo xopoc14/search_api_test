@@ -3,6 +3,7 @@
 namespace Drupal\Tests\search_api\Kernel\Views;
 
 use Drupal\Core\Cache\Context\CacheContextsManager;
+use Drupal\Core\Cache\Context\ContextCacheKeys;
 use Drupal\Core\Config\Config;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\KernelTests\KernelTestBase;
@@ -75,6 +76,7 @@ class ViewsCacheabilityMetadataExportTest extends KernelTestBase {
     // error.
     $cache_contexts_manager = $this->createMock(CacheContextsManager::class);
     $cache_contexts_manager->method('assertValidTokens')->willReturn(TRUE);
+    $cache_contexts_manager->method('convertTokensToKeys')->willReturn(new ContextCacheKeys([]));
     $container->set('cache_contexts_manager', $cache_contexts_manager);
   }
 

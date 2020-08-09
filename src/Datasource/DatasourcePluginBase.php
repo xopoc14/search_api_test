@@ -3,6 +3,7 @@
 namespace Drupal\search_api\Datasource;
 
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Language\Language;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\TypedData\ComplexDataInterface;
@@ -155,6 +156,20 @@ abstract class DatasourcePluginBase extends IndexPluginBase implements Datasourc
    */
   public function getItemIds($page = NULL) {
     return NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function canContainEntityReferences(): bool {
+    return FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getAffectedItemsForEntityChange(EntityInterface $entity, array $foreign_entity_relationship_map, EntityInterface $original_entity = NULL): array {
+    return [];
   }
 
   /**
