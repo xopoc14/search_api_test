@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2976339 by drunken monkey, sker101, vflirt: Fixed bug when importing server
+  configs.
 - #2873023 by drunken monkey, borisson_: Fixed handling of special characters
   in searches on DB backend.
 
