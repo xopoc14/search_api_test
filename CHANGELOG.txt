@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3126367 by drunken monkey: Fixed fatal error after module upgrade due to
+  changed service definition.
 - #2976339 by drunken monkey, sker101, vflirt: Fixed bug when importing server
   configs.
 - #2873023 by drunken monkey, borisson_: Fixed handling of special characters
