@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3082868 by Raunak.singh, drunken monkey: Changed README.txt to README.md.
 - #3158559 by drunken monkey: Updated coding standards and fixed adherence.
 - #3126367 by drunken monkey: Fixed fatal error after module upgrade due to
   changed service definition.
