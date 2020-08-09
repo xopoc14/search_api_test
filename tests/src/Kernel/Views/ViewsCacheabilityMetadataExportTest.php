@@ -78,7 +78,6 @@ class ViewsCacheabilityMetadataExportTest extends KernelTestBase {
     $container->set('cache_contexts_manager', $cache_contexts_manager);
   }
 
-
   /**
    * {@inheritdoc}
    */

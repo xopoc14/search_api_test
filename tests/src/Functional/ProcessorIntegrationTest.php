@@ -102,7 +102,7 @@ class ProcessorIntegrationTest extends SearchApiBrowserTestBase {
       'add_url',
       'aggregated_field',
       'language_with_fallback',
-      'rendered_item'
+      'rendered_item',
     ];
     $actual_processors = array_keys($this->loadIndex()->getProcessors());
     sort($actual_processors);

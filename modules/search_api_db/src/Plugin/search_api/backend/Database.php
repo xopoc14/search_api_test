@@ -893,6 +893,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
     switch ($type) {
       case 'text':
         return ['type' => 'varchar', 'length' => 30];
+
       case 'string':
       case 'uri':
         return ['type' => 'varchar', 'length' => 255];
@@ -1777,7 +1778,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
     $this->getEventDispatcher()->dispatch($event_base_name, $event);
     $db_query = $event->getDbQuery();
 
-    $description = 'This hook is deprecated in search_api 8.x-1.16 and will be removed in 9.x-1.0. Please use the "search_api_db.query_pre_execute" event instead. See https://www.drupal.org/node/3103591';
+    $description = 'This hook is deprecated in search_api:8.x-1.16 and is removed from search_api:2.0.0. Please use the "search_api_db.query_pre_execute" event instead. See https://www.drupal.org/node/3103591';
     $this->getModuleHandler()->alterDeprecated($description, 'search_api_db_query', $db_query, $query);
     $this->preQuery($db_query, $query);
 
@@ -2641,7 +2642,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
     $settings = $this->configuration['autocomplete'];
 
     // If none of the options is checked, the user apparently chose a very
-    // roundabout way of telling us he doesn't want autocompletion.
+    // roundabout way of telling us they don't want autocompletion.
     if (!array_filter($settings)) {
       return [];
     }

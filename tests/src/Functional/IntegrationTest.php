@@ -139,7 +139,7 @@ class IntegrationTest extends SearchApiBrowserTestBase {
     Server::create([
       'id' => 456,
       'name' => 789,
-      'description' => 'WebTest server' . ' description',
+      'description' => 'WebTest server description',
       'backend' => $this->serverBackend,
       'backend_config' => [],
     ])->save();

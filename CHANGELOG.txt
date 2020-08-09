@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3158559 by drunken monkey: Updated coding standards and fixed adherence.
 - #3126367 by drunken monkey: Fixed fatal error after module upgrade due to
   changed service definition.
 - #2976339 by drunken monkey, sker101, vflirt: Fixed bug when importing server
