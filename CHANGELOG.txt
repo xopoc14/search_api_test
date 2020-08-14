@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3165015 by penyaskito: search_api_test_example_content_references test
+  module broke D9 build
 - #3131384 by lolandese, drunken monkey: Fixed Composer license value.
 - #2007692 by bucefal91, drunken monkey, marassa: Added automatic re-indexing
   when indexed related entities are changed.
