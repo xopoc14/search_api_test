@@ -1054,7 +1054,7 @@ class IntegrationTest extends SearchApiBrowserTestBase {
 
     $index = $this->getIndex(TRUE);
     $fields = $index->getFields();
-    $this->assertTrue(!isset($fields['body']), 'The body field has been removed from the index.');
+    $this->assertArrayNotHasKey('body', $fields);
   }
 
   /**
@@ -1102,7 +1102,7 @@ class IntegrationTest extends SearchApiBrowserTestBase {
     // Make sure the field has not been added to the index.
     $index = $this->getIndex(TRUE);
     $fields = $index->getFields();
-    $this->assertTrue(!isset($fields['changed']), 'The changed field has not been added to the index.');
+    $this->assertArrayNotHasKey('changed', $fields);
 
     // Find the "Remove" link for the "title" field.
     $links = $this->xpath('//a[@data-drupal-selector=:id]', [':id' => 'edit-fields-title-remove']);

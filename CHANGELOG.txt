@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3136543 by deulenko, drunken monkey: Replaced assertTrue(isset()) with
+  assertArrayNotHasKey() where appropriate.
 - #3168114 by drunken monkey: Fixed test fails against Drupal 9.1.x.
 - #3165015 by penyaskito: search_api_test_example_content_references test
   module broke D9 build
