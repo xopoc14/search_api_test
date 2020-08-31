@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3155965 by Ramya Balasubramanian, solideogloria, drunken monkey: Fixed
+  missing single quote in search_api.index.schema.yml.
 - #3136543 by deulenko, drunken monkey: Replaced assertTrue(isset()) with
   assertArrayNotHasKey() where appropriate.
 - #3168114 by drunken monkey: Fixed test fails against Drupal 9.1.x.
