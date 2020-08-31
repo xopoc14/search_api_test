@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3157397 by Murz, drunken monkey: Fixed indexing of complex properties with
+  computed main properties.
 - #3155965 by Ramya Balasubramanian, solideogloria, drunken monkey: Fixed
   missing single quote in search_api.index.schema.yml.
 - #3136543 by deulenko, drunken monkey: Replaced assertTrue(isset()) with
