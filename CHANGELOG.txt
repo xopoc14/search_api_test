@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3164255 by drunken monkey, borisson_: Added support for the excerpt field to
+  the Views "Rendered item" field.
 - #3157397 by Murz, drunken monkey: Fixed indexing of complex properties with
   computed main properties.
 - #3155965 by Ramya Balasubramanian, solideogloria, drunken monkey: Fixed
