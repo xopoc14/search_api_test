@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3150764 by bendev, drunken monkey: Fixed documentation for Drush "sapi-i"
+  command.
 - #3145955 by b_sharpe, drunken monkey: Added Tokenizer option to configure
   ignored characters.
 - #3164255 by drunken monkey, borisson_: Added support for the excerpt field to
