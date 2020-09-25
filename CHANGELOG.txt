@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3151966 by robin.ingelbrecht, drunken monkey: Fixed parsing of keywords with
+  stand-alone dash (-).
 - #3157958 by maximpodorov, ankithashetty, ressa, drunken monkey: Fixed display
   of Media entities in Views.
 - #3137627 by SimeonKesmev, drunken monkey: Added a test for field value
