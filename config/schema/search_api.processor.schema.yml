@@ -239,3 +239,11 @@ search_api.property_configuration.rendered_item:
         sequence:
           type: string
           label: 'The view mode used to render the entity for the specified bundle'
+
+search_api.property_configuration.search_api_url:
+  type: mapping
+  label: 'Add URL configuration'
+  mapping:
+    absolute:
+      type: boolean
+      label: 'Whether to generate an absolute URL'
