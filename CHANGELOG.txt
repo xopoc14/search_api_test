@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3173400 by drunken monkey: Removed drupalPostForm() calls from functional
+  tests.
 - #3160757 by JordanDukart, drunken monkey: Fixed handling of NULL values in
   "Ignore characters" processor.
 - #2936043 by froboy, drunken monkey, ressa, agentrickard, navneet0693: Added

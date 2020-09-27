@@ -1449,7 +1449,8 @@ class IntegrationTest extends SearchApiBrowserTestBase {
     // Ensure all items need to be indexed.
     $this->getIndex()->reindex();
 
-    $this->drupalPostForm($this->getIndexPath(), [], 'Index now');
+    $this->drupalGet($this->getIndexPath());
+    $this->submitForm([], 'Index now');
     $this->assertSession()->statusCodeEquals(200);
     $this->checkForMetaRefresh();
     $count = \Drupal::entityQuery('node')->count()->execute() - 1;
@@ -1458,7 +1459,8 @@ class IntegrationTest extends SearchApiBrowserTestBase {
     $this->assertSession()->pageTextNotContains("Couldn't index items.");
     $this->assertSession()->pageTextNotContains('An error occurred');
 
-    $this->drupalPostForm($this->getIndexPath(), [], 'Index now');
+    $this->drupalGet($this->getIndexPath());
+    $this->submitForm([], 'Index now');
     $this->assertSession()->statusCodeEquals(200);
     $this->checkForMetaRefresh();
     $this->assertSession()->pageTextContains("Couldn't index items.");
@@ -1466,14 +1468,16 @@ class IntegrationTest extends SearchApiBrowserTestBase {
 
     \Drupal::state()->set($key, []);
     $this->setError('backend', 'indexItems');
-    $this->drupalPostForm($this->getIndexPath(), [], 'Index now');
+    $this->drupalGet($this->getIndexPath());
+    $this->submitForm([], 'Index now');
     $this->assertSession()->statusCodeEquals(200);
     $this->checkForMetaRefresh();
     $this->assertSession()->pageTextContains("Couldn't index items.");
     $this->assertSession()->pageTextNotContains('An error occurred');
 
     $this->setError('backend', 'indexItems', FALSE);
-    $this->drupalPostForm($this->getIndexPath(), [], 'Index now');
+    $this->drupalGet($this->getIndexPath());
+    $this->submitForm([], 'Index now');
     $this->assertSession()->statusCodeEquals(200);
     $this->checkForMetaRefresh();
     $this->assertSession()->pageTextContains("Successfully indexed 1 item.");
@@ -1505,21 +1509,24 @@ class IntegrationTest extends SearchApiBrowserTestBase {
     $this->assertEquals($manipulated_items_count, $tracker->getTotalItemsCount());
     $this->assertEquals($manipulated_items_count + 1, $this->countItemsOnServer());
 
-    $this->drupalPostForm($this->getIndexPath('reindex'), [], 'Confirm');
+    $this->drupalGet($this->getIndexPath('reindex'));
+    $this->submitForm([], 'Confirm');
     $assert_session->pageTextContains("The search index $label was successfully queued for reindexing.");
     $this->assertEquals(0, $tracker->getIndexedItemsCount());
     $this->assertEquals($manipulated_items_count, $tracker->getTotalItemsCount());
     $this->assertEquals($manipulated_items_count + 1, $this->countItemsOnServer());
     $this->indexItems();
 
-    $this->drupalPostForm($this->getIndexPath('clear'), [], 'Confirm');
+    $this->drupalGet($this->getIndexPath('clear'));
+    $this->submitForm([], 'Confirm');
     $assert_session->pageTextContains("All items were successfully deleted from search index $label.");
     $this->assertEquals(0, $tracker->getIndexedItemsCount());
     $this->assertEquals($manipulated_items_count, $tracker->getTotalItemsCount());
     $this->assertEquals(0, $this->countItemsOnServer());
     $this->indexItems();
 
-    $this->drupalPostForm($this->getIndexPath('rebuild-tracker'), [], 'Confirm');
+    $this->drupalGet($this->getIndexPath('rebuild-tracker'));
+    $this->submitForm([], 'Confirm');
     $assert_session->pageTextContains("The tracking information for search index $label will be rebuilt.");
     $this->assertEquals(0, $tracker->getIndexedItemsCount());
     $this->assertEquals($manipulated_items_count + 1, $tracker->getTotalItemsCount());
