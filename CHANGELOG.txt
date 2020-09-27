@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3160757 by JordanDukart, drunken monkey: Fixed handling of NULL values in
+  "Ignore characters" processor.
 - #2936043 by froboy, drunken monkey, ressa, agentrickard, navneet0693: Added
   an option to the "URI" field to make the created URL absolute.
 - #3151966 by robin.ingelbrecht, drunken monkey: Fixed parsing of keywords with
