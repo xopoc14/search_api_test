@@ -590,6 +590,12 @@ function search_api_form_views_exposed_form_alter(&$form, FormStateInterface $fo
     // Get the active facet filters from the query parameters.
     $filter_key = $facet_source->getFilterKey() ?: 'f';
     $filters = \Drupal::request()->query->get($filter_key, []);
+
+    // Do not iterate over facet filters if the parameter is not an array.
+    if (!is_array($filters)) {
+      return;
+    }
+
     // Iterate through the facet filters.
     foreach ($filters as $key => $value) {
       if (!is_string($value)) {
