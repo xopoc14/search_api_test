@@ -340,6 +340,7 @@ abstract class BackendPluginBase extends ConfigurablePluginBase implements Backe
     }
     $properties = array_flip(parent::__sleep());
     unset($properties['server']);
+    unset($properties['logger']);
     return array_keys($properties);
   }
 

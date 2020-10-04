@@ -2836,7 +2836,6 @@ class Database extends BackendPluginBase implements PluginFormInterface {
   public function __sleep() {
     $properties = array_flip(parent::__sleep());
     unset($properties['database']);
-    unset($properties['logger']);
     return array_keys($properties);
   }
 
