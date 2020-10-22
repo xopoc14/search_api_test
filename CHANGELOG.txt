@@ -1,3 +1,6 @@
+Search API 1.x, dev (xxxx-xx-xx):
+---------------------------------
+
 Search API 1.18 (2020-10-22):
 -----------------------------
 - #3153153 by mkalkbrenner, cristiroma, drunken monkey: Fixed serialization of
