@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3181936 by drunken monkey: Fixed tests on Drupal 9.1.x HEAD.
 
 Search API 1.18 (2020-10-22):
 -----------------------------
