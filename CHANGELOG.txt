@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3036504 by kfritsche, drunken monkey: Fixed memory issues during indexing
+  via Drush.
 - #3136277 by drunken monkey, pfrenssen, Berdir, dwinters, calmforce: Fixed
   issue with modifying condition group via pre-execute event/hook.
 - #3174657 by drunken monkey: Fixed "keep facets" feature for search views when
