@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3174657 by drunken monkey: Fixed "keep facets" feature for search views when
+  facet source wasn't saved.
 - #3181936 by drunken monkey: Fixed tests on Drupal 9.1.x HEAD.
 
 Search API 1.18 (2020-10-22):
