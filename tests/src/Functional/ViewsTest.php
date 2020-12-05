@@ -373,6 +373,7 @@ class ViewsTest extends SearchApiBrowserTestBase {
   protected function regressionTests() {
     $this->regressionTest2869121();
     $this->regressionTest3031991();
+    $this->regressionTest3136277();
   }
 
   /**
@@ -456,6 +457,29 @@ class ViewsTest extends SearchApiBrowserTestBase {
       'search_api_fulltext_2_op' => 'not',
     ];
     $this->checkResults($query, [4], 'Search with multiple fulltext filters');
+  }
+
+  /**
+   * Tests that query preprocessing works correctly for block views.
+   *
+   * @see https://www.drupal.org/node/3136277
+   */
+  protected function regressionTest3136277() {
+    $block = $this->drupalPlaceBlock('views_block:search_api_test_block_view-block_1', [
+      'region' => 'content',
+    ]);
+    /** @var \Drupal\search_api\IndexInterface $index */
+    $index = Index::load($this->indexId);
+    $processor = \Drupal::getContainer()
+      ->get('search_api.plugin_helper')
+      ->createProcessorPlugin($index, 'ignorecase');
+    $index->addProcessor($processor)->save();
+
+    $this->drupalGet('<front>');
+    $this->assertSession()->pageTextContains('Search API Test Block View: Found 4 items');
+
+    $index->removeProcessor('ignorecase')->save();
+    $block->delete();
   }
 
   /**
