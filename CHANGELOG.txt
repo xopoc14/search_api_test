@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3178941 by drunken monkey, cspitzlay, MegaChriz, ooziedie, bakulahluwalia:
+  Fixed fatal error when saving entities with certain setups.
 - #3036504 by kfritsche, drunken monkey: Fixed memory issues during indexing
   via Drush.
 - #3136277 by drunken monkey, pfrenssen, Berdir, dwinters, calmforce: Fixed
