@@ -8,7 +8,7 @@ use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityTypeManager;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\search_api\IndexInterface;
@@ -47,14 +47,14 @@ class ContentEntityTrackingManager {
   /**
    * Constructs a new class instance.
    *
-   * @param \Drupal\Core\Entity\EntityTypeManager $entityTypeManager
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity type manager.
    * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
    *   The language manager.
    * @param \Drupal\search_api\Task\TaskManagerInterface $taskManager
    *   The task manager.
    */
-  public function __construct(EntityTypeManager $entityTypeManager, LanguageManagerInterface $languageManager, TaskManagerInterface $taskManager) {
+  public function __construct(EntityTypeManagerInterface $entityTypeManager, LanguageManagerInterface $languageManager, TaskManagerInterface $taskManager) {
     $this->entityTypeManager = $entityTypeManager;
     $this->languageManager = $languageManager;
     $this->taskManager = $taskManager;

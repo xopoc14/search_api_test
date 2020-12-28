@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3179045 by sebish, joelpittet, drunken monkey: Fixed parameter type hint in
+  ContentEntityTrackingManager.
 - #3178417 by SivaprasadC, drunken monkey: Fixed two typos in the Database
   backend plugin class.
 - #3174778 by drunken monkey: Fixed some encoding errors.
