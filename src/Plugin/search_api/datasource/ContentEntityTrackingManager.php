@@ -366,7 +366,7 @@ class ContentEntityTrackingManager {
    * Filters a set of datasource-specific item IDs.
    *
    * Returns only those item IDs that are valid for the given datasource and
-   * index. This method only checks the item language, though â€“ whether an
+   * index. This method only checks the item language, though – whether an
    * entity with that ID actually exists, or whether it has a bundle included
    * for that datasource, is not verified.
    *
