@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3178417 by SivaprasadC, drunken monkey: Fixed two typos in the Database
+  backend plugin class.
 - #3174778 by drunken monkey: Fixed some encoding errors.
 - #3178941 by drunken monkey, cspitzlay, MegaChriz, ooziedie, bakulahluwalia:
   Fixed fatal error when saving entities with certain setups.
