@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- Issue #3194016 by mkalkbrenner, borisson_: Fixed PHP 8 compatibility.
 - #3181827 by brunodbo, drunken monkey: Fixed wrong @var type doc in
   ContentEntityTrackingManager.
 - #3179045 by sebish, joelpittet, drunken monkey: Fixed parameter type hint in
