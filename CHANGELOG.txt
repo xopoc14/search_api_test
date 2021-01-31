@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2944371 by Upchuk, jasonschweb, drunken monkey: Fixed random sort for DB
+  backend.
 - Issue #3194016 by mkalkbrenner, borisson_: Fixed PHP 8 compatibility.
 - #3181827 by brunodbo, drunken monkey: Fixed wrong @var type doc in
   ContentEntityTrackingManager.

@@ -591,6 +591,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
       'search_api_autocomplete',
       'search_api_facets',
       'search_api_facets_operator_or',
+      'search_api_random_sort',
     ];
   }
 
@@ -2384,6 +2385,11 @@ class Database extends BackendPluginBase implements PluginFormInterface {
         }
         if ($field_name == 'search_api_relevance') {
           $db_query->orderBy('score', $order);
+          continue;
+        }
+
+        if ($field_name == 'search_api_random') {
+          $this->dbmsCompatibility->orderByRandom($db_query);
           continue;
         }
 
