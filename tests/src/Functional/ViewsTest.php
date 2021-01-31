@@ -309,6 +309,9 @@ class ViewsTest extends SearchApiBrowserTestBase {
 
     $this->regressionTests();
 
+    // Check special functionality that requires editing the view.
+    $this->checkExposedSearchFields();
+
     // Make sure there was a display plugin created for this view.
     /** @var \Drupal\search_api\Display\DisplayInterface[] $displays */
     $displays = \Drupal::getContainer()
@@ -480,6 +483,36 @@ class ViewsTest extends SearchApiBrowserTestBase {
 
     $index->removeProcessor('ignorecase')->save();
     $block->delete();
+  }
+
+  /**
+   * Verifies that exposed fulltext fields work correctly.
+   */
+  protected function checkExposedSearchFields() {
+    $key = 'display.default.display_options.filters.search_api_fulltext.expose.expose_fields';
+    $view = \Drupal::configFactory()
+      ->getEditable('views.view.search_api_test_view');
+    $view->set($key, TRUE);
+    $view->save();
+
+    $query = [
+      'search_api_fulltext' => 'foo',
+      'search_api_fulltext_searched_fields' => [
+        'name',
+      ],
+    ];
+    $this->checkResults($query, [1, 2, 4], 'Search for results in name field only');
+
+    $query = [
+      'search_api_fulltext' => 'foo',
+      'search_api_fulltext_searched_fields' => [
+        'body',
+      ],
+    ];
+    $this->checkResults($query, [5], 'Search for results in body field only');
+
+    $view->set($key, FALSE);
+    $view->save();
   }
 
   /**

@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3127099 by Grimreaper, drunken monkey: Added option to expose searched
+  fields in Views fulltext filter.
 - #2944371 by Upchuk, jasonschweb, drunken monkey: Fixed random sort for DB
   backend.
 - Issue #3194016 by mkalkbrenner, borisson_: Fixed PHP 8 compatibility.
