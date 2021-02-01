@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3182306 by drunken monkey: Improved output from the "rebuild tracker" batch
+  job.
 - #3111383 by liquidcms, drunken monkey: Fixed problems with exposed, grouped
   Views date filters.
 - #3127099 by Grimreaper, drunken monkey: Added option to expose searched
