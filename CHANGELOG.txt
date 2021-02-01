@@ -1,5 +1,5 @@
-Search API 1.x, dev (xxxx-xx-xx):
----------------------------------
+Search API 1.19 (2021-02-01):
+-----------------------------
 - #3182306 by drunken monkey: Improved output from the "rebuild tracker" batch
   job.
 - #3111383 by liquidcms, drunken monkey: Fixed problems with exposed, grouped
