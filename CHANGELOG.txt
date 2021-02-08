@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #1396222 by drunken monkey, loziju, capysara: Added the "First letter"
+  aggregation type.
 
 Search API 1.19 (2021-02-01):
 -----------------------------
