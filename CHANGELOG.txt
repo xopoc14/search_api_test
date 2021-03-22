@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3178307 by carolpettirossi, drunken monkey: Fixed changes in related
+  entities not being re-indexed for all levels of entity references.
 - #2898334 by andreasderijcke, drunken monkey, Sam152, DrColossos, borisson_:
   Added the "Role-based access" processor.
 - #1396222 by drunken monkey, loziju, capysara: Added the "First letter"
