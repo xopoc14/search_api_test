@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3202693 by drunken monkey: Added a "Don't include" option for individual
+  bundles in the Views "Rendered item" field.
 - #3202696 by drunken monkey: Fixed error handling when creating links in Views.
 - #3199552 by drunken monkey: Cleaned up Views code.
 - #3190751 by drunken monkey: Fixed unsafe form value access in several config
