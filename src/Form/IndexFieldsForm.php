@@ -414,7 +414,7 @@ class IndexFieldsForm extends EntityForm {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    $field_values = $form_state->getValues()['fields'];
+    $field_values = $form_state->getValue('fields', []);
     $new_ids = [];
 
     foreach ($field_values as $field_id => $field) {

@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3190751 by drunken monkey: Fixed unsafe form value access in several config
+  forms.
 - #3178307 by carolpettirossi, drunken monkey: Fixed changes in related
   entities not being re-indexed for all levels of entity references.
 - #2898334 by andreasderijcke, drunken monkey, Sam152, DrColossos, borisson_:
