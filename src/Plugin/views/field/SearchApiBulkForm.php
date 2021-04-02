@@ -172,7 +172,6 @@ class SearchApiBulkForm extends BulkForm {
     $user_input = $form_state->getUserInput();
     $input_key = $this->options['id'];
     $selected = $form_state->getValue($input_key);
-    /** @var \Drupal\system\ActionConfigEntityInterface $action */
     $action = $this->actions[$form_state->getValue('action')];
 
     $removed_entities = [];

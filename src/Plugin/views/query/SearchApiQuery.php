@@ -166,7 +166,7 @@ class SearchApiQuery extends QueryPluginBase {
   /**
    * Retrieves the contained entity from a Views result row.
    *
-   * @param \Drupal\views\ResultRow $row
+   * @param \Drupal\search_api\Plugin\views\ResultRow $row
    *   The Views result row.
    * @param string $relationship_id
    *   The ID of the view relationship to use.

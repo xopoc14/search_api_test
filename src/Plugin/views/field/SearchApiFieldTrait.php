@@ -416,7 +416,7 @@ trait SearchApiFieldTrait {
   }
 
   /**
-   * Gets the value that's supposed to be rendered.
+   * Retrieves the value that's supposed to be rendered.
    *
    * This API exists so that other modules can easily set the values of the
    * field without having the need to change the render method as well.
@@ -428,6 +428,9 @@ trait SearchApiFieldTrait {
    *   An object containing all retrieved values.
    * @param string $field
    *   Optional name of the field where the value is stored.
+   *
+   * @return mixed
+   *   The field value to use.
    *
    * @see \Drupal\views\Plugin\views\field\FieldHandlerInterface::getValue()
    */
@@ -727,7 +730,8 @@ trait SearchApiFieldTrait {
       }
     }
 
-    // Multi-load all entities we encountered before.
+    // Multi-load all entities we encountered before (to get them into the
+    // static cache).
     foreach ($entities_to_load as $entity_type_id => $ids) {
       $this->getEntityTypeManager()
         ->getStorage($entity_type_id)
@@ -1254,7 +1258,7 @@ trait SearchApiFieldTrait {
    *   (optional) The type of sanitization needed. If not provided,
    *   \Drupal\Component\Utility\Html::escape() is used.
    *
-   * @return \Drupal\views\Render\ViewsRenderPipelineMarkup
+   * @return \Drupal\Component\Render\MarkupInterface
    *   Returns the safe value.
    *
    * @see \Drupal\views\Plugin\views\HandlerBase::sanitizeValue()
