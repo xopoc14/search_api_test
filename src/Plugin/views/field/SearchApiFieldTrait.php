@@ -1286,13 +1286,19 @@ trait SearchApiFieldTrait {
   protected function getItemUrl(ResultRow $row, $i) {
     $this->valueIndex = $i;
     if ($entity = $this->getEntity($row)) {
-      return $entity->toUrl('canonical');
+      if ($entity->hasLinkTemplate('canonical')) {
+        return $entity->toUrl('canonical');
+      }
     }
 
     if (!empty($row->_relationship_objects[NULL][0])) {
-      return $this->getIndex()
-        ->getDatasource($row->search_api_datasource)
-        ->getItemUrl($row->_relationship_objects[NULL][0]);
+      try {
+        return $this->getIndex()
+          ->getDatasource($row->search_api_datasource)
+          ->getItemUrl($row->_relationship_objects[NULL][0]);
+      }
+      catch (SearchApiException $e) {
+      }
     }
 
     return NULL;
