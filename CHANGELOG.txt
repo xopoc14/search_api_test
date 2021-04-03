@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3192387 by shelane, drunken monkey: Fixed too narrow Drush version
+  constraint.
 - #3202693 by drunken monkey: Added a "Don't include" option for individual
   bundles in the Views "Rendered item" field.
 - #3202696 by drunken monkey: Fixed error handling when creating links in Views.
