@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3106342 by claudiu.cristea, drunken monkey, borisson_: Added a public method
+  for indexing a given entity.
 - #3192387 by shelane, drunken monkey: Fixed too narrow Drush version
   constraint.
 - #3202693 by drunken monkey: Added a "Don't include" option for individual
