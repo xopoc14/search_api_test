@@ -51,7 +51,7 @@ class SearchApiBulkForm extends BulkForm {
     // returned by Search API might contain entities of many different entity
     // types, and even datasources that are not based on entities.
     // Override the parent method as BulkForm::init() will call this and will
-    // complain that a valid entity type cannot retrieved.
+    // complain that a valid entity type cannot be retrieved.
     // @see \Drupal\views\Plugin\views\field\BulkForm::init()
     // @see \Drupal\views\Plugin\views\HandlerBase::getEntityType()
     return NULL;
