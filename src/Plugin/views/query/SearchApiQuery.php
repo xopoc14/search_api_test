@@ -8,6 +8,7 @@ use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Database\Query\ConditionInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\Plugin\DataType\EntityAdapter;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\MessengerInterface;
@@ -672,6 +673,9 @@ class SearchApiQuery extends QueryPluginBase {
         if ($object) {
           $values['_object'] = $object;
           $values['_relationship_objects'][NULL] = [$object];
+          if ($object instanceof EntityAdapter) {
+            $values['_entity'] = $object->getEntity();
+          }
         }
       }
       catch (SearchApiException $e) {
