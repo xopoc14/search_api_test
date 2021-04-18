@@ -861,6 +861,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
     try {
       $this->database->schema()->addIndex($db['table'], '_' . $column, $index_spec, $table_spec);
     }
+    // @todo Use multi-catch once we depend on PHP 7.1+.
     catch (\PDOException $e) {
       $variables['%column'] = $column;
       $variables['%table'] = $db['table'];
