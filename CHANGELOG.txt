@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3195590 by dewalt, drunken monkey: Fixed "Add fields" dialog to not show
+  plus (+) icon for properties with only hidden sub-properties.
 - #3195389 by attiks, drunken monkey: Fixed error in Views when target of
   entity reference field is not available.
 - #3193312 by cgoffin, drunken monkey: Added entity objects to Views result set.
