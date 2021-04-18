@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3195389 by attiks, drunken monkey: Fixed error in Views when target of
+  entity reference field is not available.
 - #3193312 by cgoffin, drunken monkey: Added entity objects to Views result set.
 - #3187134 by drunken monkey: Fixed display of date range end values in Views.
 - #3106342 by claudiu.cristea, drunken monkey, borisson_: Added a public method

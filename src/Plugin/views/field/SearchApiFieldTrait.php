@@ -715,7 +715,9 @@ trait SearchApiFieldTrait {
                   ->getDefinition($entity_type_id);
                 if ($entity_type->isStaticallyCacheable()) {
                   $entity_id = $typed_data->getTargetIdentifier();
-                  $entities_to_load[$entity_type_id][$entity_id] = $entity_id;
+                  if ($entity_id) {
+                    $entities_to_load[$entity_type_id][$entity_id] = $entity_id;
+                  }
                 }
               }
             }
