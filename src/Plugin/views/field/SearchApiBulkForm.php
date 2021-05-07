@@ -10,6 +10,7 @@ use Drupal\search_api\SearchApiException;
 use Drupal\system\ActionConfigEntityInterface;
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\field\BulkForm;
+use Drupal\views\Plugin\views\style\Table;
 use Drupal\views\ResultRow;
 use Drupal\views\ViewExecutable;
 
@@ -20,7 +21,9 @@ use Drupal\views\ViewExecutable;
  */
 class SearchApiBulkForm extends BulkForm {
 
-  use SearchApiFieldTrait;
+  use SearchApiFieldTrait {
+    preRender as traitPreRender;
+  }
 
   /**
    * {@inheritdoc}
@@ -81,6 +84,22 @@ class SearchApiBulkForm extends BulkForm {
       return NULL;
     }
     return $value instanceof EntityInterface ? $value : NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function preRender(&$values) {
+    $this->traitPreRender($values);
+
+    // If the view is using a table style, provide a placeholder for a "select
+    // all" checkbox.
+    if (($this->view->style_plugin ?? NULL) instanceof Table) {
+      // Add the tableselect css classes.
+      $this->options['element_label_class'] .= 'select-all';
+      // Hide the actual label of the field on the table header.
+      $this->options['label'] = '';
+    }
   }
 
   // phpcs:disable Drupal.Commenting.FunctionComment.TypeHintMissing
