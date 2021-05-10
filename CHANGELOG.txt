@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3196782 by Ericmaster, drunken monkey: Issue #3196782 by Ericmaster, drunken
+  monkey: Fixed use of excerpt in Views "Rendered item" field.
 - #3195587 by dewalt, drunken monkey: Fixed bundles for custom fields not
   reflected in "Add fields" UI.
 - #3194931 by kaszarobert, drunken monkey: Added a "select all" checkbox to the

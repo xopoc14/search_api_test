@@ -155,7 +155,7 @@ class SearchApiRenderedItem extends FieldPluginBase {
         ->viewItem($row->_object, $view_mode);
       if ($build) {
         // Add the excerpt to the render array to allow adding it to view modes.
-        $render['#search_api_excerpt'] = $row->_item->getExcerpt();
+        $build['#search_api_excerpt'] = $row->_item->getExcerpt();
       }
       return $build;
     }
