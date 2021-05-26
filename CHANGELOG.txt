@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3215658 by mkalkbrenner, drunken monkey: Fixed handling of multi-byte spaces
+  in the "Multiple words" parse mode.
 - #3055173 by mkalkbrenner, drunken monkey: Added the "Number field-based
   boosting" processor.
 - #3055173 by mkalkbrenner, drunken monkey: Added the "Number field-based
