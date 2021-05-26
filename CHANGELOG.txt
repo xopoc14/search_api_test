@@ -1,5 +1,9 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3055173 by mkalkbrenner, drunken monkey: Added the "Number field-based
+  boosting" processor.
+- #3055173 by mkalkbrenner, drunken monkey: Added the "Number field-based
+  boosting" processor.
 - #3198944 by bogdan.racz, drunken monkey: Fixed ignored changes in the
   "indexing items" event.
 - #3196782 by Ericmaster, drunken monkey: Issue #3196782 by Ericmaster, drunken
