@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3219648 by mkalkbrenner, drunken monkey: Fixed backend-defined fields
+  without datasource do not appear in Views.
 - #3215658 by mkalkbrenner, drunken monkey: Fixed handling of multi-byte spaces
   in the "Multiple words" parse mode.
 - #3055173 by mkalkbrenner, drunken monkey: Added the "Number field-based
