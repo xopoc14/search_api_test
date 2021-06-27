@@ -7,7 +7,6 @@ use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Database\Database as CoreDatabase;
 use Drupal\Core\Database\DatabaseException;
-use Drupal\Core\Database\Query\Condition;
 use Drupal\Core\Database\Query\SelectInterface;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
@@ -2013,7 +2012,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
         $db_query->condition('t.word', $words, 'IN');
       }
       else {
-        $db_or = new Condition('OR');
+        $db_or = $db_query->orConditionGroup();
         // GROUP BY all existing non-aggregated columns.
         foreach ($db_query->getFields() as $column) {
           $db_query->groupBy("{$column['table']}.{$column['field']}");
@@ -2130,7 +2129,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
         $condition = $db_query;
       }
       else {
-        $condition = new Condition('OR');
+        $condition = $db_query->conditionGroupFactory('OR');
         $db_query->condition($condition);
       }
       foreach ($negated as $k) {
@@ -2196,7 +2195,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
    */
   protected function createDbCondition(ConditionGroupInterface $conditions, array $fields, SelectInterface $db_query, IndexInterface $index) {
     $conjunction = $conditions->getConjunction();
-    $db_condition = new Condition($conjunction);
+    $db_condition = $db_query->conditionGroupFactory($conjunction);
     $db_info = $this->getIndexDbInfo($index);
 
     // Store the table aliases for the fields in this condition group.
@@ -2235,7 +2234,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
             $db_condition->$method($column);
           }
           elseif ($not_between) {
-            $nested_condition = new Condition('OR');
+            $nested_condition = $db_query->conditionGroupFactory('OR');
             $nested_condition->condition($column, $value[0], '<');
             $nested_condition->condition($column, $value[1], '>');
             $nested_condition->isNull($column);
@@ -2244,7 +2243,7 @@ class Database extends BackendPluginBase implements PluginFormInterface {
           elseif ($not_equals) {
             // Since SQL never returns TRUE for comparison with NULL values, we
             // need to include "OR field IS NULL" explicitly for some operators.
-            $nested_condition = new Condition('OR');
+            $nested_condition = $db_query->conditionGroupFactory('OR');
             $nested_condition->condition($column, $value, $operator);
             $nested_condition->isNull($column);
             $db_condition->condition($nested_condition);
