@@ -333,7 +333,7 @@ class IndexFieldsForm extends EntityForm {
       $build['fields'][$key]['boost'] = [
         '#type' => 'select',
         '#options' => $boosts,
-        '#default_value' => sprintf('%.1f', $field->getBoost()),
+        '#default_value' => sprintf('%.1F', $field->getBoost()),
         '#states' => [
           'visible' => [
             ':input[name="fields[' . $key . '][type]"]' => $fulltext_types,

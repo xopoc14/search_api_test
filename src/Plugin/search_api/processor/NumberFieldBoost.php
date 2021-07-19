@@ -62,7 +62,7 @@ class NumberFieldBoost extends ProcessorPluginBase implements PluginFormInterfac
 
         $default_boost = $config[$field_id]['boost_factor'] ?? '';
         if ($default_boost) {
-          $default_boost = sprintf('%.1f', $default_boost);
+          $default_boost = sprintf('%.1F', $default_boost);
         }
         $form['boosts'][$field_id]['boost_factor'] = [
           '#type' => 'select',

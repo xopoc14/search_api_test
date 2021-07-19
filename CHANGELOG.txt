@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3216762 by mkalkbrenner, drunken monkey: Fixed problems with boost factors
+  on non-English locales.
 - #3207578 by penyaskito, drunken monkey: Fixed logging of Basic tracker
   exceptions.
 - #3199355 by drunken monkey: Fixed error when indexing strings with trailing
