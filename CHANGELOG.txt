@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3226642 by drunken monkey: Added "lifecycle" key to .info.yml file.
 
 Search API 1.20 (2021-07-19):
 -----------------------------
