@@ -107,7 +107,7 @@ class TaskManager implements TaskManagerInterface {
    *   An entity query for search tasks.
    */
   protected function getTasksQuery(array $conditions = []) {
-    $query = $this->getTaskStorage()->getQuery();
+    $query = $this->getTaskStorage()->getQuery()->accessCheck(FALSE);
     foreach ($conditions as $property => $values) {
       $query->condition($property, $values, is_array($values) ? 'IN' : '=');
     }

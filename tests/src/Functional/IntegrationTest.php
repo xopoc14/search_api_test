@@ -1365,8 +1365,14 @@ class IntegrationTest extends SearchApiBrowserTestBase {
     $index = $this->getIndex(TRUE);
     $index->reindex();
 
-    $user_count = \Drupal::entityQuery('user')->count()->execute();
-    $node_count = \Drupal::entityQuery('node')->count()->execute();
+    $user_count = \Drupal::entityQuery('user')
+      ->accessCheck(FALSE)
+      ->count()
+      ->execute();
+    $node_count = \Drupal::entityQuery('node')
+      ->accessCheck(FALSE)
+      ->count()
+      ->execute();
 
     // Enable indexing of users.
     $settings_path = $this->getIndexPath('edit');
@@ -1407,7 +1413,10 @@ class IntegrationTest extends SearchApiBrowserTestBase {
    * "unindexed" in the tracker.
    */
   protected function changeIndexServer() {
-    $node_count = \Drupal::entityQuery('node')->count()->execute();
+    $node_count = \Drupal::entityQuery('node')
+      ->accessCheck(FALSE)
+      ->count()
+      ->execute();
     $this->assertEquals($node_count, $this->countTrackedItems(), 'All nodes are correctly tracked by the index.');
 
     // Index all remaining items on the index.
@@ -1453,7 +1462,10 @@ class IntegrationTest extends SearchApiBrowserTestBase {
     $this->submitForm([], 'Index now');
     $this->assertSession()->statusCodeEquals(200);
     $this->checkForMetaRefresh();
-    $count = \Drupal::entityQuery('node')->count()->execute() - 1;
+    $count = \Drupal::entityQuery('node')
+      ->accessCheck(FALSE)
+      ->count()
+      ->execute() - 1;
     $this->assertSession()->pageTextContains("Successfully indexed $count items.");
     $this->assertSession()->pageTextContains('1 item could not be indexed.');
     $this->assertSession()->pageTextNotContains("Couldn't index items.");
@@ -1503,7 +1515,10 @@ class IntegrationTest extends SearchApiBrowserTestBase {
       ->condition('item_id', Utility::createCombinedId('entity:node', '2:en'))
       ->execute();
     $this->assertEquals(1, $deleted);
-    $manipulated_items_count = \Drupal::entityQuery('node')->count()->execute() - 1;
+    $manipulated_items_count = \Drupal::entityQuery('node')
+      ->accessCheck(FALSE)
+      ->count()
+      ->execute() - 1;
 
     $this->assertEquals($manipulated_items_count, $tracker->getIndexedItemsCount());
     $this->assertEquals($manipulated_items_count, $tracker->getTotalItemsCount());

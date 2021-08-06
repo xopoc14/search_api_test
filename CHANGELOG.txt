@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3226699 by drunken monkey: Added explicit accessCheck() call to all entity
+  queries.
 - #2348117 by ekes, drunken monkey: Added support for core REST data views.
 - #3226642 by drunken monkey: Added "lifecycle" key to .info.yml file.
 
