@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3013663 by chr.fritsch, drunken monkey, merauluka: Added performance
+  improvement for item tracking.
 - #3226699 by drunken monkey: Added explicit accessCheck() call to all entity
   queries.
 - #2348117 by ekes, drunken monkey: Added support for core REST data views.
