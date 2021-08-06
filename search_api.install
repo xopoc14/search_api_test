@@ -10,6 +10,7 @@ use Drupal\Core\Database\DatabaseException;
 use Drupal\Core\Link;
 use Drupal\search_api\Entity\Server;
 use Drupal\Core\Url;
+use Drupal\search_api\Entity\TaskStorageSchema;
 
 /**
  * Implements hook_schema().
@@ -329,4 +330,14 @@ function search_api_update_8106() {
     // case. In the worst case, the warning just remains. So, just ignore any
     // exception. (Site could also use an alternate key/value store.)
   }
+}
+
+/**
+ * Add a unique index to the task entity type's storage.
+ */
+function search_api_update_8107() {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $entity_type = $manager->getEntityType('search_api_task');
+  $entity_type->setHandlerClass('storage_schema', TaskStorageSchema::class);
+  $manager->updateEntityType($entity_type);
 }
