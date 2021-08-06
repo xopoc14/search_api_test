@@ -291,13 +291,10 @@ class BasicTrackerTest extends KernelTestBase {
    *   The method to test.
    * @param array $args
    *   (optional) The arguments to pass to the method.
-   * @param bool $uses_transaction
-   *   (optional) Whether the method is expected to use a transaction (and roll
-   *   it back upon encountering an exception).
    *
    * @dataProvider exceptionHandlingDataProvider
    */
-  public function testExceptionHandling($tracker_method, array $args = [], $uses_transaction = FALSE) {
+  public function testExceptionHandling($tracker_method, array $args = []) {
     /** @var \PHPUnit_Framework_MockObject_MockObject|\Drupal\Core\Database\Connection $connection */
     $connection = $this->getMockBuilder(Connection::class)
       ->disableOriginalConstructor()
@@ -329,9 +326,7 @@ class BasicTrackerTest extends KernelTestBase {
     $this->assertCount(1, $log);
     $this->assertStringStartsWith('%type', $log[0][1]);
 
-    if ($uses_transaction) {
-      $this->assertEquals(TRUE, $rolled_back);
-    }
+    $this->assertFalse($rolled_back);
   }
 
   /**
@@ -344,12 +339,12 @@ class BasicTrackerTest extends KernelTestBase {
    */
   public function exceptionHandlingDataProvider() {
     return [
-      'trackItemsInserted()' => ['trackItemsInserted', [['']], TRUE],
-      'trackItemsUpdated()' => ['trackItemsUpdated', [['']], TRUE],
-      'trackAllItemsUpdated()' => ['trackAllItemsUpdated', [], TRUE],
-      'trackItemsIndexed()' => ['trackItemsIndexed', [['']], TRUE],
-      'trackItemsDeleted()' => ['trackItemsDeleted', [], TRUE],
-      'trackAllItemsDeleted()' => ['trackAllItemsDeleted', [], TRUE],
+      'trackItemsInserted()' => ['trackItemsInserted', [['']]],
+      'trackItemsUpdated()' => ['trackItemsUpdated', [['']]],
+      'trackAllItemsUpdated()' => ['trackAllItemsUpdated'],
+      'trackItemsIndexed()' => ['trackItemsIndexed', [['']]],
+      'trackItemsDeleted()' => ['trackItemsDeleted'],
+      'trackAllItemsDeleted()' => ['trackAllItemsDeleted'],
       'getRemainingItems()' => ['getRemainingItems'],
       'getTotalItemsCount()' => ['getTotalItemsCount'],
       'getIndexedItemsCount()' => ['getIndexedItemsCount'],

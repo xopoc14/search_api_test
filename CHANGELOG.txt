@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3198412 by drunken monkey: Fixed error handling in tracker plugin methods.
 - #3193690 by jungle, drunken monkey, Charlie ChX Negyesi, longwave: Fixed
   creation of duplicate tasks.
 - #3195199 by drunken monkey, claudiu.cristea: Fixed config schema for Views
