@@ -102,7 +102,6 @@ class Task extends ContentEntityBase implements TaskInterface {
         ->getStorage('search_api_server')
         ->load($server_id);
       if (!$this->serverInstance) {
-        $args['%server'] = $server_id;
         throw new SearchApiException("Could not load server with ID '$server_id'.");
       }
     }

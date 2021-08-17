@@ -11,7 +11,6 @@ use Drupal\search_api\Item\ItemInterface;
 use Drupal\search_api\Plugin\search_api\data_type\value\TextValue;
 use Drupal\search_api\Plugin\search_api\processor\Stemmer;
 use Drupal\search_api\Query\QueryInterface;
-use Drupal\search_api\SearchApiException;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -140,13 +139,13 @@ class StemmerTest extends UnitTestCase {
     // processing to work) doesn't seem to be possible with a mock object. But
     // since the only code we really want to test is the language check, using
     // an exception works just as well, and is quite simple.
-    $query->method('getKeys')->willThrowException(new SearchApiException());
+    $query->method('getKeys')->willThrowException(new \RuntimeException());
 
     try {
       $this->processor->preprocessSearchQuery($query);
       $this->assertFalse($should_process, "Keys weren't processed but should have been.");
     }
-    catch (SearchApiException $e) {
+    catch (\RuntimeException $e) {
       $this->assertTrue($should_process, "Keys were processed but shouldn't have been.");
     }
   }
