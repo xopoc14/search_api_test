@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3065771 by New Zeal, drunken monkey, onedotover, PaulDinelle: Fixed passing
+  multiple values to "All taxonomy term fields" Views contextual filter.
 - #3220988 by varshith, drunken monkey: Fixed display of Stemmer processor on
   non-English sites.
 - #3198412 by drunken monkey: Fixed error handling in tracker plugin methods.
