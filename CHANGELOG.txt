@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3206362 by drunken monkey, zviryatko: Fixed serialization of fields.
 - #3226933 by drunken monkey: Fixed some exception handling problems.
 - #3065771 by New Zeal, drunken monkey, onedotover, PaulDinelle: Fixed passing
   multiple values to "All taxonomy term fields" Views contextual filter.
