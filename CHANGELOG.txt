@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3220988 by varshith, drunken monkey: Fixed display of Stemmer processor on
+  non-English sites.
 - #3198412 by drunken monkey: Fixed error handling in tracker plugin methods.
 - #3193690 by jungle, drunken monkey, Charlie ChX Negyesi, longwave: Fixed
   creation of duplicate tasks.

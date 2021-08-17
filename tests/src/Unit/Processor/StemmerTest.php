@@ -2,6 +2,9 @@
 
 namespace Drupal\Tests\search_api\Unit\Processor;
 
+use Drupal\Core\Language\Language;
+use Drupal\Core\Language\LanguageInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\search_api\IndexInterface;
 use Drupal\search_api\Item\Field;
 use Drupal\search_api\Item\ItemInterface;
@@ -32,6 +35,49 @@ class StemmerTest extends UnitTestCase {
     $this->setUpMockContainer();
 
     $this->processor = new Stemmer([], 'string', []);
+  }
+
+  /**
+   * Tests the supportsIndex() method.
+   *
+   * @covers ::supportsIndex
+   */
+  public function testSupportsIndex() {
+    $index = $this->createMock(IndexInterface::class);
+
+    $language_manager = $this->createMock(LanguageManagerInterface::class);
+    $this->container->set('language_manager', $language_manager);
+    $language_manager->method('getLanguages')->willReturn([
+      new Language(['id' => LanguageInterface::LANGCODE_NOT_SPECIFIED]),
+    ]);
+    $this->assertFalse(Stemmer::supportsIndex($index));
+
+    $language_manager = $this->createMock(LanguageManagerInterface::class);
+    $this->container->set('language_manager', $language_manager);
+    $language_manager->method('getLanguages')->willReturn([
+      new Language(['id' => 'de']),
+      new Language(['id' => LanguageInterface::LANGCODE_NOT_SPECIFIED]),
+      new Language(['id' => 'fr']),
+    ]);
+    $this->assertFalse(Stemmer::supportsIndex($index));
+
+    $language_manager = $this->createMock(LanguageManagerInterface::class);
+    $this->container->set('language_manager', $language_manager);
+    $language_manager->method('getLanguages')->willReturn([
+      new Language(['id' => 'en']),
+      new Language(['id' => 'fr']),
+      new Language(['id' => LanguageInterface::LANGCODE_NOT_SPECIFIED]),
+    ]);
+    $this->assertTrue(Stemmer::supportsIndex($index));
+
+    $language_manager = $this->createMock(LanguageManagerInterface::class);
+    $this->container->set('language_manager', $language_manager);
+    $language_manager->method('getLanguages')->willReturn([
+      new Language(['id' => 'fr']),
+      new Language(['id' => LanguageInterface::LANGCODE_NOT_SPECIFIED]),
+      new Language(['id' => 'en-GB']),
+    ]);
+    $this->assertTrue(Stemmer::supportsIndex($index));
   }
 
   /**
