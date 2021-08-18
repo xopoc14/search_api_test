@@ -758,6 +758,12 @@ class IntegrationTest extends SearchApiBrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
     $this->submitForm($edit, 'Save and manage fields');
 
+    // Make sure this worked.
+    $entity_bundle_info = $this->container->get('entity_type.bundle.info');
+    $entity_bundle_info->clearCachedBundles();
+    $bundles = $entity_bundle_info->getBundleInfo('node');
+    $this->assertArrayHasKey('_content_', $bundles);
+
     // Add a field to that content type with funky chars.
     $field_name = '^6%{[*>.<"field';
     FieldStorageConfig::create([
@@ -784,6 +790,7 @@ class IntegrationTest extends SearchApiBrowserTestBase {
     // Also check data type labels/descriptions.
     $this->assertHtmlEscaped('"Test" data type');
     $this->assertSession()->responseContains('Dummy <em>data type</em> implementation');
+    $this->submitForm([], 'Save changes');
 
     $edit = [
       'datasource_configs[entity:node][bundles][default]' => 1,
@@ -866,7 +873,7 @@ class IntegrationTest extends SearchApiBrowserTestBase {
       'fields[title][title]' => 'new_title',
       'fields[title][id]' => 'new_id',
       'fields[title][type]' => 'text',
-      'fields[title][boost]' => '21.0',
+      'fields[title][boost]' => Utility::formatBoostFactor(21),
       'fields[revision_log][type]' => 'search_api_test',
     ];
     $this->drupalGet($this->getIndexPath('fields'));
@@ -896,6 +903,17 @@ class IntegrationTest extends SearchApiBrowserTestBase {
 
     // Make sure that property paths are correctly displayed.
     $this->assertSession()->pageTextContains('uid:entity:name');
+
+    // Verify that custom boost values set directly in the config won't be
+    // overwritten when saving the "Fields" form in the UI.
+    $index = $this->getIndex(TRUE);
+    $index->getField('title')->setBoost(4.0);
+    $index->save();
+    $this->drupalGet($this->getIndexPath('fields'));
+    $this->submitForm([], 'Save changes');
+    $this->assertSession()->pageTextContains('The changes were successfully saved.');
+    $index = $this->getIndex(TRUE);
+    $this->assertEquals(4.0, $index->getField('title')->getBoost());
   }
 
   /**
@@ -1241,10 +1259,10 @@ class IntegrationTest extends SearchApiBrowserTestBase {
     // Change the boost of the field.
     $fields_path = $this->getIndexPath('fields');
     $this->drupalGet($fields_path);
-    $this->submitForm(['fields[url][boost]' => '8.0'], 'Save changes');
+    $this->submitForm(['fields[url][boost]' => Utility::formatBoostFactor(8)], 'Save changes');
     $this->assertSession()->pageTextContains('The changes were successfully saved.');
     $option_field = $this->assertSession()
-      ->optionExists('edit-fields-url-boost', '8.0');
+      ->optionExists('edit-fields-url-boost', Utility::formatBoostFactor(8));
     $this->assertTrue($option_field->hasAttribute('selected'), 'Boost is correctly saved.');
 
     // Change the type of the field.

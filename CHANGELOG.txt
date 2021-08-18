@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3201305 by mkalkbrenner, drunken monkey, Sam152: Added more options
+  (including customized ones) for fulltext field boost values.
 - #3206362 by drunken monkey, zviryatko: Fixed serialization of fields.
 - #3226933 by drunken monkey: Fixed some exception handling problems.
 - #3065771 by New Zeal, drunken monkey, onedotover, PaulDinelle: Fixed passing
