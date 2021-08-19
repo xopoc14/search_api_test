@@ -7,10 +7,11 @@ use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\taxonomy\TermStorageInterface;
-use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * Provides common methods for unit tests using taxonomy terms.
+ *
+ * @method \PHPUnit\Framework\MockObject\MockObject createMock(string $originalClassName)
  */
 trait TaxonomyTestTrait {
 
@@ -53,14 +54,5 @@ trait TaxonomyTestTrait {
     $this->container->set('string_translation', $this->createMock(TranslationInterface::class));
     \Drupal::setContainer($this->container);
   }
-
-  /**
-   * Returns a mock object for the specified class.
-   *
-   * @psalm-template RealInstanceType of object
-   * @psalm-param class-string<RealInstanceType> $originalClassName
-   * @psalm-return MockObject&RealInstanceType
-   */
-  abstract protected function createMock(string $originalClassName): MockObject;
 
 }

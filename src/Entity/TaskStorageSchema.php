@@ -17,8 +17,14 @@ class TaskStorageSchema extends SqlContentEntityStorageSchema {
     $schema = parent::getEntitySchema($entity_type, $reset);
 
     if ($data_table = $this->storage->getBaseTable()) {
+      $data = 'data';
+      // MySQL cannot handle UNIQUE indices on TEXT/BLOB fields without a prefix
+      // length.
+      if ($this->database->driver() === 'mysql') {
+        $data = ['data', 255];
+      }
       $schema[$data_table]['unique keys'] += [
-        'task__unique' => ['type', 'server_id', 'index_id', 'data'],
+        'task__unique' => ['type', 'server_id', 'index_id', $data],
       ];
     }
 
