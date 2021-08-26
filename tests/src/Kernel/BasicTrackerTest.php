@@ -86,7 +86,7 @@ class BasicTrackerTest extends KernelTestBase {
   public function testTracking($indexing_order) {
     // Add a logger that throws an exception when used, so a caught exception
     // within any of the tracker methods will still cause a test fail.
-    /** @var \PHPUnit_Framework_MockObject_MockObject|\Psr\Log\LoggerInterface $logger */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Psr\Log\LoggerInterface $logger */
     $logger = $this->createMock(LoggerInterface::class);
     $logger->method('log')
       ->willReturnCallback(function ($level, $message, array $variables) {
@@ -295,7 +295,7 @@ class BasicTrackerTest extends KernelTestBase {
    * @dataProvider exceptionHandlingDataProvider
    */
   public function testExceptionHandling($tracker_method, array $args = []) {
-    /** @var \PHPUnit_Framework_MockObject_MockObject|\Drupal\Core\Database\Connection $connection */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Drupal\Core\Database\Connection $connection */
     $connection = $this->getMockBuilder(Connection::class)
       ->disableOriginalConstructor()
       ->getMock();
@@ -313,7 +313,7 @@ class BasicTrackerTest extends KernelTestBase {
     $connection->method('startTransaction')->willReturn($transaction);
     $this->tracker->setDatabaseConnection($connection);
 
-    /** @var \PHPUnit_Framework_MockObject_MockObject|\Psr\Log\LoggerInterface $logger */
+    /** @var \PHPUnit\Framework\MockObject\MockObject|\Psr\Log\LoggerInterface $logger */
     $logger = $this->createMock(LoggerInterface::class);
     $log = [];
     $logger->method('log')->willReturnCallback(function () use (&$log) {

@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3228533 by drunken monkey: Fixed mock object type hints in comments.
 - #3212925 by drunken monkey, DiegoPino: Fixed some processors removing "(not)
   empty" conditions.
 - #3228210 by drunken monkey, DiegoPino: Fixed current test failures.

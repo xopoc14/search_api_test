@@ -23,7 +23,7 @@ class FieldsProcessorPluginBaseTest extends UnitTestCase {
   /**
    * A search index mock to use in this test case.
    *
-   * @var \Drupal\search_api\IndexInterface|\PHPUnit_Framework_MockObject_MockObject
+   * @var \Drupal\search_api\IndexInterface|\PHPUnit\Framework\MockObject\MockObject
    */
   protected $index;
 
@@ -120,7 +120,7 @@ class FieldsProcessorPluginBaseTest extends UnitTestCase {
 
     // Since it's not possible to override an already specified method on a mock
     // object, we need to create a new mock object for the index in this test.
-    /** @var \Drupal\search_api\IndexInterface|\PHPUnit_Framework_MockObject_MockObject $index */
+    /** @var \Drupal\search_api\IndexInterface|\PHPUnit\Framework\MockObject\MockObject $index */
     $index = $this->createMock(IndexInterface::class);
     $index->method('getFields')->willReturn([
       'float_field' => (new Field($this->index, ''))->setType('float'),

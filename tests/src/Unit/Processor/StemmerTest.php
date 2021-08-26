@@ -133,7 +133,7 @@ class StemmerTest extends UnitTestCase {
    * @dataProvider preprocessSearchQueryDataProvider
    */
   public function testPreprocessSearchQuery(array $languages = NULL, $should_process) {
-    /** @var \Drupal\search_api\Query\QueryInterface|\PHPUnit_Framework_MockObject_MockObject $query */
+    /** @var \Drupal\search_api\Query\QueryInterface|\PHPUnit\Framework\MockObject\MockObject $query */
     $query = $this->createMock(QueryInterface::class);
     $query->method('getLanguages')->willReturn($languages);
     // Unfortunately, returning a reference (as getKeys() has to do for
