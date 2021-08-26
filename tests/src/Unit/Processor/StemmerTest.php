@@ -10,6 +10,7 @@ use Drupal\search_api\Item\Field;
 use Drupal\search_api\Item\ItemInterface;
 use Drupal\search_api\Plugin\search_api\data_type\value\TextValue;
 use Drupal\search_api\Plugin\search_api\processor\Stemmer;
+use Drupal\search_api\Query\Condition;
 use Drupal\search_api\Query\QueryInterface;
 use Drupal\Tests\UnitTestCase;
 
@@ -280,6 +281,28 @@ class StemmerTest extends UnitTestCase {
       [" \tExtra  spaces \rappeared \n", 'extra space appear'],
       ["\tspaced-out  \r\n", 'space out'],
     ];
+  }
+
+  /**
+   * Tests whether "IS NULL" conditions are correctly kept.
+   *
+   * @see https://www.drupal.org/project/search_api/issues/3212925
+   */
+  public function testIsNullConditions() {
+    $index = $this->createMock(IndexInterface::class);
+    $index->method('getFields')->willReturn([
+      'field' => (new Field($index, 'field'))->setType('string'),
+    ]);
+    $this->processor->setIndex($index);
+
+    $passed_value = NULL;
+    $this->invokeMethod('processConditionValue', [&$passed_value]);
+    $this->assertSame(NULL, $passed_value);
+
+    $condition = new Condition('field', NULL);
+    $conditions = [$condition];
+    $this->invokeMethod('processConditions', [&$conditions]);
+    $this->assertSame([$condition], $conditions);
   }
 
 }
