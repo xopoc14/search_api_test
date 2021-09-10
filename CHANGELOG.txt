@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3230791 by Anul, drunken monkey: Converted the remaining README.txt files to
+  markdown.
 - #2958811 by drunken monkey, Niklan, Andriy Khomych: Fixed bug in AddURL
   processor during REST requests.
 - #3228533 by drunken monkey: Fixed mock object type hints in comments.
