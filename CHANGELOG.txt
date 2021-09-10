@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3199906 by carolpettirossi, drunken monkey: Added an option for disabling
+  tracking of changes in related entities.
 - #3230791 by Anul, drunken monkey: Converted the remaining README.txt files to
   markdown.
 - #2958811 by drunken monkey, Niklan, Andriy Khomych: Fixed bug in AddURL
