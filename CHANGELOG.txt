@@ -1,5 +1,5 @@
-Search API 1.x, dev (xxxx-xx-xx):
----------------------------------
+Search API 1.21 (2021-11-04):
+-----------------------------
 - #3199906 by carolpettirossi, drunken monkey: Added an option for disabling
   tracking of changes in related entities.
 - #3230791 by Anul, drunken monkey: Converted the remaining README.txt files to
