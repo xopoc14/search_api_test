@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3249792 by kim.pepper, borisson_: Fixed deprecation warning "$modules 
+  property must be declared protected".
 
 Search API 1.21 (2021-11-04):
 -----------------------------
