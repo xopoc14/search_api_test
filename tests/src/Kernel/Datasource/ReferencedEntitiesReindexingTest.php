@@ -21,7 +21,7 @@ class ReferencedEntitiesReindexingTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'user',
     'node',
     'field',

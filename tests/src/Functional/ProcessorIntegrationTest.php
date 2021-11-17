@@ -26,7 +26,7 @@ class ProcessorIntegrationTest extends SearchApiBrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'filter',
     'taxonomy',
     'search_api_test_no_ui',

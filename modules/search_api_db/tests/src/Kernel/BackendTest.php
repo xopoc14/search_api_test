@@ -35,7 +35,7 @@ class BackendTest extends BackendTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'search_api_db',
     'search_api_test_db',
   ];
