@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3249801 by paulocs, beatrizrodrigues, drunken monkey: Fixed failing tests
+  against Drupal HEAD.
 - #3249792 by kim.pepper, borisson_: Fixed deprecation warning "$modules 
   property must be declared protected".
 
