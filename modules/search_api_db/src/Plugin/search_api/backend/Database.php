@@ -2779,8 +2779,9 @@ class Database extends BackendPluginBase implements PluginFormInterface {
           ->condition('t.field_name', $field)
           ->condition('t.item_id', $all_results, 'IN');
         if ($pass == 1) {
-          $field_query->condition('t.word', $incomplete_like, 'LIKE')
-            ->condition('t.word', $keys, 'NOT IN');
+          $field_query
+            ->condition('t.word', $keys, 'NOT IN')
+            ->condition('t.word', $incomplete_like, 'LIKE');
         }
         if (!isset($word_query)) {
           $word_query = $field_query;

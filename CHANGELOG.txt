@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3091198 by alexpott, drunken monkey: Fixed problems on MySQL 5.6/5.7.
 - #3249801 by paulocs, beatrizrodrigues, drunken monkey: Fixed failing tests
   against Drupal HEAD.
 - #3249792 by kim.pepper, borisson_: Fixed deprecation warning "$modules 
