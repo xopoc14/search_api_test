@@ -540,9 +540,15 @@ class Database extends BackendPluginBase implements PluginFormInterface {
   public function viewSettings() {
     $info = [];
 
+    if ($this->configuration['database']) {
+      $database = str_replace(':', ' > ', $this->configuration['database']);
+    }
+    else {
+      $database = $this->t('None selected yet');
+    }
     $info[] = [
       'label' => $this->t('Database'),
-      'info' => str_replace(':', ' > ', $this->configuration['database']),
+      'info' => $database,
     ];
     if ($this->configuration['min_chars'] > 1) {
       $info[] = [
