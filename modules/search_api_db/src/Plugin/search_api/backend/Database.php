@@ -2013,17 +2013,21 @@ class Database extends BackendPluginBase implements PluginFormInterface {
       $field = reset($fields);
       $db_query = $this->database->select($field['table'], 't');
       $mul_words = ($word_count > 1);
+      // Depending on several factors, a different set of columns is expected to
+      // be returned in this query (that will potentially be nested later).
+      // Also, grouping might be added for some combinations, in which case we
+      // need to SUM() the score so it doesn't get grouped as well.
       if ($neg_nested) {
         $db_query->fields('t', ['item_id', 'word']);
       }
       elseif ($neg) {
         $db_query->fields('t', ['item_id']);
       }
-      elseif ($not_nested && $match_parts) {
+      elseif ($match_parts) {
         $db_query->fields('t', ['item_id']);
         $db_query->addExpression('SUM(t.score)', 'score');
       }
-      elseif ($not_nested || $match_parts) {
+      elseif ($not_nested) {
         $db_query->fields('t', ['item_id', 'score']);
       }
       else {

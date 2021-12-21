@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3225675 by mdupont, drunken monkey: Fixed score calculation in DB backend
+  when multiple fields have the same score.
 - #3253738 by mkalkbrenner, alexpott, drunken monkey: Fixed deprecation
   warnings in PHP 8.1.
 - #3091198 by alexpott, drunken monkey: Fixed problems on MySQL 5.6/5.7.
