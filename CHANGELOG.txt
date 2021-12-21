@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3220283 by james.williams, drunken monkey: Fixed automatic reindexing of
+  related entities with undefined languages.
 - #3225675 by mdupont, drunken monkey: Fixed score calculation in DB backend
   when multiple fields have the same score.
 - #3253738 by mkalkbrenner, alexpott, drunken monkey: Fixed deprecation
