@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3221345 by drunken monkey, jan kellermann: Fixed handling of invalid date
+  values during indexing.
 - #3220283 by james.williams, drunken monkey: Fixed automatic reindexing of
   related entities with undefined languages.
 - #3225675 by mdupont, drunken monkey: Fixed score calculation in DB backend
