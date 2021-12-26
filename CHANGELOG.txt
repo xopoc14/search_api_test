@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3255474 by murilohp, drunken monkey: Removed outdated test helper interfaces.
 - #2983640 by Nick_vh, L_VanDamme, drunken monkey, Marios Anagnostopoulos,
   estoyausente, jsst, yogeshmpawar, borisson_, legolasbo: Added an option to
   create an excerpt even when no keywords are present.

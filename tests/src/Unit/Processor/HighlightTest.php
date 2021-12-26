@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\search_api\Unit\Processor;
 
+use Drupal\Core\TypedData\ComplexDataInterface;
 use Drupal\Core\TypedData\DataDefinition;
 use Drupal\Core\TypedData\TypedDataInterface;
 use Drupal\search_api\Datasource\DatasourceInterface;
@@ -14,7 +15,6 @@ use Drupal\search_api\Processor\ProcessorProperty;
 use Drupal\search_api\Query\QueryInterface;
 use Drupal\search_api\Query\ResultSet;
 use Drupal\search_api\Utility\Utility;
-use Drupal\Tests\search_api\Unit\TestComplexDataInterface;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -932,14 +932,14 @@ END;
    * Tests that field extraction in the processor works correctly.
    */
   public function testFieldExtraction() {
-    /** @var \Drupal\Tests\search_api\Unit\TestComplexDataInterface|\PHPUnit\Framework\MockObject\MockObject $object */
-    $object = $this->createMock(TestComplexDataInterface::class);
+    /** @var \Drupal\Core\TypedData\ComplexDataInterface|\PHPUnit\Framework\MockObject\MockObject $object */
+    $object = $this->createMock(ComplexDataInterface::class);
     $bar_foo_property = $this->createMock(TypedDataInterface::class);
     $bar_foo_property->method('getValue')
       ->willReturn('value3 foo');
     $bar_foo_property->method('getDataDefinition')
       ->willReturn(new DataDefinition());
-    $bar_property = $this->createMock(TestComplexDataInterface::class);
+    $bar_property = $this->createMock(ComplexDataInterface::class);
     $bar_property->method('get')
       ->willReturnMap([
         ['foo', $bar_foo_property],
@@ -1226,7 +1226,7 @@ END;
    */
   protected function createTestField($id, $combined_property_path, $text = TRUE) {
     $field = new Field($this->index, $id);
-    list ($datasource_id, $property_path) = Utility::splitCombinedId($combined_property_path);
+    [$datasource_id, $property_path] = Utility::splitCombinedId($combined_property_path);
     $field->setDatasourceId($datasource_id);
     $field->setPropertyPath($property_path);
     $field->setType($text ? 'text' : 'string');
