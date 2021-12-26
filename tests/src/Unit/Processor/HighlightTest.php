@@ -1163,6 +1163,55 @@ END;
   }
 
   /**
+   * Tests that the "excerpt_always" option works correctly.
+   */
+  public function testNoKeysExcerpt(): void {
+    $this->processor->setConfiguration([
+      'highlight' => 'never',
+      'excerpt_always' => TRUE,
+      'excerpt_length' => 45,
+    ]);
+
+    $query = $this->createMock(QueryInterface::class);
+    $query->expects($this->once())
+      ->method('getProcessingLevel')
+      ->willReturn(QueryInterface::PROCESSING_FULL);
+    $query->expects($this->atLeastOnce())
+      ->method('getOriginalKeys')
+      ->willReturn(NULL);
+    /** @var \Drupal\search_api\Query\QueryInterface $query */
+
+    $field = $this->createTestField('body', 'entity:node/body');
+
+    $this->index->expects($this->atLeastOnce())
+      ->method('getFields')
+      ->will($this->returnValue(['body' => $field]));
+
+    $this->processor->setIndex($this->index);
+
+    $fields = [
+      'entity:node/body' => [
+        'type' => 'text',
+        'values' => [$this->getFieldBody()],
+      ],
+    ];
+
+    $items = $this->createItems($this->index, 1, $fields);
+
+    $results = new ResultSet($query);
+    $results->setResultItems($items);
+    $results->setResultCount(1);
+
+    $this->processor->postprocessSearchResults($results);
+
+    $fields = $items[$this->itemIds[0]]->getExtraData('highlighted_fields');
+    $this->assertEmpty($fields);
+    $excerpt = $items[$this->itemIds[0]]->getExcerpt();
+    $expected = 'Lorem ipsum dolor sit amet, consectetur …';
+    $this->assertEquals($expected, $excerpt, 'Highlighting is correctly applied to a partial match.');
+  }
+
+  /**
    * Creates a field object for testing.
    *
    * @param string $id

@@ -1,5 +1,8 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2983640 by Nick_vh, L_VanDamme, drunken monkey, Marios Anagnostopoulos,
+  estoyausente, jsst, yogeshmpawar, borisson_, legolasbo: Added an option to
+  create an excerpt even when no keywords are present.
 - #3221345 by drunken monkey, jan kellermann: Fixed handling of invalid date
   values during indexing.
 - #3220283 by james.williams, drunken monkey: Fixed automatic reindexing of
