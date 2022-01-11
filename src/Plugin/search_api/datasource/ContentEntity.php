@@ -1241,6 +1241,36 @@ class ContentEntity extends DatasourcePluginBase implements PluginFormInterface 
   }
 
   /**
+   * Filters a set of datasource-specific item IDs.
+   *
+   * Returns only those item IDs that are valid for the given datasource and
+   * index. This method only checks the item language, though – whether an
+   * entity with that ID actually exists, or whether it has a bundle included
+   * for that datasource, is not verified.
+   *
+   * @param \Drupal\search_api\IndexInterface $index
+   *   The index for which to validate.
+   * @param string $datasource_id
+   *   The ID of the datasource on the index for which to validate.
+   * @param string[] $item_ids
+   *   The item IDs to be validated.
+   *
+   * @return string[]
+   *   All given item IDs that are valid for that index and datasource.
+   *
+   * @deprecated in search_api:8.x-1.22 and is removed from search_api:2.0.0.
+   *   Use
+   *   \Drupal\search_api\Plugin\search_api\datasource\ContentEntityTrackingManager::filterValidItemIds()
+   *   instead.
+   *
+   * @see https://www.drupal.org/node/3257943
+   */
+  public static function filterValidItemIds(IndexInterface $index, $datasource_id, array $item_ids) {
+    @trigger_error('\Drupal\search_api\Plugin\search_api\datasource\ContentEntity::filterValidItemIds() is deprecated in search_api:8.x-1.21 and is removed from search_api:2.0.0. Use \Drupal\search_api\Plugin\search_api\datasource\ContentEntityTrackingManager::filterValidItemIds() instead. See https://www.drupal.org/node/3257943', E_USER_DEPRECATED);
+    return ContentEntityTrackingManager::filterValidItemIds($index, $datasource_id, $item_ids);
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function getListCacheContexts() {
