@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3256114 by drunken monkey: Fixed wrong static method calls in
+  UnsavedIndexConfiguration.
 - #2869103 by osopolar, drunken monkey: Fixed problems with theme cache when
   indexing the "Rendered HTML output" field.
 - #3229495 by AndyF, drunken monkey: Fixed "start batch tracking" functionality
