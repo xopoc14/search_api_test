@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3229495 by AndyF, drunken monkey: Fixed "start batch tracking" functionality
+  for indexes.
 - #3238635 by drunken monkey, mkalkbrenner: Added the
   AutocompleteBackendInterface.
 - #3221103 by drunken monkey: Fixed small bug in Views fulltext search filter.
