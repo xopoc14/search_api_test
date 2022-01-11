@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2869103 by osopolar, drunken monkey: Fixed problems with theme cache when
+  indexing the "Rendered HTML output" field.
 - #3229495 by AndyF, drunken monkey: Fixed "start batch tracking" functionality
   for indexes.
 - #3238635 by drunken monkey, mkalkbrenner: Added the
