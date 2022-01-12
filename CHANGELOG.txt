@@ -1,5 +1,5 @@
-Search API 1.x, dev (xxxx-xx-xx):
----------------------------------
+Search API 1.22 (2022-01-12):
+-----------------------------
 - #3247781 by Taran2L, drunken monkey: Fixed error on database update because
   of task table UNIQUE key.
 - #3228382 by mikran, drunken monkey: Added an "Entity type" field.
