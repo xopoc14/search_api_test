@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3228382 by mikran, drunken monkey: Added an "Entity type" field.
 - #3222644 by johne, drunken monkey: Made
   ContentEntityTrackingManager::filterValidItemIds() public.
 - #3256114 by drunken monkey: Fixed wrong static method calls in

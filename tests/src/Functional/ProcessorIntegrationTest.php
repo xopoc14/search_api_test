@@ -100,6 +100,7 @@ class ProcessorIntegrationTest extends SearchApiBrowserTestBase {
     $enabled = [
       'add_url',
       'aggregated_field',
+      'entity_type',
       'language_with_fallback',
       'rendered_item',
     ];
