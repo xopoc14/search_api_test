@@ -1,5 +1,5 @@
-Search API 1.x, dev (xxxx-xx-xx):
----------------------------------
+Search API 1.23 (2022-01-21):
+-----------------------------
 - #3247781 (follow-up) by drunken monkey: Fixed missing update for Task entity
   storage schema.
 
