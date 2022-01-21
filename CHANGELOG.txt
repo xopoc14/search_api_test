@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3247781 (follow-up) by drunken monkey: Fixed missing update for Task entity
+  storage schema.
 
 Search API 1.22 (2022-01-12):
 -----------------------------
@@ -32,7 +34,7 @@ Search API 1.22 (2022-01-12):
 - #3091198 by alexpott, drunken monkey: Fixed problems on MySQL 5.6/5.7.
 - #3249801 by paulocs, beatrizrodrigues, drunken monkey: Fixed failing tests
   against Drupal HEAD.
-- #3249792 by kim.pepper, borisson_: Fixed deprecation warning "$modules 
+- #3249792 by kim.pepper, borisson_: Fixed deprecation warning "$modules
   property must be declared protected".
 
 Search API 1.21 (2021-11-04):
