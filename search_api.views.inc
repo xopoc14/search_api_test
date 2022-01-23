@@ -515,6 +515,14 @@ function _search_api_views_data_special_fields(array &$table, IndexInterface $in
     $table[$language_field]['real field'] = 'search_api_language';
   }
 
+  $url_field = _search_api_views_find_field_alias('search_api_url', $table);
+  $table[$url_field]['title'] = t('Item URL');
+  $table[$url_field]['help'] = t("The item's URL");
+  $table[$url_field]['field']['id'] = 'search_api';
+  if ($url_field != 'search_api_url') {
+    $table[$url_field]['real field'] = 'search_api_url';
+  }
+
   $relevance_field = _search_api_views_find_field_alias('search_api_relevance', $table);
   $table[$relevance_field]['group'] = t('Search');
   $table[$relevance_field]['title'] = t('Relevance');
