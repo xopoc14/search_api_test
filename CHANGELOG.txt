@@ -1,7 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
-- #3196990 by nguerrier, ekes, drunken monkey: Fixed wrong query and cache type
-  on Search API views.
+- #3196990 by nguerrier, ekes, drunken monkey, hswong3i: Fixed wrong query and
+  cache type on Search API views.
 - #3258802 by drunken monkey: Fixed errors when indexing fields with unknown
   types.
 - #3232736 by GuyPaddock, idebr, drunken monkey: Added query tags as an option
