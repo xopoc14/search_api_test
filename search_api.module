@@ -615,9 +615,10 @@ function search_api_form_views_exposed_form_alter(&$form, FormStateInterface $fo
         continue;
       }
       // Add a hidden form field for the facet parameter.
-      $form["{$filter_key}[$key]"] = [
+      $form[$filter_key][$key] = [
         '#type' => 'hidden',
         '#value' => $value,
+        '#name' => "{$filter_key}[$key]",
       ];
     }
   }

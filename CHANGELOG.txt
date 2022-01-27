@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3227659 by drunken monkey, daften: Fixed double-escaped query parameters
+  when using the Views "Preserve facets" option.
 - #3227268 by drunken monkey, Driskell: Fixed inconsistent collation in
   Database backend.
 - #3196990 by nguerrier, ekes, drunken monkey, hswong3i: Fixed wrong query and
