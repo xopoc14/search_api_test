@@ -369,6 +369,9 @@ class SearchApiQuery extends QueryPluginBase {
       'preserve_facet_query_args' => [
         'default' => FALSE,
       ],
+      'query_tags' => [
+        'default' => [],
+      ],
     ];
   }
 
@@ -408,6 +411,29 @@ class SearchApiQuery extends QueryPluginBase {
         '#value' => FALSE,
       ];
     }
+
+    $form['query_tags'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Query Tags'),
+      '#description' => $this->t('If set, these tags will be appended to the query and can be used to identify the query in a module. This can be helpful for altering queries.'),
+      '#default_value' => implode(', ', $this->options['query_tags']),
+      '#element_validate' => ['views_element_validate_tags'],
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitOptionsForm(&$form, FormStateInterface $form_state) {
+    $value = &$form_state->getValue(['query', 'options', 'query_tags']);
+    if (is_array($value)) {
+      // We already ran on this form state. This happens when the user toggles a
+      // display to override defaults or vice-versa – the submit handler gets
+      // invoked twice, and we don't want to bash the values  from the original
+      // call.
+      return;
+    }
+    $value = array_filter(array_map('trim', explode(',', $value)));
   }
 
   /**
@@ -520,6 +546,13 @@ class SearchApiQuery extends QueryPluginBase {
     // pass that through as the base path.
     if (($path = $this->view->getPath()) && strpos(Url::fromRoute('<current>')->toString(), $path) !== 0) {
       $this->query->setOption('search_api_base_path', $path);
+    }
+
+    // Add the query tags.
+    if (!empty($this->options['query_tags'])) {
+      foreach ($this->options['query_tags'] as $tag) {
+        $this->query->addTag($tag);
+      }
     }
 
     // Save query information for Views UI.

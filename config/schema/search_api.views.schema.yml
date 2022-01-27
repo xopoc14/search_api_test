@@ -11,6 +11,12 @@ views.query.search_api_query:
     preserve_facet_query_args:
       type: boolean
       label: By default, changing an exposed filter would reset all selected facets. This option allows you to prevent this behavior.
+    query_tags:
+      type: sequence
+      label: 'Query Tags'
+      sequence:
+        type: string
+        label: 'Tag'
 
 views.row.search_api:
   type: views_row

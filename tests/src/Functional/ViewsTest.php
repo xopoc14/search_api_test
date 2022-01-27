@@ -998,6 +998,19 @@ class ViewsTest extends SearchApiBrowserTestBase {
     $this->submitForm([], 'Save');
     $this->assertSession()->statusCodeEquals(200);
 
+    // Set query tags.
+    $this->drupalGet('admin/structure/views/nojs/display/search_api_test_view/page_1/query');
+    $this->submitForm(['query[options][query_tags]' => 'weather'], 'Apply');
+    $this->submitForm([], 'Save');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->drupalGet('search-api-test');
+    $this->assertSession()->statusCodeEquals(200);
+    $this->assertSession()->pageTextContains('Sunshine');
+    $this->drupalGet('admin/structure/views/nojs/display/search_api_test_view/page_1/query');
+    $this->submitForm(['query[options][query_tags]' => 'weather'], 'Apply');
+    $this->submitForm([], 'Save');
+    $this->assertSession()->statusCodeEquals(200);
+
     $this->drupalLogout();
     $this->drupalGet('search-api-test');
     $this->assertSession()->statusCodeEquals(200);

@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3232736 by GuyPaddock, idebr, drunken monkey: Added query tags as an option
+  to Views.
 - #3188138 by drunken monkey, devad: Added an "Item URL" field to Views.
 
 Search API 1.23 (2022-01-21):
