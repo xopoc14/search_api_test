@@ -4,6 +4,7 @@ namespace Drupal\Tests\search_api_db\Kernel;
 
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Database\Database as CoreDatabase;
+use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api\Entity\Server;
@@ -20,6 +21,7 @@ use Drupal\search_api_db\DatabaseCompatibility\GenericDatabase;
 use Drupal\search_api_db\Plugin\search_api\backend\Database;
 use Drupal\search_api_db\Tests\DatabaseTestsTrait;
 use Drupal\Tests\search_api\Kernel\BackendTestBase;
+use Drupal\Tests\search_api\Kernel\TestLogger;
 
 /**
  * Tests index and search capabilities using the Database search backend.
@@ -49,6 +51,15 @@ class BackendTest extends BackendTestBase {
    * {@inheritdoc}
    */
   protected $indexId = 'database_search_index';
+
+  /**
+   * The test logger installed in the container.
+   *
+   * Will throw expections whenever a warning or error is logged.
+   *
+   * @var \Drupal\Tests\search_api\Kernel\TestLogger
+   */
+  protected $logger;
 
   /**
    * {@inheritdoc}
@@ -97,6 +108,19 @@ class BackendTest extends BackendTestBase {
   /**
    * {@inheritdoc}
    */
+  public function register(ContainerBuilder $container): void {
+    parent::register($container);
+
+    // Set a logger that will throw exceptions when warnings/errors are logged.
+    $this->logger = new TestLogger('');
+    $container->set('logger.factory', $this->logger);
+    $container->set('logger.channel.search_api', $this->logger);
+    $container->set('logger.channel.search_api_db', $this->logger);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   protected function checkBackendSpecificFeatures() {
     $this->checkMultiValuedInfo();
     $this->searchWithRandom();
@@ -126,6 +150,7 @@ class BackendTest extends BackendTestBase {
     $this->regressionTest2873023();
     $this->regressionTest3199355();
     $this->regressionTest3225675();
+    $this->regressionTest3258802();
   }
 
   /**
@@ -699,8 +724,16 @@ class BackendTest extends BackendTestBase {
   protected function regressionTest2925464() {
     $index = $this->getIndex();
 
+    // Changing the field type and, thus, column type, will cause a database
+    // error on MySQL and Postgres due to illegal integer values.
+    if (in_array(\Drupal::database()->driver(), ['mysql', 'pgsql'])) {
+      $this->logger->setExpectedErrors(1);
+    }
+
     $index->getField('category')->setType('integer');
     $index->save();
+
+    $this->logger->assertAllExpectedErrorsEncountered();
 
     $index->getField('category')->setType('string');
     $index->save();
@@ -887,6 +920,42 @@ class BackendTest extends BackendTestBase {
   }
 
   /**
+   * Tests whether unknown field types are handled correctly.
+   *
+   * @see https://www.drupal.org/node/3258802
+   */
+  protected function regressionTest3258802(): void {
+    $this->enableModules(['search_api_test']);
+
+    $index = $this->getIndex();
+    $type_field = $index->getField('type');
+    $this->assertEquals('string', $type_field->getType());
+    $type_field->setType('search_api_test_unsupported');
+    $index->save();
+    // No tasks should have been created.
+    $task_manager = \Drupal::getContainer()->get('search_api.task_manager');
+    $this->assertEquals(0, $task_manager->getTasksCount());
+    // Reindexing should work fine.
+    $index->clear();
+    $this->assertEquals(5, $this->indexItems($this->indexId));
+
+    $results = $index->query()->addCondition('type', 'article')->execute();
+    $this->assertResults([4, 5], $results, 'Search with filter on field with unknown type');
+
+    $index = $this->getIndex();
+    $type_field = $index->getField('type');
+    $this->assertEquals('search_api_test_unsupported', $type_field->getType());
+    $type_field->setType('string');
+    $index->save();
+    // No tasks should have been created.
+    $tasks_count = $task_manager->getTasksCount();
+    $this->assertEquals(0, $tasks_count);
+    $this->indexItems($this->indexId);
+
+    $this->disableModules(['search_api_test']);
+  }
+
+  /**
    * {@inheritdoc}
    */
   protected function checkIndexWithoutFields() {
@@ -902,6 +971,16 @@ class BackendTest extends BackendTestBase {
     $this->assertEquals($expected, $info_fields);
 
     return $index;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function regressionTest2471509(): void {
+    // As this test will log an exception, we need to take that into account.
+    $this->logger->setExpectedErrors(2);
+    parent::regressionTest2471509();
+    $this->logger->assertAllExpectedErrorsEncountered();
   }
 
   /**

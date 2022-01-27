@@ -2,6 +2,7 @@
 
 namespace Drupal\search_api_db\Plugin\search_api\backend;
 
+use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
@@ -920,6 +921,18 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
         return ['type' => 'int', 'size' => 'tiny'];
 
       default:
+        try {
+          $data_type = $this->getDataTypePluginManager()->createInstance($type);
+          if ($data_type && !$data_type->isDefault()) {
+            $fallback_type = $data_type->getFallbackType();
+            if ($fallback_type != $type) {
+              return $this->sqlType($fallback_type);
+            }
+          }
+        }
+        catch (PluginException $e) {
+          // Ignore.
+        }
         throw new SearchApiException("Unknown field type '$type'.");
     }
   }
@@ -1540,6 +1553,18 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
         return $value ? 1 : 0;
 
       default:
+        try {
+          $data_type = $this->getDataTypePluginManager()->createInstance($type);
+          if ($data_type && !$data_type->isDefault()) {
+            $fallback_type = $data_type->getFallbackType();
+            if ($fallback_type != $type) {
+              return $this->convert($value, $fallback_type, $original_type, $index);
+            }
+          }
+        }
+        catch (PluginException $e) {
+          // Ignore.
+        }
         throw new SearchApiException("Unknown field type '$type'.");
     }
   }
