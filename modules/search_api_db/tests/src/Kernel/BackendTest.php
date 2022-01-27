@@ -151,6 +151,7 @@ class BackendTest extends BackendTestBase {
     $this->regressionTest3199355();
     $this->regressionTest3225675();
     $this->regressionTest3258802();
+    $this->regressionTest3227268();
   }
 
   /**
@@ -953,6 +954,34 @@ class BackendTest extends BackendTestBase {
     $this->indexItems($this->indexId);
 
     $this->disableModules(['search_api_test']);
+  }
+
+  /**
+   * Tests whether the text table's "item_id" column has the correct collation.
+   *
+   * This check is only active on MySQL.
+   *
+   * @see https://www.drupal.org/node/3227268
+   *
+   * @see \Drupal\search_api_db\DatabaseCompatibility\MySql::alterNewTable()
+   */
+  protected function regressionTest3227268(): void {
+    $database = \Drupal::database();
+    if ($database->driver() !== 'mysql') {
+      return;
+    }
+    $db_info = $this->getIndexDbInfo();
+    $text_table = $db_info['field_tables']['body']['table'];
+    $this->assertTrue(\Drupal::database()->schema()->tableExists($text_table));
+    $sql = "SHOW FULL COLUMNS FROM {{$text_table}}";
+    $collations = [];
+    foreach ($database->query($sql) as $row) {
+      $collations[$row->Field] = $row->Collation;
+    }
+    // Unfortunately, it's not consistent whether the database will report the
+    // collation as "utf8_general_ci" or "utf8mb3_general_ci".
+    $this->assertContains($collations['item_id'], ['utf8mb3_general_ci', 'utf8_general_ci']);
+    $this->assertEquals('utf8mb4_bin', $collations['word']);
   }
 
   /**
