@@ -55,8 +55,7 @@ class ViewsQueryTypeUpdateTest extends KernelTestBase {
    */
   public function testViewUpdate() {
     // Create the view with faulty properties.
-    $module_path = $this->container->get('extension.path.resolver')
-      ->getPath('module', 'search_api');
+    $module_path = drupal_get_path('module', 'search_api');
     $view_yml = file_get_contents("$module_path/tests/fixtures/views.view.search_api_query_type_test.yml");
     $values = Yaml::decode($view_yml);
     $view_id = $values['id'];
