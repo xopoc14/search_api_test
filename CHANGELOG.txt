@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3256028 by drunken monkey, mkalkbrenner:  Increased Core version requirement
+  to 9.2.
 - #3247914 by drunken monkey: Fixed config form of the "Type-specific boosting"
   processor.
 - #3262702 by drunken monkey: Fixed test failures on Drupal 9.2.

@@ -4,5 +4,5 @@ description: 'Provides field definitions for example content that include entity
 package: Testing
 dependencies:
   - drupal:node
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.2 || ^10.0
 hidden: true

@@ -5,5 +5,5 @@ package: Testing
 dependencies:
   - search_api:search_api_test_views
   - search_api_autocomplete:search_api_autocomplete
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^9.2 || ^10.0
 hidden: true

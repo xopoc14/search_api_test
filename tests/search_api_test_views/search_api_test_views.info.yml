@@ -8,5 +8,5 @@ dependencies:
   - drupal:node
   - drupal:rest
   - drupal:views
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^9.2 || ^10.0
 hidden: true
