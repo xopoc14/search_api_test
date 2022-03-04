@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3247914 by drunken monkey: Fixed config form of the "Type-specific boosting"
+  processor.
 - #3262702 by drunken monkey: Fixed test failures on Drupal 9.2.
 - #3227659 by drunken monkey, daften: Fixed double-escaped query parameters
   when using the Views "Preserve facets" option.
