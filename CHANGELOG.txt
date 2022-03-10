@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3239649 by drunken monkey, phma: Fixed missing config schemas for various
+  Views plugins.
 - #3262771 by drunken monkey, marciaibanez: Moved test modules to test/modules.
 - #3256028 by drunken monkey, mkalkbrenner:  Increased Core version requirement
   to 9.2.
