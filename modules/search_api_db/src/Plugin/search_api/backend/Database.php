@@ -37,7 +37,7 @@ use Drupal\search_api_db\DatabaseCompatibility\GenericDatabase;
 use Drupal\search_api_db\Event\QueryPreExecuteEvent;
 use Drupal\search_api_db\Event\SearchApiDbEvents;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Indexes and searches items using the database.
@@ -139,7 +139,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
   /**
    * The event dispatcher.
    *
-   * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface|null
+   * @var \Symfony\Contracts\EventDispatcher\EventDispatcherInterface|null
    */
   protected $eventDispatcher;
 
@@ -363,7 +363,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
   /**
    * Retrieves the event dispatcher.
    *
-   * @return \Symfony\Component\EventDispatcher\EventDispatcherInterface
+   * @return \Symfony\Contracts\EventDispatcher\EventDispatcherInterface
    *   The event dispatcher.
    */
   public function getEventDispatcher() {
@@ -373,7 +373,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
   /**
    * Sets the event dispatcher.
    *
-   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   * @param \Symfony\Contracts\EventDispatcher\EventDispatcherInterface $event_dispatcher
    *   The new event dispatcher.
    *
    * @return $this
@@ -1824,7 +1824,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
     // query is constructed from it).
     $event_base_name = SearchApiDbEvents::QUERY_PRE_EXECUTE;
     $event = new QueryPreExecuteEvent($db_query, $query);
-    $this->getEventDispatcher()->dispatch($event_base_name, $event);
+    $this->getEventDispatcher()->dispatch($event, $event_base_name);
     $db_query = $event->getDbQuery();
 
     $description = 'This hook is deprecated in search_api:8.x-1.16 and is removed from search_api:2.0.0. Please use the "search_api_db.query_pre_execute" event instead. See https://www.drupal.org/node/3103591';

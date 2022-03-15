@@ -1122,7 +1122,7 @@ class BackendTest extends BackendTestBase {
     \Drupal::moduleHandler()->alter('search_api_index_items', $index, $items);
     $event = new IndexingItemsEvent($index, $items);
     \Drupal::getContainer()->get('event_dispatcher')
-      ->dispatch(SearchApiEvents::INDEXING_ITEMS, $event);
+      ->dispatch($event, SearchApiEvents::INDEXING_ITEMS);
     foreach ($items as $item) {
       // This will cache the extracted fields so processors, etc., can retrieve
       // them directly.

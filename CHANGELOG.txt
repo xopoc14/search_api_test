@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3168162 by gabesullice, drunken monkey, mkalkbrenner: Updated to latest
+  changes in Event system.
 - #3248262 by Robert_T, drunken monkey: Fixed problems with recent database
   update functions.
 - #3239649 by drunken monkey, phma: Fixed missing config schemas for various
