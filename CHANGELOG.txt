@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3266715 by kimberleycgm, drunken monkey: Fixed "Rendered item" processor not
+  adding the "Authenticated" role when another is selected.
 - #3270695 by mkalkbrenner, drunken monkey: Improved status messages during
   indexing.
 - #3268953 by drunken monkey: Changed indents in composer.json to 4 spaces.
