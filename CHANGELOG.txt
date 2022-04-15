@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3258375 by Eugene Bocharov, wells, drunken monkey, joshuami, MrDaleSmith,
+  Grayle: Fixed out-of-memory error when used with Views, Metatag and caching.
 - #3270324 by drunken monkey, kimberleycgm: Fixed incorrect storing of
   "Rendered item" processor setting "roles".
 - #3266715 by kimberleycgm, drunken monkey: Fixed "Rendered item" processor not
