@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3270324 by drunken monkey, kimberleycgm: Fixed incorrect storing of
+  "Rendered item" processor setting "roles".
 - #3266715 by kimberleycgm, drunken monkey: Fixed "Rendered item" processor not
   adding the "Authenticated" role when another is selected.
 - #3270695 by mkalkbrenner, drunken monkey: Improved status messages during
