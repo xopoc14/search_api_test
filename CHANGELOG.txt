@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3246615 by drunken monkey: Fixed error when saving an unindexed translation
+  of an entity.
 - #3258375 by Eugene Bocharov, wells, drunken monkey, joshuami, MrDaleSmith,
   Grayle: Fixed out-of-memory error when used with Views, Metatag and caching.
 - #3270324 by drunken monkey, kimberleycgm: Fixed incorrect storing of
