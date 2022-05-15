@@ -26,13 +26,20 @@ function search_api_test_views_search_api_query_alter(QueryInterface $query) {
 
   $alter_cache_metadata = \Drupal::state()
     ->get('search_api_test_views.alter_query_cacheability_metadata', FALSE);
+
   if ($alter_cache_metadata
       && $query instanceof RefinableCacheableDependencyInterface) {
-    // Alter in some imaginary cacheability metadata for testing.
-    $query->addCacheContexts(['search_api_test_context']);
-    $query->addCacheTags(['search_api:test_tag']);
+    // Alter in some imaginary cacheability metadata for testing, including a
+    // cache tag that depends on the search ID (to simulate caching information
+    // that depends on the specific search).
+    $query->addCacheContexts(['views_test_cache_context']);
+    $query->addCacheTags([
+      'search_api:test_tag',
+      'search_api:test_' . $query->getSearchId(),
+    ]);
     $query->mergeCacheMaxAge(100);
   }
+
 }
 
 /**
