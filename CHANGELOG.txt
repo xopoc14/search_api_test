@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3253986 by drunken monkey, gaddman: Fixed empty "ignore characters" setting
+  for the Tokenizer processor.
 - #3197050 by BAHbKA, drunken monkey: Fixed caching issue for facets on AJAX
   views.
 - #3246615 by drunken monkey: Fixed error when saving an unindexed translation
