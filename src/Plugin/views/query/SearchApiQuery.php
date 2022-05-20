@@ -12,7 +12,6 @@ use Drupal\Core\Entity\Plugin\DataType\EntityAdapter;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\MessengerInterface;
-use Drupal\Core\Url;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api\LoggerTrait;
 use Drupal\search_api\ParseMode\ParseModeInterface;
@@ -540,12 +539,6 @@ class SearchApiQuery extends QueryPluginBase {
     // Add the "search_api_bypass_access" option to the query, if desired.
     if (!empty($this->options['bypass_access'])) {
       $this->query->setOption('search_api_bypass_access', TRUE);
-    }
-
-    // If the View and the Panel conspire to provide an overridden path then
-    // pass that through as the base path.
-    if (($path = $this->view->getPath()) && strpos(Url::fromRoute('<current>')->toString(), $path) !== 0) {
-      $this->query->setOption('search_api_base_path', $path);
     }
 
     // Add the query tags.

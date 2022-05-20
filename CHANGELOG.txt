@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3243313 by Steven Jones, drunken monkey: Removed the "search_api_base_path"
+  query option for views.
 - #3179643 by drunken monkey: Fixed Views field extraction bevahior when fields
   returned from server don't have values.
 - #3253986 by drunken monkey, gaddman: Fixed empty "ignore characters" setting
