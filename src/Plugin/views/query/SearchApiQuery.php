@@ -718,25 +718,23 @@ class SearchApiQuery extends QueryPluginBase {
 
       // Gather any properties from the search results.
       foreach ($result->getFields(FALSE) as $field_id => $field) {
-        if ($field->getValues()) {
-          $path = $field->getCombinedPropertyPath();
-          try {
-            $property = $field->getDataDefinition();
-            // For configurable processor-defined properties, our Views field
-            // handlers use a special property path to distinguish multiple
-            // fields with the same property path. Therefore, we here also set
-            // the values using that special property path so this will work
-            // correctly.
-            if ($property instanceof ConfigurablePropertyInterface) {
-              $path .= '|' . $field_id;
-            }
+        $path = $field->getCombinedPropertyPath();
+        try {
+          $property = $field->getDataDefinition();
+          // For configurable processor-defined properties, our Views field
+          // handlers use a special property path to distinguish multiple
+          // fields with the same property path. Therefore, we here also set
+          // the values using that special property path so this will work
+          // correctly.
+          if ($property instanceof ConfigurablePropertyInterface) {
+            $path .= '|' . $field_id;
           }
-          catch (SearchApiException $e) {
-            // If we're not able to retrieve the data definition at this point,
-            // it doesn't really matter.
-          }
-          $values[$path] = $field->getValues();
         }
+        catch (SearchApiException $e) {
+          // If we're not able to retrieve the data definition at this point,
+          // it doesn't really matter.
+        }
+        $values[$path] = $field->getValues();
       }
 
       $values['index'] = $count++;
