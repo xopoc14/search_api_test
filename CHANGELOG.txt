@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3292241 by drunken monkey: Fixed test fails.
 - #3243313 by Steven Jones, drunken monkey: Removed the "search_api_base_path"
   query option for views.
 - #3179643 by drunken monkey: Fixed Views field extraction bevahior when fields
