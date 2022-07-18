@@ -1,5 +1,5 @@
-Search API 1.x, dev (xxxx-xx-xx):
----------------------------------
+Search API 1.25 (2022-07-18):
+-----------------------------
 - #3296006 by mkalkbrenner, borisson_, drunken monkey: Fixed Views caching for
   failed searches.
 - #3295564 by mkalkbrenner, drunken monkey, borisson_: Fixed broken Views
