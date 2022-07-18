@@ -258,6 +258,12 @@ trait SearchApiCachePluginTrait {
     // every single cacheable display in the view, thus we are resetting the
     // query to its original unprocessed state.
     $query = $this->getQuery(TRUE)->getSearchApiQuery();
+    // Add a tag to the query to indicate that this is not a real search but the
+    // save process of a view. Modules like facets can use this information to
+    // not perform their normal search time tasks on this query. This is
+    // especially important when an event handler would add caching information
+    // to the query.
+    $query->addTag('alter_cache_metadata');
     $query->preExecute();
     // Allow modules that alter the query to add their cache metadata to the
     // view.

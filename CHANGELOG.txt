@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3295564 by mkalkbrenner, drunken monkey, borisson_: Fixed broken Views
+  caching with Facets 2.0.4.
 
 Search API 1.24 (2022-07-07):
 -----------------------------
