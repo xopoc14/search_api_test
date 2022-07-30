@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3029582 by drunken monkey, RichardDavies: Fixed handling of Views contextual
+  filters in combination with filter groups.
 - #3247840 by drunken monkey: Added a hidden datasource option to disable the
   direct SQL query "fast path" for initial entity tracking.
 
