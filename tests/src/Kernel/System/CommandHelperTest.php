@@ -43,11 +43,11 @@ class CommandHelperTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp() {
+  public function setUp(): void {
     parent::setUp();
 
     $this->installSchema('search_api', ['search_api_item']);
-    $this->installSchema('system', ['key_value_expire', 'sequences']);
+    $this->installSchema('system', ['sequences']);
     $this->installEntitySchema('entity_test_mulrev_changed');
     $this->installEntitySchema('search_api_task');
     $this->installConfig('search_api');

@@ -43,7 +43,7 @@ class IntegrationTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp() {
+  public function setUp(): void {
     parent::setUp();
 
     // Create user with content access permission to see if the view is

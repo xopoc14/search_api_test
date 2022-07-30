@@ -46,7 +46,7 @@ class ViewsTest extends SearchApiBrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp() {
+  public function setUp(): void {
     parent::setUp();
 
     // Add a second language.

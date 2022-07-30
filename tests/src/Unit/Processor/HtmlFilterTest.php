@@ -26,7 +26,7 @@ class HtmlFilterTest extends UnitTestCase {
   /**
    * Creates a new processor object for use in the tests.
    */
-  public function setUp() {
+  public function setUp(): void {
     parent::setUp();
 
     $this->setUpMockContainer();

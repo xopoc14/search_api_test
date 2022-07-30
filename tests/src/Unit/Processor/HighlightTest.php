@@ -45,7 +45,7 @@ class HighlightTest extends UnitTestCase {
   /**
    * Creates a new processor object for use in the tests.
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->setUpMockContainer();

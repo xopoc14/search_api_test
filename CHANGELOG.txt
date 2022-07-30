@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3292775 by Berdir, drunken monkey: Fixed most deprecations preventing Drupal
+  10 compatibility.
 - #3257550 by drunken monkey, lpeidro: Fixed wrong handling of empty values in
   the HTML filter.
 - #3029582 by drunken monkey, RichardDavies: Fixed handling of Views contextual

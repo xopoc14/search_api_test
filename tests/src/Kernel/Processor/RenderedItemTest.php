@@ -55,7 +55,7 @@ class RenderedItemTest extends ProcessorTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp($processor = NULL) {
+  public function setUp($processor = NULL): void {
     parent::setUp('rendered_item');
 
     // Enable the optional "path_alias" entity type as well to make sure the
