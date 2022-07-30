@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3247840 by drunken monkey: Added a hidden datasource option to disable the
+  direct SQL query "fast path" for initial entity tracking.
 
 Search API 1.25 (2022-07-18):
 -----------------------------
