@@ -73,7 +73,7 @@ class IgnoreCaseTest extends UnitTestCase {
 
     $passed_value = NULL;
     $this->invokeMethod('processConditionValue', [&$passed_value]);
-    $this->assertSame(NULL, $passed_value);
+    $this->assertNull($passed_value);
 
     $condition = new Condition('field', NULL);
     $conditions = [$condition];

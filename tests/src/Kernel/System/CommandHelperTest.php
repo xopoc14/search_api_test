@@ -362,7 +362,7 @@ class CommandHelperTest extends KernelTestBase {
     $index->save();
 
     $index = Index::load('test_index');
-    $this->assertSame(NULL, $index->getServerId());
+    $this->assertNull($index->getServerId());
 
     $this->systemUnderTest->setIndexServerCommand('test_index', 'test_server');
 

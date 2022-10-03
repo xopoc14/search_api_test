@@ -1,8 +1,7 @@
 name: 'Search API Excerpt Test'
 type: module
 description: 'Support module for Search API Excerpt tests'
-package: Search
-core_version_requirement: ^9.2 || ^10.0
+package: Testing
 dependencies:
   - search_api:search_api
   - search_api:search_api_test_db

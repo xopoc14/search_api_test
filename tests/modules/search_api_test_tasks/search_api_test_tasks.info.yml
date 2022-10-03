@@ -4,5 +4,4 @@ description: 'Support module for tests of the Search API tasks system.'
 package: Testing
 dependencies:
   - search_api:search_api
-core_version_requirement: ^9.2 || ^10.0
 hidden: true

@@ -55,7 +55,7 @@ class SearchApiQuery extends QueryPluginBase {
    *
    * @var int
    */
-  protected $offset;
+  public int $offset = 0;
 
   /**
    * The index this view accesses.

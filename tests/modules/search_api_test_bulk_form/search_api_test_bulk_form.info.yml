@@ -7,5 +7,4 @@ dependencies:
   - drupal:views
   - search_api:search_api_db
   - search_api:search_api_test
-core_version_requirement: ^9.2 || ^10.0
 hidden: true
