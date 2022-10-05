@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3306204 by mkalkbrenner, drunken monkey: Added a new query option for
+  passing non-standard language filters to the backends.
 - #3262092 by attilatilman, japerry, drunken monkey, Berdir: Fixed several
   problems regarding Drupal 10 compatibility.
 - #3292775 by Berdir, drunken monkey: Fixed most deprecations preventing Drupal
