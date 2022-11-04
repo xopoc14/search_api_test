@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3318187 by drunken monkey, mkalkbrenner, aspilicious, edykst: Fixed
+  regressions in Views filters.
 - #3313195 by nkoporec, drunken monkey: Fixed failing
   ViewsTest::testViewSorts() test on Drupal 10.
 - #3311987 by tyler36, Arun Velusamy, sophiavs, drunken monkey: Fixed styling

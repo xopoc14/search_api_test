@@ -1116,8 +1116,8 @@ class SearchApiQuery extends QueryPluginBase {
    * @return $this
    *
    * @see \Drupal\views\Plugin\views\query\Sql::addWhere()
-   * @see \Drupal\search_api\Plugin\views\query\SearchApiQuery::filter()
-   * @see \Drupal\search_api\Plugin\views\query\SearchApiQuery::condition()
+   * @see \Drupal\search_api\Plugin\views\query\SearchApiQuery::addConditionGroup()
+   * @see \Drupal\search_api\Plugin\views\query\SearchApiQuery::addCondition()
    */
   public function addWhere($group, $field, $value = NULL, $operator = NULL) {
     if ($this->shouldAbort()) {
@@ -1175,7 +1175,7 @@ class SearchApiQuery extends QueryPluginBase {
    *   The group type – "AND" or "OR".
    */
   public function getGroupType($group) {
-    return !empty($this->where[$group]) ? $this->where[$group] : 'AND';
+    return $this->where[$group]['type'] ?? 'AND';
   }
 
   /**
