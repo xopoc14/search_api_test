@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3317319 by drunken monkey, mkalkbrenner: Reverted the required PHP version
+  back to 7.3.
 - #3318187 by drunken monkey, mkalkbrenner, aspilicious, edykst: Fixed
   regressions in Views filters.
 - #3313195 by nkoporec, drunken monkey: Fixed failing
