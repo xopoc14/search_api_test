@@ -1,5 +1,5 @@
-Search API 1.x, dev (xxxx-xx-xx):
----------------------------------
+Search API 1.28 (2022-11-07):
+-----------------------------
 - #3317319 by drunken monkey, mkalkbrenner: Reverted the required PHP version
   back to 7.3.
 - #3318187 by drunken monkey, mkalkbrenner, aspilicious, edykst: Fixed
