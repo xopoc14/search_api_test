@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3319384 by drunken monkey: Fixed code style issues in EntityStatusTest and
+  StemmerTest.
 - #3265881 by ressa, drunken monkey: Fixed and expanded README.md.
 
 Search API 1.28 (2022-11-07):
