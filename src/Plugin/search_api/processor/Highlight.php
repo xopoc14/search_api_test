@@ -340,9 +340,11 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
         if (empty($highlighted_fields[$item_id][$field_id])) {
           $change = FALSE;
           foreach ($values as $i => $value) {
-            $values[$i] = $this->highlightField($value, $keys);
-            if ($values[$i] !== $value) {
-              $change = TRUE;
+            if (is_string($value)) {
+              $values[$i] = $this->highlightField($value, $keys);
+              if ($values[$i] !== $value) {
+                $change = TRUE;
+              }
             }
           }
           if ($change) {
