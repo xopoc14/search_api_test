@@ -291,8 +291,8 @@ class SearchApiQuery extends QueryPluginBase {
    *
    * @return $this
    *
-   * @deprecated in search_api:8.x-1.11 and is removed from search_api:2.0.0. Use
-   *   addRetrievedFieldValue() instead.
+   * @deprecated in search_api:8.x-1.11 and is removed from search_api:2.0.0.
+   *   Use addRetrievedFieldValue() instead.
    *
    * @see https://www.drupal.org/node/3011060
    */
@@ -461,7 +461,7 @@ class SearchApiQuery extends QueryPluginBase {
    * @see https://www.drupal.org/node/2899682
    */
   public function getEntityTypes($return_bool = FALSE) {
-    @trigger_error('\Drupal\search_api\Plugin\views\query\SearchApiQuery::getEntityTypes() is deprecated in Search API 8.x-1.5. Use \Drupal\search_api\IndexInterface::getEntityTypes() instead. See https://www.drupal.org/node/2899682', E_USER_DEPRECATED);
+    @trigger_error('\Drupal\search_api\Plugin\views\query\SearchApiQuery::getEntityTypes() is deprecated in search_api:8.x-1.5 and is removed from search_api:2.0.0. Use \Drupal\search_api\IndexInterface::getEntityTypes() instead. See https://www.drupal.org/node/2899682', E_USER_DEPRECATED);
     $types = $this->index->getEntityTypes();
     return $return_bool ? (bool) $types : $types;
   }

@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3341151 by drunken monkey: Fixed non-standard deprecation messages.
 - #2905497 by idebr, webflo, drunken monkey, rjacobs, borisson_: Fixed
   compatibility of search views with internal page cache.
 - #3316665 by drunken monkey, carolpettirossi, dxvargas: Fixed OR conjunction
