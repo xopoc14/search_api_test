@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3339351 by drunken monkey: Fixed Javascript code style.
 - #3262507 by rlmumford, kalpaitch, drunken monkey, acbramley: Fixed bug when
   rendering entity fields in Views with search_api_opensearch.
 - #3341151 by drunken monkey: Fixed non-standard deprecation messages.
