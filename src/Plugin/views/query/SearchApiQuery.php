@@ -771,6 +771,9 @@ class SearchApiQuery extends QueryPluginBase {
 
     $query = $this->getSearchApiQuery();
     if ($query instanceof CacheableDependencyInterface) {
+      // Add the list cache tag of the search index, so that the view will be
+      // invalidated if any items on the index are indexed or deleted.
+      $tags[] = 'search_api_list:' . $this->getIndex()->id();
       $tags = Cache::mergeTags($query->getCacheTags(), $tags);
     }
 

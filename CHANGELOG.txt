@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2905497 by idebr, webflo, drunken monkey, rjacobs, borisson_: Fixed
+  compatibility of search views with internal page cache.
 - #3316665 by drunken monkey, carolpettirossi, dxvargas: Fixed OR conjunction
   ignored for Views contextual filters.
 - #3339357 by drunken monkey: Fixed use of deprecated
