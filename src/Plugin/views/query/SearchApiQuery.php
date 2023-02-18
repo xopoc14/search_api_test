@@ -343,14 +343,7 @@ class SearchApiQuery extends QueryPluginBase {
    */
   public function addField($table, $field, $alias = '', array $params = []) {
     // Ignore calls for built-in fields which don't need to be retrieved.
-    $built_in = [
-      'search_api_id' => TRUE,
-      'search_api_datasource' => TRUE,
-      'search_api_language' => TRUE,
-      'search_api_relevance' => TRUE,
-      'search_api_excerpt' => TRUE,
-    ];
-    if (isset($built_in[$field])) {
+    if (isset(ResultRow::LAZY_LOAD_PROPERTIES[$field])) {
       return $field;
     }
 
@@ -723,6 +716,10 @@ class SearchApiQuery extends QueryPluginBase {
 
       // Gather any properties from the search results.
       foreach ($result->getFields(FALSE) as $field_id => $field) {
+        // Ignore calls for built-in fields which don't need to be retrieved.
+        if (isset(ResultRow::LAZY_LOAD_PROPERTIES[$field_id])) {
+          continue;
+        }
         $path = $field->getCombinedPropertyPath();
         try {
           $property = $field->getDataDefinition();
