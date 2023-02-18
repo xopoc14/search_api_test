@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3316665 by drunken monkey, carolpettirossi, dxvargas: Fixed OR conjunction
+  ignored for Views contextual filters.
 - #3339357 by drunken monkey: Fixed use of deprecated
   assertObjectHasAttribute() method.
 - #3323594 by bogdan.dinu, drunken monkey: Fixed deprecation warning in

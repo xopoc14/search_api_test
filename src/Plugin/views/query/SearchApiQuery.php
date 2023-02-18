@@ -523,10 +523,16 @@ class SearchApiQuery extends QueryPluginBase {
       foreach ($this->where as $group_id => $group) {
         if (!empty($group['conditions']) || !empty($group['condition_groups'])) {
           $group += ['type' => 'AND'];
-          // Filters in the default group (used by arguments) should always be
-          // added directly to the query.
-          $default_group = $group_id == 0;
-          $conditions = $default_group ? $this->query : $this->query->createConditionGroup($group['type']);
+          // Filters in the default group 0 (used by arguments) should not take
+          // $this->groupOperator into account, but use a separate conditions
+          // group just for them, placed directly on the query.
+          $conditions = $this->query->createConditionGroup($group['type']);
+          if ($group_id == 0) {
+            $this->query->addConditionGroup($conditions);
+          }
+          else {
+            $base->addConditionGroup($conditions);
+          }
           if (!empty($group['conditions'])) {
             foreach ($group['conditions'] as $condition) {
               [$field, $value, $operator] = $condition;
@@ -537,10 +543,6 @@ class SearchApiQuery extends QueryPluginBase {
             foreach ($group['condition_groups'] as $nested_conditions) {
               $conditions->addConditionGroup($nested_conditions);
             }
-          }
-          // For the default group, the filters were already set on the query.
-          if (!$default_group) {
-            $base->addConditionGroup($conditions);
           }
         }
       }
