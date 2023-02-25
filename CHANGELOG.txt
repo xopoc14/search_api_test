@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3226415 by akalam, drunken monkey, mkalkbrenner, miteshmap: Fixed facets not
+  showing when search view is placed via Layout Builder.
 - #3262975 by marlon.buella, drunken monkey: Fixed warning for empty
   "ignorable_classes" option in IGnore Characters processor.
 - #3339332 by drunken monkey: Fixed deprecated syntax for passing a static
