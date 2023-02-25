@@ -956,7 +956,13 @@ class ViewsTest extends SearchApiBrowserTestBase {
     // Add new fields. First check that the listing seems correct.
     $this->clickLink('Add fields');
     $this->assertSession()->statusCodeEquals(200);
-    $this->assertSession()->pageTextContains('Test entity - revisions and data table datasource');
+    // The entity type's label was changed in 10.1.x, so need to keep it
+    // variable as long as we support versions older than 10.1.0.
+    // @todo Hardcode again once we depend on Drupal 10.1.0.
+    $entity_type_label = $this->container->get('entity_type.manager')
+      ->getDefinition('entity_test_mulrev_changed')
+      ->getLabel();
+    $this->assertSession()->pageTextContains("$entity_type_label datasource");
     $this->assertSession()->pageTextContains('Authored on');
     $this->assertSession()->pageTextContains('Body (indexed field)');
     $this->assertSession()->pageTextContains('Index Test index');
