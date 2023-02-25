@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3342791 by jhedstrom, drunken monkey: Fixed bug in highlighting processor
+  when "excerpt_always" is enabled.
 - #3340611 by pfrenssen, drunken monkey: Fixed left-over !placeholder instances
   in CommandHelper.
 - #3343092 by drunken monkey: Fixed deprecation warning in NodeTrackingTest with

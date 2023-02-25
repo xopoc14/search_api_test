@@ -265,7 +265,7 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
     if ($this->configuration['excerpt']) {
       $this->addExcerpts($result_items, $excerpt_fulltext_fields, $keys);
     }
-    if ($this->configuration['highlight'] != 'never') {
+    if ($this->configuration['highlight'] !== 'never' && !empty($keys)) {
       $highlighted_fields = $this->highlightFields($result_items, $keys);
       foreach ($highlighted_fields as $item_id => $item_fields) {
         $item = $result_items[$item_id];

@@ -206,6 +206,50 @@ class HighlightTest extends UnitTestCase {
   }
 
   /**
+   * Tests empty search keys do not create empty highlight tags.
+   */
+  public function testPostprocessSearchResultsWithEmptyKeys(): void {
+    $this->processor->setConfiguration(['excerpt_always' => TRUE]);
+
+    $query = $this->createMock(QueryInterface::class);
+    $query->expects($this->once())
+      ->method('getProcessingLevel')
+      ->willReturn(QueryInterface::PROCESSING_FULL);
+    $query->expects($this->atLeastOnce())
+      ->method('getOriginalKeys')
+      ->will($this->returnValue(''));
+    /** @var \Drupal\search_api\Query\QueryInterface $query */
+
+    $field = $this->createTestField('body', 'entity:node/body');
+
+    $this->index->expects($this->atLeastOnce())
+      ->method('getFields')
+      ->will($this->returnValue(['body' => $field]));
+
+    $this->processor->setIndex($this->index);
+
+    $body_values = ['Some foo value'];
+    $fields = [
+      'entity:node/body' => [
+        'type' => 'text',
+        'values' => $body_values,
+      ],
+    ];
+
+    $items = $this->createItems($this->index, 1, $fields);
+
+    $results = new ResultSet($query);
+    $results->setResultItems($items);
+    $results->setResultCount(1);
+
+    $this->processor->postprocessSearchResults($results);
+
+    $fields = $items[$this->itemIds[0]]->getExtraData('highlighted_fields');
+    // There should be no highlighted fields when keys are empty.
+    $this->assertNull($fields, 'Highlighted fields are not empty when keys are empty');
+  }
+
+  /**
    * Tests changing the prefix and suffix used for highlighting.
    */
   public function testPostprocessSearchResultsWithChangedPrefixSuffix() {
