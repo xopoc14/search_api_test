@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3077570 by pfrenssen, drunken monkey: Removed Drush 8 support.
 - #3132911 by drunken monkey: Updated code to reflect our PHP 7.3 requirement.
 - #3260862 by drunken monkey, mkalkbrenner: Added new method
   QueryInterface::createAndAddConditionGroup().
