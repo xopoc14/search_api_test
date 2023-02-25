@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3132911 by drunken monkey: Updated code to reflect our PHP 7.3 requirement.
 - #3260862 by drunken monkey, mkalkbrenner: Added new method
   QueryInterface::createAndAddConditionGroup().
 - #3296848 by drunken monkey: Added a list of known query tags to README.md.

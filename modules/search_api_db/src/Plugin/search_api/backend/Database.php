@@ -802,9 +802,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
    * @throws \Drupal\search_api\SearchApiException
    *   Thrown if creating the table failed.
    */
-  protected function createFieldTable(FieldInterface $field = NULL, array $db = [], $type = 'field') {
-    // @todo Make $field required but nullable (and $db required again) once we
-    //   depend on PHP 7.1+.
+  protected function createFieldTable(?FieldInterface $field, array $db, string $type = 'field'): void {
     $new_table = !$this->database->schema()->tableExists($db['table']);
     if ($new_table) {
       $table = [
@@ -880,13 +878,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
     try {
       $this->database->schema()->addIndex($db['table'], '_' . $column, $index_spec, $table_spec);
     }
-    // @todo Use multi-catch once we depend on PHP 7.1+.
-    catch (\PDOException $e) {
-      $variables['%column'] = $column;
-      $variables['%table'] = $db['table'];
-      $this->logException($e, '%type while trying to add a database index for column %column to table %table: @message in %function (line %line of %file).', $variables, RfcLogLevel::WARNING);
-    }
-    catch (DatabaseException $e) {
+    catch (\PDOException | DatabaseException $e) {
       $variables['%column'] = $column;
       $variables['%table'] = $db['table'];
       $this->logException($e, '%type while trying to add a database index for column %column to table %table: @message in %function (line %line of %file).', $variables, RfcLogLevel::WARNING);
@@ -1740,14 +1732,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
         }
       }
     }
-    // @todo Replace with multi-catch once we depend on PHP 7.1+.
-    catch (DatabaseException $e) {
-      if ($query instanceof RefinableCacheableDependencyInterface) {
-        $query->mergeCacheMaxAge(0);
-      }
-      throw new SearchApiException('A database exception occurred while searching.', $e->getCode(), $e);
-    }
-    catch (\PDOException $e) {
+    catch (\PDOException | DatabaseException $e) {
       if ($query instanceof RefinableCacheableDependencyInterface) {
         $query->mergeCacheMaxAge(0);
       }
@@ -2744,12 +2729,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
     try {
       $result = $this->database->queryTemporary((string) $db_query, $args);
     }
-    // @todo Use a multi-catch once we depend on PHP 7.1+.
-    catch (\PDOException $e) {
-      $this->logException($e, '%type while trying to create a temporary table: @message in %function (line %line of %file).');
-      return FALSE;
-    }
-    catch (DatabaseException $e) {
+    catch (\PDOException | DatabaseException $e) {
       $this->logException($e, '%type while trying to create a temporary table: @message in %function (line %line of %file).');
       return FALSE;
     }

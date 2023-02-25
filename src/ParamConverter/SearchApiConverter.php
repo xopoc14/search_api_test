@@ -89,11 +89,8 @@ class SearchApiConverter extends EntityConverter implements ParamConverterInterf
     try {
       $storage = $this->entityTypeManager->getStorage('search_api_index');
     }
-    // @todo Use a multi-catch once we depend on PHP 7.1+.
-    catch (InvalidPluginDefinitionException $e) {
-      return NULL;
-    }
-    catch (PluginNotFoundException $e) {
+    // @todo Remove $e once we depend on PHP 8.0+.
+    catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
       return NULL;
     }
     if (!($storage instanceof ConfigEntityStorageInterface)) {
