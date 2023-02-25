@@ -506,8 +506,7 @@ class SearchApiQuery extends QueryPluginBase {
       // add a new OR filter to the query to which the filters for the groups
       // will be added.
       if ($this->groupOperator === 'OR') {
-        $base = $this->query->createConditionGroup('OR');
-        $this->query->addConditionGroup($base);
+        $base = $this->query->createAndAddConditionGroup('OR');
       }
       else {
         $base = $this->query;
@@ -964,6 +963,24 @@ class SearchApiQuery extends QueryPluginBase {
   public function createConditionGroup($conjunction = 'AND', array $tags = []) {
     if (!$this->shouldAbort()) {
       return $this->query->createConditionGroup($conjunction, $tags);
+    }
+    return new ConditionGroup($conjunction, $tags);
+  }
+
+  /**
+   * Creates a new condition group and adds it to this query object.
+   *
+   * @param string $conjunction
+   *   The conjunction to use for the condition group – either 'AND' or 'OR'.
+   * @param string[] $tags
+   *   (optional) Tags to set on the condition group.
+   *
+   * @return \Drupal\search_api\Query\ConditionGroupInterface
+   *   The newly added condition group object.
+   */
+  public function createAndAddConditionGroup(string $conjunction = 'AND', array $tags = []): ConditionGroupInterface {
+    if (!$this->shouldAbort()) {
+      return $this->query->createAndAddConditionGroup($conjunction, $tags);
     }
     return new ConditionGroup($conjunction, $tags);
   }

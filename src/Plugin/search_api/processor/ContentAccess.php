@@ -294,12 +294,11 @@ class ContentAccess extends ProcessorPluginBase {
     // If there are no "other" datasources, we don't need the nested OR,
     // however, and can add the inner conditions directly to the query.
     if ($unaffected_datasources) {
-      $outer_conditions = $query->createConditionGroup('OR', ['content_access']);
-      $query->addConditionGroup($outer_conditions);
+      $outer_conditions = $query->createAndAddConditionGroup('OR', ['content_access']);
       foreach ($unaffected_datasources as $datasource_id) {
         $outer_conditions->addCondition('search_api_datasource', $datasource_id);
       }
-      $access_conditions = $query->createConditionGroup('AND');
+      $access_conditions = $query->createConditionGroup();
       $outer_conditions->addConditionGroup($access_conditions);
     }
     else {

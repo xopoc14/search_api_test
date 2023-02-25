@@ -288,10 +288,9 @@ abstract class BackendTestBase extends KernelTestBase {
     $this->assertResults([4], $results, 'Complex search 1');
 
     $query = $this->buildSearch();
-    $conditions = $query->createConditionGroup('OR');
+    $conditions = $query->createAndAddConditionGroup('OR');
     $conditions->addCondition('name', 'bar');
     $conditions->addCondition('body', 'bar');
-    $query->addConditionGroup($conditions);
     $results = $query->execute();
     $this->assertResults([1, 2, 3, 5], $results, 'Search with multi-field fulltext filter');
 
@@ -323,10 +322,9 @@ abstract class BackendTestBase extends KernelTestBase {
     $this->assertResults([], $results, 'Query with languages');
 
     $query = $this->buildSearch();
-    $conditions = $query->createConditionGroup('OR')
+    $conditions = $query->createAndAddConditionGroup('OR')
       ->addCondition('search_api_language', 'und')
       ->addCondition('width', ['0.9', '1.5'], 'BETWEEN');
-    $query->addConditionGroup($conditions);
     $results = $query->execute();
     $this->assertResults([4], $results, 'Query with search_api_language filter');
 
@@ -395,9 +393,8 @@ abstract class BackendTestBase extends KernelTestBase {
    */
   protected function checkFacets() {
     $query = $this->buildSearch();
-    $conditions = $query->createConditionGroup('OR', ['facet:' . 'category']);
+    $conditions = $query->createAndAddConditionGroup('OR', ['facet:' . 'category']);
     $conditions->addCondition('category', 'article_category');
-    $query->addConditionGroup($conditions);
     $facets['category'] = [
       'field' => 'category',
       'limit' => 0,
@@ -418,12 +415,10 @@ abstract class BackendTestBase extends KernelTestBase {
     $this->assertEquals($expected, $category_facets, 'Correct OR facets were returned');
 
     $query = $this->buildSearch();
-    $conditions = $query->createConditionGroup('OR', ['facet:' . 'category']);
+    $conditions = $query->createAndAddConditionGroup('OR', ['facet:' . 'category']);
     $conditions->addCondition('category', 'article_category');
-    $query->addConditionGroup($conditions);
-    $conditions = $query->createConditionGroup('AND');
+    $conditions = $query->createAndAddConditionGroup();
     $conditions->addCondition('category', NULL, '<>');
-    $query->addConditionGroup($conditions);
     $facets['category'] = [
       'field' => 'category',
       'limit' => 0,
@@ -475,10 +470,9 @@ abstract class BackendTestBase extends KernelTestBase {
     $this->assertResults([1, 2, 3, 4], $results, 'Sorting on field with NULLs');
 
     $query = $this->buildSearch(NULL, [], [], FALSE);
-    $conditions = $query->createConditionGroup('OR');
+    $conditions = $query->createAndAddConditionGroup('OR');
     $conditions->addCondition('id', 3);
     $conditions->addCondition('type', 'article');
-    $query->addConditionGroup($conditions);
     $query->sort('search_api_id', QueryInterface::SORT_DESC);
     $results = $query->execute();
     $this->assertResults([5, 4, 3], $results, 'OR filter on field with NULLs');
@@ -493,36 +487,32 @@ abstract class BackendTestBase extends KernelTestBase {
    */
   protected function regressionTest1863672() {
     $query = $this->buildSearch();
-    $conditions = $query->createConditionGroup('OR');
+    $conditions = $query->createAndAddConditionGroup('OR');
     $conditions->addCondition('keywords', 'orange');
     $conditions->addCondition('keywords', 'apple');
-    $query->addConditionGroup($conditions);
     $results = $query->execute();
     $this->assertResults([1, 2, 4, 5], $results, 'OR filter on multi-valued field');
 
     $query = $this->buildSearch();
-    $conditions = $query->createConditionGroup('OR');
+    $conditions = $query->createAndAddConditionGroup('OR');
     $conditions->addCondition('keywords', 'orange');
     $conditions->addCondition('keywords', 'strawberry');
-    $query->addConditionGroup($conditions);
-    $conditions = $query->createConditionGroup('OR');
+    $conditions = $query->createAndAddConditionGroup('OR');
     $conditions->addCondition('keywords', 'apple');
     $conditions->addCondition('keywords', 'grape');
-    $query->addConditionGroup($conditions);
     $results = $query->execute();
     $this->assertResults([2, 4, 5], $results, 'Multiple OR filters on multi-valued field');
 
     $query = $this->buildSearch();
-    $conditions1 = $query->createConditionGroup('OR');
-    $conditions = $query->createConditionGroup('AND');
+    $conditions1 = $query->createAndAddConditionGroup('OR');
+    $conditions = $query->createConditionGroup();
     $conditions->addCondition('keywords', 'orange');
     $conditions->addCondition('keywords', 'apple');
     $conditions1->addConditionGroup($conditions);
-    $conditions = $query->createConditionGroup('AND');
+    $conditions = $query->createConditionGroup();
     $conditions->addCondition('keywords', 'strawberry');
     $conditions->addCondition('keywords', 'grape');
     $conditions1->addConditionGroup($conditions);
-    $query->addConditionGroup($conditions1);
     $results = $query->execute();
     $this->assertResults([2, 4, 5], $results, 'Complex nested filters on multi-valued field');
   }
@@ -793,9 +783,8 @@ abstract class BackendTestBase extends KernelTestBase {
    */
   protected function regressionTest2809753() {
     $query = $this->buildSearch();
-    $condition_group = $query->createConditionGroup('OR', ['facet:type']);
+    $condition_group = $query->createAndAddConditionGroup('OR', ['facet:type']);
     $condition_group->addCondition('type', 'article');
-    $query->addConditionGroup($condition_group);
     $facets['type'] = [
       'field' => 'type',
       'limit' => 0,

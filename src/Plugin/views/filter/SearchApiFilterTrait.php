@@ -72,10 +72,10 @@ trait SearchApiFilterTrait {
     }
 
     $condition_group = $this->getQuery()->createConditionGroup();
+    $this->getQuery()->addConditionGroup($condition_group, $this->options['group']);
     foreach ($this->value as $value) {
       $condition_group->addCondition($this->realField, $value, '=');
     }
-    $this->getQuery()->addConditionGroup($condition_group, $this->options['group']);
   }
 
 }
