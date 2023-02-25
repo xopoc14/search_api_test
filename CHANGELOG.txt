@@ -1,5 +1,8 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2877319 by progga, drunken monkey, ndf, hswong3i, scothiam, marabak,
+  jmdeleon, borisson_: Added support for location search to the Database
+  backend.
 - #3226415 by akalam, drunken monkey, mkalkbrenner, miteshmap: Fixed facets not
   showing when search view is placed via Layout Builder.
 - #3262975 by marlon.buella, drunken monkey: Fixed warning for empty

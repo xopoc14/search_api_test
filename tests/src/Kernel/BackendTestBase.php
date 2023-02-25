@@ -17,6 +17,14 @@ use Drupal\Tests\search_api\Functional\ExampleContentTrait;
 
 /**
  * Provides a base class for backend tests.
+ *
+ * Implementing classes are encouraged to override the following methods:
+ * - checkServerBackend()
+ * - updateIndex()
+ * - checkSecondServer()
+ * - checkModuleUninstall()
+ * - checkBackendSpecificFeatures()
+ * - backendSpecificRegressionTests()
  */
 abstract class BackendTestBase extends KernelTestBase {
 
@@ -116,22 +124,22 @@ abstract class BackendTestBase extends KernelTestBase {
   /**
    * Tests the correct setup of the server backend.
    */
-  abstract protected function checkServerBackend();
+  protected function checkServerBackend() {}
 
   /**
    * Checks whether changes to the index's fields are picked up by the server.
    */
-  abstract protected function updateIndex();
+  protected function updateIndex() {}
 
   /**
    * Tests that a second server doesn't interfere with the first.
    */
-  abstract protected function checkSecondServer();
+  protected function checkSecondServer() {}
 
   /**
    * Tests whether removing the configuration again works as it should.
    */
-  abstract protected function checkModuleUninstall();
+  protected function checkModuleUninstall() {}
 
   /**
    * Checks backend specific features.
