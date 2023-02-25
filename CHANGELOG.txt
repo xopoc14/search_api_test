@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3296848 by drunken monkey: Added a list of known query tags to README.md.
 - #3343104 by drunken monkey: Fixed test fails on Drupal 10.1.x.
 - #2877319 by progga, drunken monkey, ndf, hswong3i, scothiam, marabak,
   jmdeleon, borisson_: Added support for location search to the Database

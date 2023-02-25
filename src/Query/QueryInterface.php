@@ -519,6 +519,8 @@ interface QueryInterface extends ConditionSetInterface {
   /**
    * Retrieves the tags set on this query.
    *
+   * See README.md for a list of all known query tags.
+   *
    * @return string[]
    *   The tags associated with this search query, as both the array keys and
    *   values. Returned by reference so it's possible, for example, to remove
