@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3343092 by drunken monkey: Fixed deprecation warning in NodeTrackingTest with
+  PHP 8.2.
 - #3120612 by drunken monkey: Fixed identifiers to be quoted in database
   queries.
 - #3077570 by pfrenssen, drunken monkey: Removed Drush 8 support.
