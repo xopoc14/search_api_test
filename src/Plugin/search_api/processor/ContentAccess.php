@@ -174,7 +174,7 @@ class ContentAccess extends ProcessorPluginBase {
     foreach ($fields as $field) {
       // Collect grant records for the node. If there are none, use the pseudo
       // grant "node_access__all".
-      $sql = 'SELECT gid, realm FROM {node_access} WHERE (nid = 0 OR nid = :nid) AND grant_view = 1';
+      $sql = 'SELECT [gid], [realm] FROM {node_access} WHERE ([nid] = 0 OR [nid] = :nid) AND [grant_view] = 1';
       $args = [':nid' => $node->id()];
       $grant_records = $this->getDatabase()->query($sql, $args)->fetchAll();
       if ($grant_records) {

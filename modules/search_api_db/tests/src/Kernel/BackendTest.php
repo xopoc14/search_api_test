@@ -1226,7 +1226,7 @@ class BackendTest extends BackendTestBase {
     $db_info = $this->getIndexDbInfo();
     $table = $db_info['index_table'];
     $column = $db_info['field_tables']['name']['column'];
-    $sql = "SELECT $column FROM {{$table}} WHERE item_id = :id";
+    $sql = "SELECT [$column] FROM {{$table}} WHERE [item_id] = :id";
 
     $id = 0;
     date_default_timezone_set('Asia/Seoul');

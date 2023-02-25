@@ -2100,7 +2100,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
       }
       elseif ($match_parts) {
         $db_query->fields('t', ['item_id']);
-        $db_query->addExpression('SUM(t.score)', 'score');
+        $db_query->addExpression('SUM([t].[score])', 'score');
       }
       elseif ($not_nested) {
         $db_query->fields('t', ['item_id', 'score']);
@@ -2131,7 +2131,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
           // afterwards verify that each word matched at least once.
           $alias = 'w' . ++$this->expressionCounter;
           $like = '%' . $this->database->escapeLike($word) . '%';
-          $alias = $db_query->addExpression("CASE WHEN t.word LIKE :like_$alias THEN 1 ELSE 0 END", $alias, [":like_$alias" => $like]);
+          $alias = $db_query->addExpression("CASE WHEN [t].[word] LIKE :like_$alias THEN 1 ELSE 0 END", $alias, [":like_$alias" => $like]);
           $db_query->groupBy($alias);
           $keyword_hits[] = $alias;
         }
@@ -2158,7 +2158,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
           if (!$match_parts) {
             $word .= ' ';
             $var = ':word' . strlen($word);
-            $query->addExpression($var, 't.word', [$var => $word]);
+            $query->addExpression($var, NULL, [$var => $word]);
           }
           else {
             $i += $word_count;
@@ -2184,7 +2184,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
       $db_query = $this->database->select($db_query, 't');
       $db_query->addField('t', 'item_id', 'item_id');
       if (!$neg) {
-        $db_query->addExpression('SUM(t.score)', 'score');
+        $db_query->addExpression('SUM([t].[score])', 'score');
         $db_query->groupBy('t.item_id');
       }
       if ($conj == 'AND' && $subs > 1) {
@@ -2194,10 +2194,10 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
         }
         if (!$match_parts) {
           if ($mul_words) {
-            $db_query->having('COUNT(DISTINCT t.word) >= ' . $var, [$var => $subs]);
+            $db_query->having('COUNT(DISTINCT [t].[word]) >= ' . $var, [$var => $subs]);
           }
           else {
-            $db_query->having('COUNT(t.word) >= ' . $var, [$var => $subs]);
+            $db_query->having('COUNT([t].[word]) >= ' . $var, [$var => $subs]);
           }
         }
         else {
@@ -2628,7 +2628,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
       if (!$facet['missing'] && !$is_text_type) {
         $select->isNotNull($alias . '.value');
       }
-      $select->addExpression('COUNT(DISTINCT t.item_id)', 'num');
+      $select->addExpression('COUNT(DISTINCT [t].[item_id])', 'num');
       $select->groupBy('value');
       $select->orderBy('num', 'DESC');
       $select->orderBy('value', 'ASC');
@@ -2638,7 +2638,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
         $select->range(0, $limit);
       }
       if ($facet['min_count'] > 1) {
-        $select->having('COUNT(DISTINCT t.item_id) >= :count', [':count' => $facet['min_count']]);
+        $select->having('COUNT(DISTINCT [t].[item_id]) >= :count', [':count' => $facet['min_count']]);
       }
 
       $terms = [];
@@ -2873,10 +2873,10 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
         return [];
       }
       $db_query = $this->database->select($word_query, 't');
-      $db_query->addExpression('COUNT(DISTINCT t.item_id)', 'results');
+      $db_query->addExpression('COUNT(DISTINCT [t].[item_id])', 'results');
       $db_query->fields('t', ['word'])
         ->groupBy('t.word')
-        ->having('COUNT(DISTINCT t.item_id) <= :max', [':max' => $max_occurrences])
+        ->having('COUNT(DISTINCT [t].[item_id]) <= :max', [':max' => $max_occurrences])
         ->orderBy('results', 'DESC')
         ->range(0, $limit);
       $incomp_len = strlen($incomplete_key);

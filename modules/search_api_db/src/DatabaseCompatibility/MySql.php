@@ -29,7 +29,7 @@ class MySql extends GenericDatabase implements LocationAwareDatabaseInterface {
       // collation as everywhere else. Otherwise, this can slow down search
       // queries significantly.
       if ($type === 'text') {
-        $this->database->query("ALTER TABLE {{$table}} MODIFY item_id VARCHAR(150) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci'");
+        $this->database->query("ALTER TABLE {{$table}} MODIFY [item_id] VARCHAR(150) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci'");
       }
     }
     catch (\PDOException | DatabaseException $e) {
