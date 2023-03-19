@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3264239 by drunken monkey, DieterHolvoet: Fixed the regular expression used
+  for HTML in the Highlight processor.
 - #3252430 by drunken monkey: Fixed error in render code breaking indexing.
 - #3342791 by jhedstrom, drunken monkey: Fixed bug in highlighting processor
   when "excerpt_always" is enabled.

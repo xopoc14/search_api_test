@@ -16,6 +16,8 @@ use Drupal\search_api\Query\QueryInterface;
 use Drupal\search_api\Query\ResultSet;
 use Drupal\search_api\Utility\Utility;
 use Drupal\Tests\UnitTestCase;
+use PHPUnit\Framework\Error\Warning;
+use Psr\Log\LoggerInterface;
 
 /**
  * Tests the "Highlight" processor.
@@ -564,6 +566,64 @@ END;
     $excerpt = $output[$this->itemIds[0]]->getExcerpt();
     $correct_output = '… Sentence with <strong>foo</strong> keyword. And another <strong>foo</strong>! …';
     $this->assertEquals($correct_output, $excerpt, 'Excerpt was added.');
+  }
+
+  /**
+   * Tests whether fields highlighting correctly handles invalid HTML.
+   *
+   * @see https://www.drupal.org/node/3264239
+   */
+  public function testPostprocessSearchResultsInvalidHtml() {
+    $logger = $this->createMock(LoggerInterface::class);
+    $logger->method('warning')->willReturnCallback(function (string $message, array $context = []) {
+      throw new Warning(strtr($message, $context), 0, __FILE__, __LINE__);
+    });
+    $this->processor->setLogger($logger);
+
+    $query = $this->createMock(QueryInterface::class);
+    $query->expects($this->once())
+      ->method('getProcessingLevel')
+      ->willReturn(QueryInterface::PROCESSING_FULL);
+    $query->expects($this->atLeastOnce())
+      ->method('getOriginalKeys')
+      ->will($this->returnValue(['#conjunction' => 'AND', 'foo']));
+    /** @var \Drupal\search_api\Query\QueryInterface $query */
+
+    $field = $this->createTestField('body', 'entity:node/body');
+
+    $this->index->expects($this->atLeastOnce())
+      ->method('getFields')
+      ->will($this->returnValue(['body' => $field]));
+
+    $this->processor->setIndex($this->index);
+
+    $body_value = <<<'END'
+Sentence with foo keyword.
+<img src="" width="" alt="" "></img>
+More words.
+END;
+    $fields = [
+      'entity:node/body' => [
+        'type' => 'text',
+        'values' => [$body_value],
+      ],
+    ];
+
+    $items = $this->createItems($this->index, 1, $fields);
+
+    $results = new ResultSet($query);
+    $results->setResultItems($items);
+    $results->setResultCount(1);
+
+    $this->processor->postprocessSearchResults($results);
+
+    $expected = <<<'END'
+Sentence with <strong>foo</strong> keyword.
+<img src="" width="" alt="" "></img>
+More words.
+END;
+    $highlighted = reset($items)->getExtraData('highlighted_fields');
+    $this->assertEquals([$expected], $highlighted['body'] ?? NULL);
   }
 
   /**

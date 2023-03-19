@@ -657,7 +657,7 @@ class Highlight extends ProcessorPluginBase implements PluginFormInterface {
   protected function highlightField($text, array $keys, $html = TRUE) {
     $text = "$text";
     if ($html) {
-      $texts = preg_split('#((?:</?[[:alpha:]](?:[^>"\']*|"[^"]*"|\'[^\']\')*>)+)#i', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
+      $texts = preg_split('#(\s*(?:</?[[:alpha:]](?:[^>"\']*+|"[^"]*+"|\'[^\']*+\')*+>)+\s*)#i', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
       if ($texts === FALSE) {
         $args = [
           '%error_num' => preg_last_error(),
