@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3338296 by yoerioptr, drunken monkey: Fixed error in Views filters in edge
+  cases with empty filter values.
 - #3343250 by BenStallings, drunken monkey: Fixed the Views date "between"
   filters to make the range inclusive.Fixed the Views date "between" filters to
   make the range inclusive.
