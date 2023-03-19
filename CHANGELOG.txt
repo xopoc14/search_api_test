@@ -1,5 +1,8 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3343250 by BenStallings, drunken monkey: Fixed the Views date "between"
+  filters to make the range inclusive.Fixed the Views date "between" filters to
+  make the range inclusive.
 - #3264239 by drunken monkey, DieterHolvoet: Fixed the regular expression used
   for HTML in the Highlight processor.
 - #3252430 by drunken monkey: Fixed error in render code breaking indexing.
