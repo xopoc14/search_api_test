@@ -96,6 +96,16 @@ class SearchApiQuery extends QueryPluginBase {
   protected $where = [];
 
   /**
+   * Not actually used.
+   *
+   * Copied over from \Drupal\views\Plugin\views\query\Sql::$orderby since
+   * ExposedFormPluginBase depends on it.
+   *
+   * @var array
+   */
+  public $orderby = [];
+
+  /**
    * The conjunction with which multiple filter groups are combined.
    *
    * @var string
