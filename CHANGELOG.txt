@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3340305 by drunken monkey: Fixed all aggregated fields being reported as
+  multi-valued.
 - #3346185 by drunken monkey: Fixed test fails on PHP 8.2.
 - #3338296 by yoerioptr, drunken monkey: Fixed error in Views filters in edge
   cases with empty filter values.
