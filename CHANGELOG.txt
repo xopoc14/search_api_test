@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3346911 by jmaerckaert, drunken monkey: Fixed errors with Symfony 6 when the
+  Views "Preserve facets" option is enabled.
 - #3340305 by drunken monkey: Fixed all aggregated fields being reported as
   multi-valued.
 - #3346185 by drunken monkey: Fixed test fails on PHP 8.2.
