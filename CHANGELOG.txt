@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3328714 by acbramley, drunken monkey: Fixed namespaces in
+  PluginHelperInterface doc comments.
 - #3346911 by jmaerckaert, drunken monkey: Fixed errors with Symfony 6 when the
   Views "Preserve facets" option is enabled.
 - #3340305 by drunken monkey: Fixed all aggregated fields being reported as
