@@ -1,3 +1,6 @@
+Search API 1.x, dev (xxxx-xx-xx):
+---------------------------------
+
 Search API 1.29 (2023-03-27):
 -----------------------------
 - #3328714 by acbramley, drunken monkey: Fixed namespaces in
