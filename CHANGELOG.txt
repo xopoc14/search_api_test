@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3217772 by seutje, vector_ray, drunken monkey, Marios Anagnostopoulos: Added
+  a template for the excerpt field.
 
 Search API 1.29 (2023-03-27):
 -----------------------------
