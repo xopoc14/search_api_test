@@ -38,7 +38,7 @@ Search API 1.29 (2023-03-27):
 - #3226415 by akalam, drunken monkey, mkalkbrenner, miteshmap: Fixed facets not
   showing when search view is placed via Layout Builder.
 - #3262975 by marlon.buella, drunken monkey: Fixed warning for empty
-  "ignorable_classes" option in IGnore Characters processor.
+  "ignorable_classes" option in Ignore Characters processor.
 - #3339332 by drunken monkey: Fixed deprecated syntax for passing a static
   method.
 - #3339351 by drunken monkey: Fixed Javascript code style.
