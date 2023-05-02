@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3354906 by ericchew, drunken monkey, miedward: Fixed regression in Views
+  argument plugins (date and All Terms).
 - #3332036 by drunken monkey, Chris64: Fixed too narrow Drush version constraint
   in composer.json.
 - #3217772 by seutje, vector_ray, drunken monkey, Marios Anagnostopoulos: Added
