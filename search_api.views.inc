@@ -241,7 +241,6 @@ function _search_api_views_get_handlers(FieldInterface $field) {
       }
     }
   }
-  // @todo Replace with multi-catch once we depend on PHP 7.1+.
   catch (SearchApiException | PluginNotFoundException $e) {
     $vars['%index'] = $field->getIndex()->label();
     $vars['%field'] = $field->getPrefixedLabel();

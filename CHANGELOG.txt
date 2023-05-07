@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3358661 by drunken monkey, tobiasb: Fixed coding standards.
 - #3271256 by akalam, drunken monkey: Fixed infinite loop when indexing external
   entities.
 - #3354906 by ericchew, drunken monkey, miedward: Fixed regression in Views
