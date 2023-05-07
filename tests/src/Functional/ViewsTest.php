@@ -106,13 +106,13 @@ class ViewsTest extends SearchApiBrowserTestBase {
     ];
     $label = 'Search for short word';
     $this->checkResults($query, [], $label);
-    $this->assertSession()->pageTextContains('You must include at least one positive keyword with 3 characters or more');
+    $this->assertSession()->pageTextContains('You must include at least one keyword to match in the content. Keywords must be at least 3 characters, and punctuation is ignored.');
     $query = [
       'search_api_fulltext' => 'foo to test',
     ];
     $label = 'Fulltext search including short word';
     $this->checkResults($query, [1, 2, 4], $label);
-    $this->assertSession()->pageTextNotContains('You must include at least one positive keyword with 3 characters or more');
+    $this->assertSession()->pageTextNotContains('You must include at least one keyword to match in the content. Keywords must be at least 3 characters, and punctuation is ignored.');
 
     $this->checkResults(['id[value]' => 2], [2], 'Search with ID filter');
     $query = [
@@ -436,7 +436,7 @@ class ViewsTest extends SearchApiBrowserTestBase {
       [],
       'Search for short word'
     );
-    $this->assertSession()->pageTextContains('You must include at least one positive keyword with 3 characters or more');
+    $this->assertSession()->pageTextContains('You must include at least one keyword to match in the content. Keywords must be at least 3 characters, and punctuation is ignored.');
 
     // Make sure this also works with the exposed form in a block, and doesn't
     // throw fatal errors on all pages with the block.

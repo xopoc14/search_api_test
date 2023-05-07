@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3356817 by Eduardo Morales Alberti, drunken monkey: Adapted phrasing of
+  warning in SearchApiFulltext to that of Core.
 - #3358661 by drunken monkey, tobiasb: Fixed coding standards.
 - #3271256 by akalam, drunken monkey: Fixed infinite loop when indexing external
   entities.

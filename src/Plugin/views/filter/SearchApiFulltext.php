@@ -359,8 +359,7 @@ class SearchApiFulltext extends FilterPluginBase {
       }
     }
     if (!$words) {
-      $vars['@count'] = $this->options['min_length'];
-      $msg = $this->t('You must include at least one positive keyword with @count characters or more.', $vars);
+      $msg = $this->formatPlural($this->options['min_length'], 'You must include at least one keyword to match in the content, and punctuation is ignored.', 'You must include at least one keyword to match in the content. Keywords must be at least @count characters, and punctuation is ignored.');
       $form_state->setErrorByName($identifier, $msg);
     }
     $input = implode(' ', $words);
