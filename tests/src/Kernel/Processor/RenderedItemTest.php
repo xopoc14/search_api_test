@@ -242,7 +242,7 @@ class RenderedItemTest extends ProcessorTestBase {
       // Test that the value is properly wrapped in a
       // \Drupal\search_api\Plugin\search_api\data_type\value\TextValueInterface
       // object, which contains a string (not, for example, some markup object).
-      $this->assertInstanceOf('Drupal\search_api\Plugin\search_api\data_type\value\TextValueInterface', $values[0], "$type item $entity_id rendered value is properly wrapped in a text value object.");
+      $this->assertInstanceOf(TextValueInterface::class, $values[0], "$type item $entity_id rendered value is properly wrapped in a text value object.");
       $field_value = $values[0]->getText();
       $this->assertIsString($field_value, "$type item $entity_id rendered value is a string.");
       $this->assertEquals(1, count($values), "$type item $entity_id rendered value is a single value.");
@@ -281,7 +281,11 @@ class RenderedItemTest extends ProcessorTestBase {
     // when the processor was broken, because the schema metadata was also
     // adding it to the output.
     $nid = $node->id();
-    $this->assertStringContainsString('<article role="article">', $field_value, 'Node item ' . $nid . ' not rendered in theme Stable.');
+    // The role="article" ARIA attribute was removed in Drupal 10.1. To be able
+    // to run this test both against earlier and later versions of Drupal Core,
+    // we need to use a regular expression.
+    // @todo Change to check only for "<article>" once we depend on Drupal 10.1.
+    $this->assertMatchesRegularExpression('#<article(?: role="article")?>#', $field_value, 'Node item ' . $nid . ' not rendered in theme Stable.');
     if ($node->bundle() === 'page') {
       $this->assertStringNotContainsString('>Read more<', $field_value, 'Node item ' . $nid . " rendered in view-mode \"full\".");
       $this->assertStringContainsString('>' . $node->get('body')->getValue()[0]['value'] . '<', $field_value, 'Node item ' . $nid . ' does not have rendered body inside HTML-Tags.');
