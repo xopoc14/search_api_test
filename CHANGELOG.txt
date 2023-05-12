@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3263875 by Eduardo Morales Alberti, drunken monkey, GrumpySchlag: Fixed Behat
+  integration.
 - #3355677 by drunken monkey: Fixed incompatibility with PHP 7.3 in
   ConfigurablePropertyBase.
 - #3358819 by drunken monkey: Fixed tests against Drupal 10.1.
