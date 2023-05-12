@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3355677 by drunken monkey: Fixed incompatibility with PHP 7.3 in
+  ConfigurablePropertyBase.
 - #3358819 by drunken monkey: Fixed tests against Drupal 10.1.
 - #3356817 by Eduardo Morales Alberti, drunken monkey: Adapted phrasing of
   warning in SearchApiFulltext to that of Core.
