@@ -1846,13 +1846,8 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
 
     $condition_group = $query->getConditionGroup();
     $this->addLanguageConditions($condition_group, $query);
-    // @todo #2877319 Maybe, like addLanguageConditions(), add a method here
-    //   checking for the "search_api_location" option on the query and, if
-    //   present, add new conditions based on the option(s) to the query.
-    //   Or place the conditions directly on the query below this if block -
-    //   in that case, you might need to remove any conditions on those fields
-    //   from the query.
-    if ($this->dbmsCompatibility instanceof LocationAwareDatabaseInterface) {
+    if ($this->dbmsCompatibility instanceof LocationAwareDatabaseInterface
+        && $query->getOption('search_api_location', [])) {
       $index_table = $this->getIndexDbInfo($query->getIndex())['index_table'];
       $index_table_alias = $this->getTableAlias(['table' => $index_table], $db_query);
       $this->dbmsCompatibility->addLocationFilter($index_table_alias, $query, $db_query);
@@ -2338,9 +2333,6 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
           }
           elseif (($field_info['type'] ?? '') === 'location'
               && $this->dbmsCompatibility instanceof LocationAwareDatabaseInterface) {
-            // @todo #2877319 Place filter on query, possibly also taking the
-            //   options into account. Or, if this is handled somewhere else,
-            //   simply ignore this condition.
             $this->dbmsCompatibility->addLocationDbCondition($field_info['column'], $value, $operator, $query, $db_query);
           }
           elseif ($not_between) {
