@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3324776 by Kingdutch, drunken monkey: Fixed duplicate tables created by DB
+  backend.
 - #3267092 by drunken monkey: Fixed stemming of content with invalid language
   codes.
 - #3352134 by drunken monkey: Fixed performance degradation with database

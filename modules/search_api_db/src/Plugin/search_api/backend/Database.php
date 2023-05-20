@@ -1258,10 +1258,10 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
    *   method.
    */
   protected function indexItem(IndexInterface $index, ItemInterface $item) {
-    $fields = $this->getFieldInfo($index);
     $fields_updated = FALSE;
     $field_errors = [];
     $db_info = $this->getIndexDbInfo($index);
+    $fields = $db_info['field_tables'];
     $denormalized_table = $db_info['index_table'];
     $item_id = $item->getId();
 
@@ -1285,6 +1285,8 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
           unset($db_info['field_tables'][$field_id]);
           $this->fieldsUpdated($index);
           $fields_updated = TRUE;
+          // Reload DB info because fieldsUpdated() may have changed it.
+          $db_info = $this->getIndexDbInfo($index);
           $fields = $db_info['field_tables'];
         }
         if (empty($fields[$field_id]['table']) && empty($field_errors[$field_id])) {
