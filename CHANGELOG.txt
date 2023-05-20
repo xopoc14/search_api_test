@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3325360 by Jelle_S, drunken monkey: Fixed referenced entity tracking not
+  respecting the search_api_skip_tracking flag.
 - #3324776 by Kingdutch, drunken monkey: Fixed duplicate tables created by DB
   backend.
 - #3267092 by drunken monkey: Fixed stemming of content with invalid language
