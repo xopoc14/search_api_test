@@ -1393,7 +1393,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
               $score = round($score);
               // Take care that the score doesn't exceed the maximum value for
               // the database column (2^32-1).
-              $score = min((int) $score, 4294967295);
+              $score = (int) min($score, 4294967295);
               $text_inserts[] = [
                 'item_id' => $item_id,
                 'field_name' => $field_name,
