@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3325932 by tedfordgif, drunken monkey: Fixed documentation of "drush
+  search-api:index --batch-size=0".
 - #3359908 by drunken monkey: Added another test case for the "Ignore
   characters" processor.
 - #3345999 by smokris, drunken monkey, ressa: Added support for phrase searching

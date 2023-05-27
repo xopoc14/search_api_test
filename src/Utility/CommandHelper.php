@@ -262,8 +262,9 @@ class CommandHelper implements LoggerAwareInterface {
    *   (optional) The maximum number of items to index, or NULL to index all
    *   items.
    * @param int|null $batchSize
-   *   (optional) The maximum number of items to process per batch, or NULL to
-   *   index all items at once.
+   *   (optional) The maximum number of items to process per batch, an empty
+   *   value to use the default cron limit configured for the index, or a
+   *   negative value to index all items in a single batch.
    *
    * @return bool
    *   TRUE if indexing for any index was queued, FALSE otherwise.
