@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3345999 by smokris, drunken monkey, ressa: Added support for phrase searching
+  to the database backend.
 - #3347901 by drunken monkey: Added possibility for dates to be used in number
   field-based boosting.
 - #3321499 by andrew-minich, Shriaas, siddharthjain_7998, drunken monkey: Fixed
