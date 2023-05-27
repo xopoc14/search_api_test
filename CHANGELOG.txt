@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3321499 by andrew-minich, Shriaas, siddharthjain_7998, drunken monkey: Fixed
+  errors with views on disabled indexes.
 - #3361041 by BigDave91, drunken monkey: Fixed integer overflow error in DB
   backend for large score values.
 - #3325360 by Jelle_S, drunken monkey: Fixed referenced entity tracking not
