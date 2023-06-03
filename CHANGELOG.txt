@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3317569 by drunken monkey: Added tests for indexing multi-valued reverse
+  entity references.
 - #3363257 by drunken monkey: Fixed failing tests against Drupal 10.1 HEAD.
 - #3325932 by tedfordgif, drunken monkey: Fixed documentation of "drush
   search-api:index --batch-size=0".
