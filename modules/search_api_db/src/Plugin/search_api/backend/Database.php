@@ -1322,7 +1322,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
    *
    * @param \Drupal\search_api\Plugin\search_api\data_type\value\TextTokenInterface[] $values
    *   An ordered array of text tokens.
-   * @param int $item_boost
+   * @param float $item_boost
    *   The score boost for this index item.
    * @param string &$denormalized_value
    *   Outputs a truncated string representing these text tokens.
@@ -1331,7 +1331,7 @@ class Database extends BackendPluginBase implements AutocompleteBackendInterface
    *   Extracted tokens, keyed by the indexed token/bigram and represented by
    *   associative arrays with keys "value" (the token/bigram) and "score".
    */
-  protected function convertValuesToScoredTokens(array $values, int $item_boost, string &$denormalized_value): array {
+  protected function convertValuesToScoredTokens(array $values, float $item_boost, string &$denormalized_value): array {
     // Build a deduplicated list of single-word tokens.
     $unique_tokens = [];
     $pos_in_text = 0;
