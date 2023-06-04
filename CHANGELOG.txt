@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3315269 by drunken monkey, GuyPaddock: Fixed illogical error handling code in
+  "Content access" processor.
 - #3347610 by drunken monkey, itaran: Fixed error in HTML filter with very long
   attributes.
 - #3317569 by drunken monkey: Added tests for indexing multi-valued reverse

@@ -243,10 +243,7 @@ class ContentAccess extends ProcessorPluginBase {
         $this->addNodeAccess($query, $account);
       }
       else {
-        $account = $query->getOption('search_api_access_account', $this->getCurrentUser());
-        if ($account instanceof AccountInterface) {
-          $account = $account->id();
-        }
+        $account = $query->getOption('search_api_access_account');
         if (!is_scalar($account)) {
           $account = var_export($account, TRUE);
         }
