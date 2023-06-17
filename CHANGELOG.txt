@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3311004 by nsavitsky, drunken monkey: Fixed "All taxonomy term fields"
+  contextual filter to include fields with custom IDs.
 - #3320841 by weekbeforenext, drunken monkey: Fixed indexing of "Processed text"
   fields.
 - #3273159 by naveenvalecha, drunken monkey: Added the "Custom value" processor
