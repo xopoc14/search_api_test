@@ -123,10 +123,30 @@ class ViewsTest extends SearchApiBrowserTestBase {
     $this->checkResults($query, [2, 3, 4], 'Search with ID "in between" filter');
     $query = [
       'id[min]' => 2,
+      'id_op' => 'between',
+    ];
+    $this->checkResults($query, [2, 3, 4, 5], 'Search with ID "in between" filter (only min)');
+    $query = [
+      'id[max]' => 4,
+      'id_op' => 'between',
+    ];
+    $this->checkResults($query, [1, 2, 3, 4], 'Search with ID "in between" filter (only max)');
+    $query = [
+      'id[min]' => 2,
       'id[max]' => 4,
       'id_op' => 'not between',
     ];
     $this->checkResults($query, [1, 5], 'Search with ID "not in between" filter');
+    $query = [
+      'id[min]' => 2,
+      'id_op' => 'not between',
+    ];
+    $this->checkResults($query, [1], 'Search with ID "not in between" filter (only min)');
+    $query = [
+      'id[max]' => 4,
+      'id_op' => 'not between',
+    ];
+    $this->checkResults($query, [5], 'Search with ID "not in between" filter (only max)');
     $query = [
       'id[value]' => 2,
       'id_op' => '>',
@@ -396,6 +416,7 @@ class ViewsTest extends SearchApiBrowserTestBase {
    * Contains regression tests for previous, fixed bugs.
    */
   protected function regressionTests() {
+    $this->regressionTest3296477();
     $this->regressionTest3318187();
     $this->regressionTest3187134();
     $this->regressionTest2869121();
@@ -785,6 +806,32 @@ class ViewsTest extends SearchApiBrowserTestBase {
     // Now visit the page and check if it goes "boom".
     $this->drupalGet('search-api-test-operations');
     $this->assertSession()->pageTextContains('2021-01-22');
+  }
+
+  /**
+   * Tests that date "in between" filters also work with just one value.
+   *
+   * @see https://www.drupal.org/node/3296477
+   */
+  protected function regressionTest3296477(): void {
+    $yesterday = date('Y-m-d', strtotime('-1DAY'));
+    $tomorrow = date('Y-m-d', strtotime('+1DAY'));
+    $query = [
+      'created[min]' => $yesterday,
+      'created[max]' => $tomorrow,
+      'created_op' => 'between',
+    ];
+    $this->checkResults($query, [1, 2, 3, 4, 5], 'Search with "Created between TODAY and TOMORROW" filter');
+    $query = [
+      'created[min]' => $tomorrow,
+      'created_op' => 'between',
+    ];
+    $this->checkResults($query, [], 'Search with "Created between TOMORROW and *" filter');
+    $query = [
+      'created[max]' => $yesterday,
+      'created_op' => 'between',
+    ];
+    $this->checkResults($query, [], 'Search with "Created between * and YESTERDAY" filter');
   }
 
   /**
