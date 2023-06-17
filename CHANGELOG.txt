@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3320841 by weekbeforenext, drunken monkey: Fixed indexing of "Processed text"
+  fields.
 - #3273159 by naveenvalecha, drunken monkey: Added the "Custom value" processor
   property.
 - #3296477 by abramm, drunken monkey: Fixed results when only one value is
