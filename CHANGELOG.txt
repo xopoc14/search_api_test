@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3327383 by unstatu, drunken monkey: Fixed handling of the "view any
+  unpublished content" permission in the "Content access" processor.
 - #3363208 by drunken monkey: Fixed implicit conversion from float to int in
   database backend.
 - #3315269 by drunken monkey, GuyPaddock: Fixed illogical error handling code in
