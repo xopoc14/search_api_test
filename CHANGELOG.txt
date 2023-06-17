@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #2855447 by edurenye, drunken monkey, alexdoma: Added option to customize the
+  separator used for aggregated fields of type "Fulltext".
 - #3304560 by recrit, Gertlor, drunken monkey: Fixed problems with "Multiple
   terms" parse mode and invalid UTF-8 strings.
 - #3327383 by unstatu, drunken monkey: Fixed handling of the "view any

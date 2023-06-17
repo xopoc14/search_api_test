@@ -231,6 +231,9 @@ search_api.property_configuration.aggregated_field:
     type:
       type: string
       label: 'The type of the aggregation'
+    separator:
+      type: string
+      label: 'The separator used if the "Concatenation" type is selected'
     fields:
       type: sequence
       label: 'The properties to be aggregated'
