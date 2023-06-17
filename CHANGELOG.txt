@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3304560 by recrit, Gertlor, drunken monkey: Fixed problems with "Multiple
+  terms" parse mode and invalid UTF-8 strings.
 - #3327383 by unstatu, drunken monkey: Fixed handling of the "view any
   unpublished content" permission in the "Content access" processor.
 - #3363208 by drunken monkey: Fixed implicit conversion from float to int in

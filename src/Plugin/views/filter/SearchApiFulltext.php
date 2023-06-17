@@ -2,6 +2,7 @@
 
 namespace Drupal\search_api\Plugin\views\filter;
 
+use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api\ParseMode\ParseModePluginManager;
@@ -347,12 +348,17 @@ class SearchApiFulltext extends FilterPluginBase {
       return;
     }
 
+    if (!Unicode::validateUtf8($input)) {
+      $msg = $this->t('Invalid input.');
+      $form_state->setErrorByName($identifier, $msg);
+    }
+
     // Only continue if there is a minimum word length set.
     if ($this->options['min_length'] < 2) {
       return;
     }
 
-    $words = preg_split('/\s+/', $input);
+    $words = preg_split('/\s+/', $input) ?: [];
     foreach ($words as $i => $word) {
       if (mb_strlen($word) < $this->options['min_length']) {
         unset($words[$i]);
