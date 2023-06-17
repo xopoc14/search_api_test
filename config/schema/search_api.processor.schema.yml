@@ -272,3 +272,11 @@ search_api.property_configuration.search_api_url:
     absolute:
       type: boolean
       label: 'Whether to generate an absolute URL'
+
+search_api.property_configuration.custom_value:
+  type: mapping
+  label: Custom value
+  mapping:
+    value:
+      type: string
+      label: 'The field value'

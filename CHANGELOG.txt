@@ -1,5 +1,7 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3273159 by naveenvalecha, drunken monkey: Added the "Custom value" processor
+  property.
 - #3296477 by abramm, drunken monkey: Fixed results when only one value is
   entered in a Views date range filter.
 - #2855447 by edurenye, drunken monkey, alexdoma: Added option to customize the
