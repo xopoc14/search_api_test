@@ -356,7 +356,7 @@ class RenderedItemTest extends ProcessorTestBase {
     }
 
     // Verify that no field values were added.
-    foreach ($items as $key => $item) {
+    foreach ($items as $item) {
       $rendered_item = $item->getField('rendered_item');
       $this->assertEmpty($rendered_item->getValues(), 'No rendered_item field value added when disabled for content type.');
     }

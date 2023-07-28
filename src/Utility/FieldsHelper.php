@@ -71,24 +71,6 @@ class FieldsHelper implements FieldsHelperInterface {
   protected $themeSwitcher;
 
   /**
-   * Cache for the field type mapping.
-   *
-   * @var array|null
-   *
-   * @see getFieldTypeMapping()
-   */
-  protected $fieldTypeMapping;
-
-  /**
-   * Cache for the fallback data type mapping per index.
-   *
-   * @var array
-   *
-   * @see getDataTypeFallbackMapping()
-   */
-  protected $dataTypeFallbackMapping = [];
-
-  /**
    * Constructs a FieldsHelper object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
@@ -198,7 +180,7 @@ class FieldsHelper implements FieldsHelperInterface {
 
     $values = $this->extractFieldValues($data);
 
-    foreach ($values as $i => $value) {
+    foreach ($values as $value) {
       $field->addValue($value);
     }
     $field->setOriginalType($data->getDataDefinition()->getDataType());
