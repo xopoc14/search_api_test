@@ -1,5 +1,6 @@
 Search API 1.x, dev (xxxx-xx-xx):
 ---------------------------------
+- #3365370 by Nick_vh, drunken monkey: Added the .gitlab-ci.yml file.
 - #3367647 by arti_parmar, drunken monkey: Fixed unused variables and properties
   left in code.
 - #3311004 by nsavitsky, drunken monkey: Fixed "All taxonomy term fields"
